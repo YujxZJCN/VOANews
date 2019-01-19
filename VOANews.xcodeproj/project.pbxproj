@@ -7,23 +7,55 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4C21D4318314E8D3C3B9EC47 /* Pods_VOANews.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA5C7760E5438829CE1C6D22 /* Pods_VOANews.framework */; };
 		F6EB092B21F2EBC6009B4785 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6EB092A21F2EBC6009B4785 /* AppDelegate.swift */; };
-		F6EB092D21F2EBC6009B4785 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6EB092C21F2EBC6009B4785 /* ViewController.swift */; };
+		F6EB092D21F2EBC6009B4785 /* VOANewsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6EB092C21F2EBC6009B4785 /* VOANewsController.swift */; };
 		F6EB093021F2EBC6009B4785 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F6EB092E21F2EBC6009B4785 /* Main.storyboard */; };
 		F6EB093321F2EBC6009B4785 /* VOANews.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F6EB093121F2EBC6009B4785 /* VOANews.xcdatamodeld */; };
 		F6EB093521F2EBC7009B4785 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F6EB093421F2EBC7009B4785 /* Assets.xcassets */; };
 		F6EB093821F2EBC7009B4785 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F6EB093621F2EBC7009B4785 /* LaunchScreen.storyboard */; };
+		F6EB094021F2FD5B009B4785 /* VOANews.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6EB093F21F2FD5B009B4785 /* VOANews.swift */; };
+		F6EB094221F30041009B4785 /* VOANewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6EB094121F30041009B4785 /* VOANewsTableViewCell.swift */; };
+		F6EB094F21F30F91009B4785 /* UIColor+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6EB094E21F30F91009B4785 /* UIColor+Ext.swift */; };
+		F6EB097121F31A18009B4785 /* Rubik-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F6EB096721F31A17009B4785 /* Rubik-Italic.ttf */; };
+		F6EB097221F31A18009B4785 /* Rubik-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F6EB096821F31A17009B4785 /* Rubik-BoldItalic.ttf */; };
+		F6EB097321F31A18009B4785 /* Rubik-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F6EB096921F31A17009B4785 /* Rubik-Black.ttf */; };
+		F6EB097421F31A18009B4785 /* Rubik-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F6EB096A21F31A17009B4785 /* Rubik-LightItalic.ttf */; };
+		F6EB097521F31A18009B4785 /* Rubik-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F6EB096B21F31A17009B4785 /* Rubik-Light.ttf */; };
+		F6EB097621F31A18009B4785 /* Rubik-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F6EB096C21F31A17009B4785 /* Rubik-Bold.ttf */; };
+		F6EB097721F31A18009B4785 /* Rubik-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F6EB096D21F31A17009B4785 /* Rubik-Medium.ttf */; };
+		F6EB097821F31A18009B4785 /* Rubik-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F6EB096E21F31A17009B4785 /* Rubik-MediumItalic.ttf */; };
+		F6EB097921F31A18009B4785 /* Rubik-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F6EB096F21F31A18009B4785 /* Rubik-Regular.ttf */; };
+		F6EB097A21F31A18009B4785 /* Rubik-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F6EB097021F31A18009B4785 /* Rubik-BlackItalic.ttf */; };
+		F6EB097E21F31A93009B4785 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F6EB097D21F31A93009B4785 /* Default-568h@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		680AB3CC064BAB42EDE5E7B1 /* Pods-VOANews.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VOANews.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VOANews/Pods-VOANews.debug.xcconfig"; sourceTree = "<group>"; };
+		BA5C7760E5438829CE1C6D22 /* Pods_VOANews.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VOANews.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DCC451EB7D415345C829EC4A /* Pods-VOANews.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VOANews.release.xcconfig"; path = "Pods/Target Support Files/Pods-VOANews/Pods-VOANews.release.xcconfig"; sourceTree = "<group>"; };
 		F6EB092721F2EBC6009B4785 /* VOANews.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VOANews.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6EB092A21F2EBC6009B4785 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		F6EB092C21F2EBC6009B4785 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		F6EB092C21F2EBC6009B4785 /* VOANewsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOANewsController.swift; sourceTree = "<group>"; };
 		F6EB092F21F2EBC6009B4785 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F6EB093221F2EBC6009B4785 /* VOANews.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = VOANews.xcdatamodel; sourceTree = "<group>"; };
 		F6EB093421F2EBC7009B4785 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F6EB093721F2EBC7009B4785 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F6EB093921F2EBC7009B4785 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F6EB093F21F2FD5B009B4785 /* VOANews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOANews.swift; sourceTree = "<group>"; };
+		F6EB094121F30041009B4785 /* VOANewsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOANewsTableViewCell.swift; sourceTree = "<group>"; };
+		F6EB094E21F30F91009B4785 /* UIColor+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Ext.swift"; sourceTree = "<group>"; };
+		F6EB096721F31A17009B4785 /* Rubik-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Italic.ttf"; sourceTree = "<group>"; };
+		F6EB096821F31A17009B4785 /* Rubik-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-BoldItalic.ttf"; sourceTree = "<group>"; };
+		F6EB096921F31A17009B4785 /* Rubik-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Black.ttf"; sourceTree = "<group>"; };
+		F6EB096A21F31A17009B4785 /* Rubik-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-LightItalic.ttf"; sourceTree = "<group>"; };
+		F6EB096B21F31A17009B4785 /* Rubik-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Light.ttf"; sourceTree = "<group>"; };
+		F6EB096C21F31A17009B4785 /* Rubik-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Bold.ttf"; sourceTree = "<group>"; };
+		F6EB096D21F31A17009B4785 /* Rubik-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Medium.ttf"; sourceTree = "<group>"; };
+		F6EB096E21F31A17009B4785 /* Rubik-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-MediumItalic.ttf"; sourceTree = "<group>"; };
+		F6EB096F21F31A18009B4785 /* Rubik-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Regular.ttf"; sourceTree = "<group>"; };
+		F6EB097021F31A18009B4785 /* Rubik-BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-BlackItalic.ttf"; sourceTree = "<group>"; };
+		F6EB097D21F31A93009B4785 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,17 +63,38 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C21D4318314E8D3C3B9EC47 /* Pods_VOANews.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C654F82873FA8C39EF08A189 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				680AB3CC064BAB42EDE5E7B1 /* Pods-VOANews.debug.xcconfig */,
+				DCC451EB7D415345C829EC4A /* Pods-VOANews.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		C78BCAA6C3CC6C48EC622AE4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BA5C7760E5438829CE1C6D22 /* Pods_VOANews.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		F6EB091E21F2EBC6009B4785 = {
 			isa = PBXGroup;
 			children = (
+				F6EB097D21F31A93009B4785 /* Default-568h@2x.png */,
 				F6EB092921F2EBC6009B4785 /* VOANews */,
 				F6EB092821F2EBC6009B4785 /* Products */,
+				C654F82873FA8C39EF08A189 /* Pods */,
+				C78BCAA6C3CC6C48EC622AE4 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -56,15 +109,92 @@
 		F6EB092921F2EBC6009B4785 /* VOANews */ = {
 			isa = PBXGroup;
 			children = (
-				F6EB092A21F2EBC6009B4785 /* AppDelegate.swift */,
-				F6EB092C21F2EBC6009B4785 /* ViewController.swift */,
-				F6EB092E21F2EBC6009B4785 /* Main.storyboard */,
-				F6EB093421F2EBC7009B4785 /* Assets.xcassets */,
-				F6EB093621F2EBC7009B4785 /* LaunchScreen.storyboard */,
-				F6EB093921F2EBC7009B4785 /* Info.plist */,
-				F6EB093121F2EBC6009B4785 /* VOANews.xcdatamodeld */,
+				F6EB094321F30365009B4785 /* Resources */,
+				F6EB096521F3196F009B4785 /* Extensions */,
+				F6EB096621F31988009B4785 /* Models */,
+				F6EB097B21F31A25009B4785 /* Controller */,
+				F6EB097C21F31A7E009B4785 /* Supporting Files */,
+				F6EB097F21F31AAA009B4785 /* Cell */,
+				F6EB098021F31ABD009B4785 /* Storyboard */,
 			);
 			path = VOANews;
+			sourceTree = "<group>";
+		};
+		F6EB094321F30365009B4785 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				F6EB095021F31905009B4785 /* Fonts */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		F6EB095021F31905009B4785 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				F6EB096921F31A17009B4785 /* Rubik-Black.ttf */,
+				F6EB097021F31A18009B4785 /* Rubik-BlackItalic.ttf */,
+				F6EB096C21F31A17009B4785 /* Rubik-Bold.ttf */,
+				F6EB096821F31A17009B4785 /* Rubik-BoldItalic.ttf */,
+				F6EB096721F31A17009B4785 /* Rubik-Italic.ttf */,
+				F6EB096B21F31A17009B4785 /* Rubik-Light.ttf */,
+				F6EB096A21F31A17009B4785 /* Rubik-LightItalic.ttf */,
+				F6EB096D21F31A17009B4785 /* Rubik-Medium.ttf */,
+				F6EB096E21F31A17009B4785 /* Rubik-MediumItalic.ttf */,
+				F6EB096F21F31A18009B4785 /* Rubik-Regular.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		F6EB096521F3196F009B4785 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				F6EB094E21F30F91009B4785 /* UIColor+Ext.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		F6EB096621F31988009B4785 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				F6EB093121F2EBC6009B4785 /* VOANews.xcdatamodeld */,
+				F6EB093F21F2FD5B009B4785 /* VOANews.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		F6EB097B21F31A25009B4785 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				F6EB092C21F2EBC6009B4785 /* VOANewsController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		F6EB097C21F31A7E009B4785 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				F6EB092A21F2EBC6009B4785 /* AppDelegate.swift */,
+				F6EB093421F2EBC7009B4785 /* Assets.xcassets */,
+				F6EB093921F2EBC7009B4785 /* Info.plist */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		F6EB097F21F31AAA009B4785 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				F6EB094121F30041009B4785 /* VOANewsTableViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		F6EB098021F31ABD009B4785 /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				F6EB093621F2EBC7009B4785 /* LaunchScreen.storyboard */,
+				F6EB092E21F2EBC6009B4785 /* Main.storyboard */,
+			);
+			path = Storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -74,9 +204,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F6EB093C21F2EBC7009B4785 /* Build configuration list for PBXNativeTarget "VOANews" */;
 			buildPhases = (
+				FCBCAA540AD0A8052425E04D /* [CP] Check Pods Manifest.lock */,
 				F6EB092321F2EBC6009B4785 /* Sources */,
 				F6EB092421F2EBC6009B4785 /* Frameworks */,
 				F6EB092521F2EBC6009B4785 /* Resources */,
+				6FBF2367FE6394D97918EE8D /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -125,13 +257,75 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F6EB097321F31A18009B4785 /* Rubik-Black.ttf in Resources */,
+				F6EB097921F31A18009B4785 /* Rubik-Regular.ttf in Resources */,
+				F6EB097621F31A18009B4785 /* Rubik-Bold.ttf in Resources */,
+				F6EB097221F31A18009B4785 /* Rubik-BoldItalic.ttf in Resources */,
+				F6EB097421F31A18009B4785 /* Rubik-LightItalic.ttf in Resources */,
+				F6EB097E21F31A93009B4785 /* Default-568h@2x.png in Resources */,
+				F6EB097121F31A18009B4785 /* Rubik-Italic.ttf in Resources */,
 				F6EB093821F2EBC7009B4785 /* LaunchScreen.storyboard in Resources */,
+				F6EB097521F31A18009B4785 /* Rubik-Light.ttf in Resources */,
 				F6EB093521F2EBC7009B4785 /* Assets.xcassets in Resources */,
+				F6EB097A21F31A18009B4785 /* Rubik-BlackItalic.ttf in Resources */,
 				F6EB093021F2EBC6009B4785 /* Main.storyboard in Resources */,
+				F6EB097821F31A18009B4785 /* Rubik-MediumItalic.ttf in Resources */,
+				F6EB097721F31A18009B4785 /* Rubik-Medium.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		6FBF2367FE6394D97918EE8D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-VOANews/Pods-VOANews-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Kanna/Kanna.framework",
+				"${BUILT_PRODUCTS_DIR}/NVActivityIndicatorView/NVActivityIndicatorView.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kanna.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NVActivityIndicatorView.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VOANews/Pods-VOANews-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FCBCAA540AD0A8052425E04D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-VOANews-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		F6EB092321F2EBC6009B4785 /* Sources */ = {
@@ -139,8 +333,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				F6EB093321F2EBC6009B4785 /* VOANews.xcdatamodeld in Sources */,
-				F6EB092D21F2EBC6009B4785 /* ViewController.swift in Sources */,
+				F6EB092D21F2EBC6009B4785 /* VOANewsController.swift in Sources */,
+				F6EB094221F30041009B4785 /* VOANewsTableViewCell.swift in Sources */,
+				F6EB094F21F30F91009B4785 /* UIColor+Ext.swift in Sources */,
 				F6EB092B21F2EBC6009B4785 /* AppDelegate.swift in Sources */,
+				F6EB094021F2FD5B009B4785 /* VOANews.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -284,11 +481,12 @@
 		};
 		F6EB093D21F2EBC7009B4785 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 680AB3CC064BAB42EDE5E7B1 /* Pods-VOANews.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4YTK46QBW5;
-				INFOPLIST_FILE = VOANews/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/VOANews/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -302,11 +500,12 @@
 		};
 		F6EB093E21F2EBC7009B4785 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DCC451EB7D415345C829EC4A /* Pods-VOANews.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4YTK46QBW5;
-				INFOPLIST_FILE = VOANews/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/VOANews/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

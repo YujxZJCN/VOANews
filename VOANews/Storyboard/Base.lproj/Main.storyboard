@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="dOH-MM-Bf6">
+    <device id="retina5_9" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Rubik-Regular.ttf">
+            <string>Rubik-Regular</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--News Controller-->
+        <scene sceneID="fzz-C6-Meg">
+            <objects>
+                <viewController id="dOH-MM-Bf6" customClass="VOANewsController" customModule="VOANews" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="2bi-nC-eEd">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="dOq-2d-9iE">
+                                <rect key="frame" x="0.0" y="59" width="375" height="629"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="VOANewsCell" rowHeight="90" id="f0x-iu-QT0" customClass="VOANewsTableViewCell" customModule="VOANews" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="90"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="f0x-iu-QT0" id="LBI-gz-Tb0">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="89.666666666666671"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="nBS-DV-Toc">
+                                                    <rect key="frame" x="27" y="21.666666666666668" width="301" height="46.666666666666657"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xwj-39-03N">
+                                                            <rect key="frame" x="0.0" y="0.0" width="301" height="22"/>
+                                                            <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="16"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PXr-hc-n5J">
+                                                            <rect key="frame" x="0.0" y="29.999999999999993" width="301" height="16.666666666666664"/>
+                                                            <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="14"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="heart-tick" translatesAutoresizingMaskIntoConstraints="NO" id="LKi-Z1-a50">
+                                                    <rect key="frame" x="340" y="11" width="20" height="20"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="20" id="2iV-Me-bJo"/>
+                                                        <constraint firstAttribute="width" constant="20" id="oPV-6c-1fN"/>
+                                                    </constraints>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="nBS-DV-Toc" firstAttribute="leading" secondItem="LBI-gz-Tb0" secondAttribute="leadingMargin" constant="12" id="8he-IC-Caj"/>
+                                                <constraint firstItem="LKi-Z1-a50" firstAttribute="leading" secondItem="nBS-DV-Toc" secondAttribute="trailing" constant="12" id="EHj-sU-Xuh"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="LKi-Z1-a50" secondAttribute="trailing" id="WXJ-S6-8Ak"/>
+                                                <constraint firstItem="nBS-DV-Toc" firstAttribute="centerY" secondItem="LBI-gz-Tb0" secondAttribute="centerY" id="o6a-0q-lNL"/>
+                                                <constraint firstItem="LKi-Z1-a50" firstAttribute="centerY" secondItem="LBI-gz-Tb0" secondAttribute="centerY" constant="-23.833333333333336" id="vPQ-7n-Qxq"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="dateLabel" destination="PXr-hc-n5J" id="xqj-J1-DU9"/>
+                                            <outlet property="heartImageView" destination="LKi-Z1-a50" id="Nqi-nm-c9p"/>
+                                            <outlet property="nameLabel" destination="xwj-39-03N" id="OxV-Si-HOz"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="dOH-MM-Bf6" id="czb-K3-QbZ"/>
+                                    <outlet property="delegate" destination="dOH-MM-Bf6" id="hxv-P6-6xq"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="8ew-o7-Lge" firstAttribute="bottom" secondItem="dOq-2d-9iE" secondAttribute="bottom" constant="90" id="dbp-F5-nlm"/>
+                            <constraint firstItem="dOq-2d-9iE" firstAttribute="leading" secondItem="8ew-o7-Lge" secondAttribute="leading" id="eeT-Wm-eqT"/>
+                            <constraint firstItem="dOq-2d-9iE" firstAttribute="top" secondItem="8ew-o7-Lge" secondAttribute="top" constant="15" id="wNE-Py-QEw"/>
+                            <constraint firstItem="dOq-2d-9iE" firstAttribute="trailing" secondItem="8ew-o7-Lge" secondAttribute="trailing" id="yY1-IK-dbx"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="8ew-o7-Lge"/>
+                    </view>
+                    <connections>
+                        <outlet property="VOANewsTableView" destination="dOq-2d-9iE" id="pU4-PP-Nna"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Am1-hc-gsu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-432.80000000000001" y="-849.62518740629696"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="heart-tick" width="22" height="21"/>
+    </resources>
+</document>
