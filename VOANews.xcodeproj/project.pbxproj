@@ -27,7 +27,6 @@
 		F6EB097821F31A18009B4785 /* Rubik-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F6EB096E21F31A17009B4785 /* Rubik-MediumItalic.ttf */; };
 		F6EB097921F31A18009B4785 /* Rubik-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F6EB096F21F31A18009B4785 /* Rubik-Regular.ttf */; };
 		F6EB097A21F31A18009B4785 /* Rubik-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F6EB097021F31A18009B4785 /* Rubik-BlackItalic.ttf */; };
-		F6EB097E21F31A93009B4785 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F6EB097D21F31A93009B4785 /* Default-568h@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,7 +54,6 @@
 		F6EB096E21F31A17009B4785 /* Rubik-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-MediumItalic.ttf"; sourceTree = "<group>"; };
 		F6EB096F21F31A18009B4785 /* Rubik-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Regular.ttf"; sourceTree = "<group>"; };
 		F6EB097021F31A18009B4785 /* Rubik-BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-BlackItalic.ttf"; sourceTree = "<group>"; };
-		F6EB097D21F31A93009B4785 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,7 +88,6 @@
 		F6EB091E21F2EBC6009B4785 = {
 			isa = PBXGroup;
 			children = (
-				F6EB097D21F31A93009B4785 /* Default-568h@2x.png */,
 				F6EB092921F2EBC6009B4785 /* VOANews */,
 				F6EB092821F2EBC6009B4785 /* Products */,
 				C654F82873FA8C39EF08A189 /* Pods */,
@@ -262,7 +259,6 @@
 				F6EB097621F31A18009B4785 /* Rubik-Bold.ttf in Resources */,
 				F6EB097221F31A18009B4785 /* Rubik-BoldItalic.ttf in Resources */,
 				F6EB097421F31A18009B4785 /* Rubik-LightItalic.ttf in Resources */,
-				F6EB097E21F31A93009B4785 /* Default-568h@2x.png in Resources */,
 				F6EB097121F31A18009B4785 /* Rubik-Italic.ttf in Resources */,
 				F6EB093821F2EBC7009B4785 /* LaunchScreen.storyboard in Resources */,
 				F6EB097521F31A18009B4785 /* Rubik-Light.ttf in Resources */,
