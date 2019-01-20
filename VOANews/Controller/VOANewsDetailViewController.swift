@@ -48,6 +48,8 @@ class VOANewsDetailViewController: UIViewController {
             }
         }
     }
+    
+    var loadedFlag = false
     var playTime = 0.0
     
     let playImage = UIImage(named: "play_btn")
@@ -65,12 +67,12 @@ class VOANewsDetailViewController: UIViewController {
     @IBOutlet var VOANewsDetailTableView: UITableView!
     
     var activityIndicator: NVActivityIndicatorView!
-    var timer = Timer()
+//    var timer = Timer()
     var loadDataTimes = 0 {
         didSet {
             if loadDataTimes > 20 {
                 self.activityIndicator.stopAnimating()
-                timer.invalidate()
+//                timer.invalidate()
                 
                 let alertController = UIAlertController(title: "请检查网络连接", message: "", preferredStyle: .alert)
                 self.present(alertController, animated: true, completion: nil)
@@ -121,7 +123,8 @@ class VOANewsDetailViewController: UIViewController {
         view.addSubview(activityIndicator)
         
         activityIndicator.startAnimating()
-        timer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(loadData), userInfo: nil, repeats: true)
+        loadData()
+//        timer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(loadData), userInfo: nil, repeats: true)
     }
     
     @objc func loadData() {
@@ -135,7 +138,7 @@ class VOANewsDetailViewController: UIViewController {
                         let components = innerHtml.components(separatedBy: "\"")
                         let url = NSURL(string: components[components.count - 4])
                         self.downloadFileFromURL(url: url!)
-                        self.timer.invalidate()
+//                        self.timer.invalidate()
                     }
                 }
                 
@@ -171,6 +174,7 @@ class VOANewsDetailViewController: UIViewController {
                     if self.VOANewsDetails[index].contains(replaceString5) {
                         self.VOANewsDetails[index] = self.VOANewsDetails[index].replacingOccurrences(of: replaceString5, with: "VOA")
                     }
+                    print(self.VOANewsDetails[index])
                 }
                 
             }
@@ -180,15 +184,18 @@ class VOANewsDetailViewController: UIViewController {
     
     @objc func onSpeedLabelTapped() {
         if speedSlider.value == 1.0 { return }
+        if !loadedFlag {
+            return
+        }
         let status = audioPlayer.isPlaying
-        if status {
+        if status, loadedFlag {
             audioPlayer.stop()
         }
         audioPlayer.enableRate = true
         audioPlayer.rate = 1.0
         speedSlider.value = 1.0
         speedLabel.text = String(format: "%.2f倍", speedSlider.value)
-        if status {
+        if status, loadedFlag {
             audioPlayer.play()
         }
     }
@@ -202,7 +209,9 @@ class VOANewsDetailViewController: UIViewController {
         audioPlayer.prepareToPlay()
         setStatusBar()
         Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(self.updateSlider), userInfo: nil, repeats: true)
+        audioPlayer.volume = 5
         audioPlayer.play()
+        loadedFlag = true
         nowPlayingImageView.startAnimating()
     }
     
@@ -223,18 +232,22 @@ class VOANewsDetailViewController: UIViewController {
     @IBAction func playTapped(_ sender: UIButton) {
         if playStatus {
             Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(self.updateSlider), userInfo: nil, repeats: true)
-            if audioPlayer.isPlaying {
-                audioPlayer.stop()
+            if loadedFlag {
+                if audioPlayer.isPlaying {
+                   audioPlayer.stop()
+                }
+                playTime = audioPlayer.currentTime
             }
-            playTime = audioPlayer.currentTime
             playButton.setImage(playImage, for: .normal)
             playStatus = false
         } else {
             if processSlider.value >= processSlider.maximumValue - 0.15 {
                 audioPlayer.currentTime = 0
             }
-            if !audioPlayer.isPlaying {
-                audioPlayer.play()
+            if loadedFlag {
+                if !audioPlayer.isPlaying {
+                    audioPlayer.play()
+                }
             }
             playButton.setImage(pauseImage, for: .normal)
             playStatus = true
@@ -242,7 +255,11 @@ class VOANewsDetailViewController: UIViewController {
     }
     
     @objc func updateSlider() {
-        processSlider.value = Float(audioPlayer.currentTime)
+        if loadedFlag {
+            processSlider.value = Float(audioPlayer.currentTime)
+        }else {
+            return
+        }
         currentTime.text = getFormatPlayTime(secounds: audioPlayer.currentTime)
         if processSlider.value >= processSlider.maximumValue - 0.15 {
 //            playingNumber += 1
@@ -284,28 +301,40 @@ class VOANewsDetailViewController: UIViewController {
     }
     
     @IBAction func sliderChanged(_ sender: UISlider) {
-        audioPlayer.currentTime = TimeInterval(processSlider.value)
+        if loadedFlag {
+            audioPlayer.currentTime = TimeInterval(processSlider.value)
+        }
     }
     
     @IBAction func volumeController(_ sender: UISlider) {
-        audioPlayer.volume = volumeSlider.value * 5
-
+        if loadedFlag {
+            audioPlayer.volume = volumeSlider.value * 10
+        }
     }
     
     @IBAction func speedController(_ sender: UISlider) {
-        let status = audioPlayer.isPlaying
-        audioPlayer.stop()
+        var status = false
+        if loadedFlag {
+            status = audioPlayer.isPlaying
+        }
+        if loadedFlag {
+            audioPlayer.stop()
+        }else {
+            return
+        }
         audioPlayer.enableRate = true
         audioPlayer.rate = speedSlider.value
         speedLabel.text = String(format: "%.2f倍", speedSlider.value)
-        if status {
+        if status, loadedFlag {
             audioPlayer.play()
         }
     }
     
     @IBAction func dismiss(_ sender: UIButton) {
-        if audioPlayer.isPlaying {
-            audioPlayer.stop()
+        if loadedFlag {
+            if audioPlayer.isPlaying {
+                audioPlayer.stop()
+            }
         }
         self.dismiss(animated: true, completion: nil)
     }
