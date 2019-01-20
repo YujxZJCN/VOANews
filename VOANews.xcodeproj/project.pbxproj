@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		4C21D4318314E8D3C3B9EC47 /* Pods_VOANews.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA5C7760E5438829CE1C6D22 /* Pods_VOANews.framework */; };
+		F6BEC16121F42C4400290F7D /* VOANewsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6BEC16021F42C4400290F7D /* VOANewsDetailViewController.swift */; };
+		F6BEC16321F44B1C00290F7D /* AnimationFrames.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6BEC16221F44B1C00290F7D /* AnimationFrames.swift */; };
+		F6BEC16521F49B3C00290F7D /* VOANewsDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6BEC16421F49B3C00290F7D /* VOANewsDetailTableViewCell.swift */; };
 		F6EB092B21F2EBC6009B4785 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6EB092A21F2EBC6009B4785 /* AppDelegate.swift */; };
 		F6EB092D21F2EBC6009B4785 /* VOANewsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6EB092C21F2EBC6009B4785 /* VOANewsController.swift */; };
 		F6EB093021F2EBC6009B4785 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F6EB092E21F2EBC6009B4785 /* Main.storyboard */; };
@@ -17,22 +20,15 @@
 		F6EB094021F2FD5B009B4785 /* VOANews.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6EB093F21F2FD5B009B4785 /* VOANews.swift */; };
 		F6EB094221F30041009B4785 /* VOANewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6EB094121F30041009B4785 /* VOANewsTableViewCell.swift */; };
 		F6EB094F21F30F91009B4785 /* UIColor+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6EB094E21F30F91009B4785 /* UIColor+Ext.swift */; };
-		F6EB097121F31A18009B4785 /* Rubik-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F6EB096721F31A17009B4785 /* Rubik-Italic.ttf */; };
-		F6EB097221F31A18009B4785 /* Rubik-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F6EB096821F31A17009B4785 /* Rubik-BoldItalic.ttf */; };
-		F6EB097321F31A18009B4785 /* Rubik-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F6EB096921F31A17009B4785 /* Rubik-Black.ttf */; };
-		F6EB097421F31A18009B4785 /* Rubik-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F6EB096A21F31A17009B4785 /* Rubik-LightItalic.ttf */; };
-		F6EB097521F31A18009B4785 /* Rubik-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F6EB096B21F31A17009B4785 /* Rubik-Light.ttf */; };
-		F6EB097621F31A18009B4785 /* Rubik-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F6EB096C21F31A17009B4785 /* Rubik-Bold.ttf */; };
-		F6EB097721F31A18009B4785 /* Rubik-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F6EB096D21F31A17009B4785 /* Rubik-Medium.ttf */; };
-		F6EB097821F31A18009B4785 /* Rubik-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F6EB096E21F31A17009B4785 /* Rubik-MediumItalic.ttf */; };
-		F6EB097921F31A18009B4785 /* Rubik-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F6EB096F21F31A18009B4785 /* Rubik-Regular.ttf */; };
-		F6EB097A21F31A18009B4785 /* Rubik-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F6EB097021F31A18009B4785 /* Rubik-BlackItalic.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		680AB3CC064BAB42EDE5E7B1 /* Pods-VOANews.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VOANews.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VOANews/Pods-VOANews.debug.xcconfig"; sourceTree = "<group>"; };
 		BA5C7760E5438829CE1C6D22 /* Pods_VOANews.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VOANews.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCC451EB7D415345C829EC4A /* Pods-VOANews.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VOANews.release.xcconfig"; path = "Pods/Target Support Files/Pods-VOANews/Pods-VOANews.release.xcconfig"; sourceTree = "<group>"; };
+		F6BEC16021F42C4400290F7D /* VOANewsDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOANewsDetailViewController.swift; sourceTree = "<group>"; };
+		F6BEC16221F44B1C00290F7D /* AnimationFrames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationFrames.swift; sourceTree = "<group>"; };
+		F6BEC16421F49B3C00290F7D /* VOANewsDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOANewsDetailTableViewCell.swift; sourceTree = "<group>"; };
 		F6EB092721F2EBC6009B4785 /* VOANews.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VOANews.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6EB092A21F2EBC6009B4785 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F6EB092C21F2EBC6009B4785 /* VOANewsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOANewsController.swift; sourceTree = "<group>"; };
@@ -44,16 +40,6 @@
 		F6EB093F21F2FD5B009B4785 /* VOANews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOANews.swift; sourceTree = "<group>"; };
 		F6EB094121F30041009B4785 /* VOANewsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOANewsTableViewCell.swift; sourceTree = "<group>"; };
 		F6EB094E21F30F91009B4785 /* UIColor+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Ext.swift"; sourceTree = "<group>"; };
-		F6EB096721F31A17009B4785 /* Rubik-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Italic.ttf"; sourceTree = "<group>"; };
-		F6EB096821F31A17009B4785 /* Rubik-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-BoldItalic.ttf"; sourceTree = "<group>"; };
-		F6EB096921F31A17009B4785 /* Rubik-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Black.ttf"; sourceTree = "<group>"; };
-		F6EB096A21F31A17009B4785 /* Rubik-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-LightItalic.ttf"; sourceTree = "<group>"; };
-		F6EB096B21F31A17009B4785 /* Rubik-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Light.ttf"; sourceTree = "<group>"; };
-		F6EB096C21F31A17009B4785 /* Rubik-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Bold.ttf"; sourceTree = "<group>"; };
-		F6EB096D21F31A17009B4785 /* Rubik-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Medium.ttf"; sourceTree = "<group>"; };
-		F6EB096E21F31A17009B4785 /* Rubik-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-MediumItalic.ttf"; sourceTree = "<group>"; };
-		F6EB096F21F31A18009B4785 /* Rubik-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Regular.ttf"; sourceTree = "<group>"; };
-		F6EB097021F31A18009B4785 /* Rubik-BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-BlackItalic.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,11 +94,11 @@
 			children = (
 				F6EB094321F30365009B4785 /* Resources */,
 				F6EB096521F3196F009B4785 /* Extensions */,
+				F6EB098021F31ABD009B4785 /* Storyboard */,
 				F6EB096621F31988009B4785 /* Models */,
+				F6EB097F21F31AAA009B4785 /* View */,
 				F6EB097B21F31A25009B4785 /* Controller */,
 				F6EB097C21F31A7E009B4785 /* Supporting Files */,
-				F6EB097F21F31AAA009B4785 /* Cell */,
-				F6EB098021F31ABD009B4785 /* Storyboard */,
 			);
 			path = VOANews;
 			sourceTree = "<group>";
@@ -120,26 +106,8 @@
 		F6EB094321F30365009B4785 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				F6EB095021F31905009B4785 /* Fonts */,
 			);
 			path = Resources;
-			sourceTree = "<group>";
-		};
-		F6EB095021F31905009B4785 /* Fonts */ = {
-			isa = PBXGroup;
-			children = (
-				F6EB096921F31A17009B4785 /* Rubik-Black.ttf */,
-				F6EB097021F31A18009B4785 /* Rubik-BlackItalic.ttf */,
-				F6EB096C21F31A17009B4785 /* Rubik-Bold.ttf */,
-				F6EB096821F31A17009B4785 /* Rubik-BoldItalic.ttf */,
-				F6EB096721F31A17009B4785 /* Rubik-Italic.ttf */,
-				F6EB096B21F31A17009B4785 /* Rubik-Light.ttf */,
-				F6EB096A21F31A17009B4785 /* Rubik-LightItalic.ttf */,
-				F6EB096D21F31A17009B4785 /* Rubik-Medium.ttf */,
-				F6EB096E21F31A17009B4785 /* Rubik-MediumItalic.ttf */,
-				F6EB096F21F31A18009B4785 /* Rubik-Regular.ttf */,
-			);
-			path = Fonts;
 			sourceTree = "<group>";
 		};
 		F6EB096521F3196F009B4785 /* Extensions */ = {
@@ -163,6 +131,7 @@
 			isa = PBXGroup;
 			children = (
 				F6EB092C21F2EBC6009B4785 /* VOANewsController.swift */,
+				F6BEC16021F42C4400290F7D /* VOANewsDetailViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -177,12 +146,14 @@
 			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		F6EB097F21F31AAA009B4785 /* Cell */ = {
+		F6EB097F21F31AAA009B4785 /* View */ = {
 			isa = PBXGroup;
 			children = (
 				F6EB094121F30041009B4785 /* VOANewsTableViewCell.swift */,
+				F6BEC16421F49B3C00290F7D /* VOANewsDetailTableViewCell.swift */,
+				F6BEC16221F44B1C00290F7D /* AnimationFrames.swift */,
 			);
-			path = Cell;
+			path = View;
 			sourceTree = "<group>";
 		};
 		F6EB098021F31ABD009B4785 /* Storyboard */ = {
@@ -228,6 +199,11 @@
 				TargetAttributes = {
 					F6EB092621F2EBC6009B4785 = {
 						CreatedOnToolsVersion = 10.1;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -254,19 +230,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F6EB097321F31A18009B4785 /* Rubik-Black.ttf in Resources */,
-				F6EB097921F31A18009B4785 /* Rubik-Regular.ttf in Resources */,
-				F6EB097621F31A18009B4785 /* Rubik-Bold.ttf in Resources */,
-				F6EB097221F31A18009B4785 /* Rubik-BoldItalic.ttf in Resources */,
-				F6EB097421F31A18009B4785 /* Rubik-LightItalic.ttf in Resources */,
-				F6EB097121F31A18009B4785 /* Rubik-Italic.ttf in Resources */,
 				F6EB093821F2EBC7009B4785 /* LaunchScreen.storyboard in Resources */,
-				F6EB097521F31A18009B4785 /* Rubik-Light.ttf in Resources */,
 				F6EB093521F2EBC7009B4785 /* Assets.xcassets in Resources */,
-				F6EB097A21F31A18009B4785 /* Rubik-BlackItalic.ttf in Resources */,
 				F6EB093021F2EBC6009B4785 /* Main.storyboard in Resources */,
-				F6EB097821F31A18009B4785 /* Rubik-MediumItalic.ttf in Resources */,
-				F6EB097721F31A18009B4785 /* Rubik-Medium.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -332,7 +298,10 @@
 				F6EB092D21F2EBC6009B4785 /* VOANewsController.swift in Sources */,
 				F6EB094221F30041009B4785 /* VOANewsTableViewCell.swift in Sources */,
 				F6EB094F21F30F91009B4785 /* UIColor+Ext.swift in Sources */,
+				F6BEC16121F42C4400290F7D /* VOANewsDetailViewController.swift in Sources */,
 				F6EB092B21F2EBC6009B4785 /* AppDelegate.swift in Sources */,
+				F6BEC16521F49B3C00290F7D /* VOANewsDetailTableViewCell.swift in Sources */,
+				F6BEC16321F44B1C00290F7D /* AnimationFrames.swift in Sources */,
 				F6EB094021F2FD5B009B4785 /* VOANews.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

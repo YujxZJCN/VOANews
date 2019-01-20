@@ -91,9 +91,6 @@ class VOANewsController: UIViewController, UITableViewDelegate, UITableViewDataS
                 if self.VOANewsList[index].name.contains("VOA³£ËÙÓ¢Óï:") {
                     self.VOANewsList[index].name = self.VOANewsList[index].name.replacingOccurrences(of: "VOA³£ËÙÓ¢Óï:", with: "")
                 }
-                
-                print(self.VOANewsList[index].name)
-                print(self.VOANewsList[index].url)
             }
         }
         loadDataTimes += 1
@@ -123,9 +120,6 @@ class VOANewsController: UIViewController, UITableViewDelegate, UITableViewDataS
                 if self.VOANewsList[index].name.contains("VOA³£ËÙÓ¢Óï:") {
                     self.VOANewsList[index].name = self.VOANewsList[index].name.replacingOccurrences(of: "VOA³£ËÙÓ¢Óï:", with: "")
                 }
-                
-                print(self.VOANewsList[index].name)
-                print(self.VOANewsList[index].url)
             }
         }
     }
@@ -158,7 +152,6 @@ class VOANewsController: UIViewController, UITableViewDelegate, UITableViewDataS
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        print(VOANewsList[indexPath.row].url)
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
@@ -196,4 +189,16 @@ class VOANewsController: UIViewController, UITableViewDelegate, UITableViewDataS
         return UISwipeActionsConfiguration.init()
     }
     
+}
+
+extension VOANewsController {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showVOANewsDetail" {
+            if let indexPath = VOANewsTableView.indexPathForSelectedRow {
+                let destinationController = segue.destination as! VOANewsDetailViewController
+                destinationController.VOANewsItemName = VOANewsList[indexPath.row].name
+                destinationController.VOANewsItemURL = VOANewsList[indexPath.row].url
+            }
+        }
+    }
 }
