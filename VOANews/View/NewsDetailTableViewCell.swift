@@ -8,7 +8,7 @@
 
 import UIKit
 
-class VOANewsDetailTableViewCell: UITableViewCell {
+class NewsDetailTableViewCell: UITableViewCell {
 
     @IBOutlet var detailLabel: UILabel!
     

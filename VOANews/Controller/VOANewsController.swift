@@ -15,6 +15,7 @@ class VOANewsController: UIViewController, UITableViewDelegate, UITableViewDataS
     
     @IBOutlet var VOANewsTableView: UITableView!
     @IBOutlet var segmentedControl: UISegmentedControl!
+    @IBOutlet var refreshButton: UIButton!
     
     var url = "http://www.hxen.com/englishlistening/voaenglish/voaspecialenglish/index"
     
@@ -23,19 +24,27 @@ class VOANewsController: UIViewController, UITableViewDelegate, UITableViewDataS
         switch segmentedControl.selectedSegmentIndex {
         case 0:
             url = "http://www.hxen.com/englishlistening/voaenglish/voaspecialenglish/index"
-            VOANewsList = [VOANews]()
+            VOANewsList = [News]()
             activityIndicator.startAnimating()
             loadData()
         case 1:
             url = "http://www.hxen.com/englishlistening/voaenglish/voastandardenglish/index"
-            VOANewsList = [VOANews]()
+            VOANewsList = [News]()
             activityIndicator.startAnimating()
             loadData()
         default: break
         }
     }
     
-    var VOANewsList = [VOANews]() {
+    @IBAction func refresh(_ sender: UIButton) {
+        VOANewsList.removeAll()
+        activityIndicator.startAnimating()
+        loadDataTimes = 0
+        page = 2
+        timer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(loadData), userInfo: nil, repeats: true)
+    }
+    
+    var VOANewsList = [News]() {
         didSet {
             self.activityIndicator.stopAnimating()
             VOANewsTableView.reloadData()
@@ -97,7 +106,7 @@ class VOANewsController: UIViewController, UITableViewDelegate, UITableViewDataS
                 for content in doc.css(".fz18") {
                     if let innerHtml = content.innerHTML {
                         let components = innerHtml.components(separatedBy: "\"")
-                        let VOANewsItem = VOANews.init(name: components[1], url: "http://www.hxen.com" + components[3], isLiked: false)
+                        let VOANewsItem = News.init(name: components[1], url: "http://www.hxen.com" + components[3], isLiked: false)
                         self.VOANewsList.append(VOANewsItem)
                     }
                 }
@@ -130,7 +139,7 @@ class VOANewsController: UIViewController, UITableViewDelegate, UITableViewDataS
                 for content in doc.css(".fz18") {
                     if let innerHtml = content.innerHTML {
                         let components = innerHtml.components(separatedBy: "\"")
-                        let VOANewsItem = VOANews.init(name: components[1], url: "http://www.hxen.com" + components[3], isLiked: false)
+                        let VOANewsItem = News.init(name: components[1], url: "http://www.hxen.com" + components[3], isLiked: false)
                         self.VOANewsList.append(VOANewsItem)
                     }
                 }
@@ -159,8 +168,24 @@ class VOANewsController: UIViewController, UITableViewDelegate, UITableViewDataS
         return VOANewsList.count
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 95
+//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        return 88
+//    }
+    
+    private func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        let identifier = "VOANewsCell"
+        let hsCell = tableView.dequeueReusableCell(withIdentifier: identifier) as? VOANewsTableViewCell
+        var tempCell: VOANewsTableViewCell
+        hsCell != nil ? (tempCell = hsCell!) : (tempCell = VOANewsTableViewCell())
+        tempCell.nameLabel.text = VOANewsList[indexPath.row].name
+        
+        let components = VOANewsList[indexPath.row].url.components(separatedBy: "/")
+        tempCell.dateLabel.text = components[6]
+        tempCell.heartImageView.isHidden = VOANewsList[indexPath.row].isLiked ? false : true
+        
+        tempCell.frame = CGRect(x: 0, y: 0, width: tableView.bounds.width, height: tableView.bounds.height)
+        tempCell.layoutIfNeeded()
+        return tempCell.contentView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize).height + 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -221,11 +246,11 @@ extension VOANewsController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showVOANewsDetail" {
             if let indexPath = VOANewsTableView.indexPathForSelectedRow {
-                let destinationController = segue.destination as! VOANewsDetailViewController
-                destinationController.VOANewsItems = VOANewsList
-                destinationController.indexOfVOANews = indexPath.row
-                destinationController.VOANewsItemName = VOANewsList[indexPath.row].name
-                destinationController.VOANewsItemURL = VOANewsList[indexPath.row].url
+                let destinationController = segue.destination as! NewsDetailViewController
+                destinationController.newsItems = VOANewsList
+                destinationController.indexOfnews = indexPath.row
+                destinationController.newsItemName = VOANewsList[indexPath.row].name
+                destinationController.newsItemURL = VOANewsList[indexPath.row].url
             }
         }
     }

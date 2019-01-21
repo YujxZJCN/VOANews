@@ -8,7 +8,7 @@
 
 import Foundation
 
-class VOANews {
+class News {
     var name: String
     var url: String
     var isLiked: Bool
