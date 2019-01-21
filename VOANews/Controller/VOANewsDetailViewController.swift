@@ -331,6 +331,7 @@ class VOANewsDetailViewController: UIViewController {
         VOANewsItemURL = VOANewsItems[indexOfVOANews].url
         nameLabel.text = VOANewsItemName
         loadData(url: VOANewsItemURL)
+        setLockView()
     }
     
     @IBAction func forwardTapped(_ sender: UIButton) {
@@ -355,6 +356,7 @@ class VOANewsDetailViewController: UIViewController {
         VOANewsItemURL = VOANewsItems[indexOfVOANews].url
         nameLabel.text = VOANewsItemName
         loadData(url: VOANewsItemURL)
+        setLockView()
     }
     
     @IBAction func onPlayTouchDown(_ sender: UIButton) {
@@ -499,10 +501,50 @@ extension VOANewsDetailViewController {
             audioPlayer.pause()
             playStatus = false
         case .remoteControlNextTrack:  // next
-            //
+            audioPlayer.stop()
+            playStatus = false
+            activityIndicator.startAnimating()
+            dismissButton.isEnabled = false
+            processSlider.isEnabled = false
+            volumeSlider.isEnabled = false
+            speedSlider.isEnabled = false
+            playButton.isEnabled = false
+            rewindButton.isEnabled = false
+            forwardButton.isEnabled = false
+            playButton.setImage(pauseImage, for: .normal)
+            if indexOfVOANews == VOANewsItems.count - 1 {
+                indexOfVOANews = 0
+            }else {
+                indexOfVOANews += 1
+            }
+            VOANewsItemName = VOANewsItems[indexOfVOANews].name
+            VOANewsItemURL = VOANewsItems[indexOfVOANews].url
+            nameLabel.text = VOANewsItemName
+            loadData(url: VOANewsItemURL)
+            setLockView()
             break
         case .remoteControlPreviousTrack:  // previous
-            //
+            audioPlayer.stop()
+            playStatus = false
+            activityIndicator.startAnimating()
+            dismissButton.isEnabled = false
+            processSlider.isEnabled = false
+            volumeSlider.isEnabled = false
+            speedSlider.isEnabled = false
+            playButton.isEnabled = false
+            rewindButton.isEnabled = false
+            forwardButton.isEnabled = false
+            playButton.setImage(pauseImage, for: .normal)
+            if indexOfVOANews == 0 {
+                indexOfVOANews = VOANewsItems.count - 1
+            }else {
+                indexOfVOANews -= 1
+            }
+            VOANewsItemName = VOANewsItems[indexOfVOANews].name
+            VOANewsItemURL = VOANewsItems[indexOfVOANews].url
+            nameLabel.text = VOANewsItemName
+            loadData(url: VOANewsItemURL)
+            setLockView()
             break
         default:
             break
