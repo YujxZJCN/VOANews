@@ -24,10 +24,12 @@ class VOANewsController: UIViewController, UITableViewDelegate, UITableViewDataS
         case 0:
             url = "http://www.hxen.com/englishlistening/voaenglish/voaspecialenglish/index"
             VOANewsList = [VOANews]()
+            activityIndicator.startAnimating()
             loadData()
         case 1:
             url = "http://www.hxen.com/englishlistening/voaenglish/voastandardenglish/index"
             VOANewsList = [VOANews]()
+            activityIndicator.startAnimating()
             loadData()
         default: break
         }
