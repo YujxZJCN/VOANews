@@ -1,53 +1,36 @@
 //
-//  VOANewsTableViewController.swift
+//  BBCNewsController.swift
 //  VOANews
 //
-//  Created by 俞佳兴 on 2019/1/19.
+//  Created by 俞佳兴 on 2019/1/21.
 //  Copyright © 2019 Albert. All rights reserved.
 //
 
 import UIKit
+import NVActivityIndicatorView
 import Alamofire
 import Kanna
-import NVActivityIndicatorView
+import AVFoundation
+import MediaPlayer
 
-class VOANewsController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class BBCNewsController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    @IBOutlet var VOANewsTableView: UITableView!
-    @IBOutlet var segmentedControl: UISegmentedControl!
-    @IBOutlet var refreshButton: UIButton!
-    
-    var url = "http://www.hxen.com/englishlistening/voaenglish/voaspecialenglish/index"
-    
-    @IBAction func showMode(_ sender: UISegmentedControl) {
-        page = 2
-        switch segmentedControl.selectedSegmentIndex {
-        case 0:
-            url = "http://www.hxen.com/englishlistening/voaenglish/voaspecialenglish/index"
-            VOANewsList = [News]()
-            activityIndicator.startAnimating()
-            loadData()
-        case 1:
-            url = "http://www.hxen.com/englishlistening/voaenglish/voastandardenglish/index"
-            VOANewsList = [News]()
-            activityIndicator.startAnimating()
-            loadData()
-        default: break
-        }
-    }
+    @IBOutlet var BBCNewsTableView: UITableView!
     
     @IBAction func refresh(_ sender: UIButton) {
-        VOANewsList.removeAll()
+        BBCNewsList.removeAll()
         activityIndicator.startAnimating()
         loadDataTimes = 0
         page = 2
         timer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(loadData), userInfo: nil, repeats: true)
     }
     
-    var VOANewsList = [News]() {
+    var url = "http://www.hxen.com/englishlistening/bbc/index"
+    
+    var BBCNewsList = [News]() {
         didSet {
             self.activityIndicator.stopAnimating()
-            VOANewsTableView.reloadData()
+            BBCNewsTableView.reloadData()
             if timer.isValid {
                 timer.invalidate()
             }
@@ -106,21 +89,18 @@ class VOANewsController: UIViewController, UITableViewDelegate, UITableViewDataS
                 for content in doc.css(".fz18") {
                     if let innerHtml = content.innerHTML {
                         let components = innerHtml.components(separatedBy: "\"")
-                        let VOANewsItem = News.init(name: components[1], url: "http://www.hxen.com" + components[3], isLiked: false)
-                        self.VOANewsList.append(VOANewsItem)
+                        let BBCNewsItem = News.init(name: components[1], url: "http://www.hxen.com" + components[3], isLiked: false)
+                        self.BBCNewsList.append(BBCNewsItem)
                     }
                 }
             }
             
-            for index in 0 ..< self.VOANewsList.count {
-                if self.VOANewsList[index].name.contains("¡¯") {
-                    self.VOANewsList[index].name = self.VOANewsList[index].name.replacingOccurrences(of: "¡¯", with: "\'")
+            for index in 0 ..< self.BBCNewsList.count {
+                if self.BBCNewsList[index].name.contains("¡¯") {
+                    self.BBCNewsList[index].name = self.BBCNewsList[index].name.replacingOccurrences(of: "¡¯", with: "\'")
                 }
-                if self.VOANewsList[index].name.contains("VOA慢速英语:") {
-                    self.VOANewsList[index].name = self.VOANewsList[index].name.replacingOccurrences(of: "VOA慢速英语:", with: "VOA慢速英语：")
-                }
-                if self.VOANewsList[index].name.contains("VOA常速英语:") {
-                    self.VOANewsList[index].name = self.VOANewsList[index].name.replacingOccurrences(of: "VOA常速英语:", with: "VOA常速英语：")
+                if self.BBCNewsList[index].name.contains("BBC在线收听下载:") {
+                    self.BBCNewsList[index].name = self.BBCNewsList[index].name.replacingOccurrences(of: "BBC在线收听下载:", with: "BBC新闻：")
                 }
             }
         }
@@ -139,21 +119,18 @@ class VOANewsController: UIViewController, UITableViewDelegate, UITableViewDataS
                 for content in doc.css(".fz18") {
                     if let innerHtml = content.innerHTML {
                         let components = innerHtml.components(separatedBy: "\"")
-                        let VOANewsItem = News.init(name: components[1], url: "http://www.hxen.com" + components[3], isLiked: false)
-                        self.VOANewsList.append(VOANewsItem)
+                        let BBCNewsItem = News.init(name: components[1], url: "http://www.hxen.com" + components[3], isLiked: false)
+                        self.BBCNewsList.append(BBCNewsItem)
                     }
                 }
             }
             
-            for index in 0 ..< self.VOANewsList.count {
-                if self.VOANewsList[index].name.contains("¡¯") {
-                    self.VOANewsList[index].name = self.VOANewsList[index].name.replacingOccurrences(of: "¡¯", with: "\'")
+            for index in 0 ..< self.BBCNewsList.count {
+                if self.BBCNewsList[index].name.contains("¡¯") {
+                    self.BBCNewsList[index].name = self.BBCNewsList[index].name.replacingOccurrences(of: "¡¯", with: "\'")
                 }
-                if self.VOANewsList[index].name.contains("VOA慢速英语:") {
-                    self.VOANewsList[index].name = self.VOANewsList[index].name.replacingOccurrences(of: "VOA慢速英语:", with: "VOA慢速英语：")
-                }
-                if self.VOANewsList[index].name.contains("VOA常速英语:") {
-                    self.VOANewsList[index].name = self.VOANewsList[index].name.replacingOccurrences(of: "VOA常速英语:", with: "VOA常速英语：")
+                if self.BBCNewsList[index].name.contains("BBC在线收听下载:") {
+                    self.BBCNewsList[index].name = self.BBCNewsList[index].name.replacingOccurrences(of: "BBC在线收听下载:", with: "BBC新闻：")
                 }
             }
         }
@@ -165,31 +142,27 @@ class VOANewsController: UIViewController, UITableViewDelegate, UITableViewDataS
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return VOANewsList.count
+        return BBCNewsList.count
     }
     
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        return 88
-//    }
-    
     private func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        let identifier = "VOANewsCell"
-        let hsCell = tableView.dequeueReusableCell(withIdentifier: identifier) as? VOANewsTableViewCell
-        var tempCell: VOANewsTableViewCell
-        hsCell != nil ? (tempCell = hsCell!) : (tempCell = VOANewsTableViewCell())
-        tempCell.nameLabel.text = VOANewsList[indexPath.row].name
+        let identifier = "BBCNewsCell"
+        let hsCell = tableView.dequeueReusableCell(withIdentifier: identifier) as? BBCNewsTableViewCell
+        var tempCell: BBCNewsTableViewCell
+        hsCell != nil ? (tempCell = hsCell!) : (tempCell = BBCNewsTableViewCell())
+        tempCell.nameLabel.text = BBCNewsList[indexPath.row].name
         
-        let components = VOANewsList[indexPath.row].url.components(separatedBy: "/")
-        
-        var date = components[6]
+        let components = BBCNewsList[indexPath.row].url.components(separatedBy: "/")
+        var date = components[5]
         if !date.contains("-") {
             let year = date[date.startIndex ... date.index(date.startIndex, offsetBy: 3)]
             let month = date[date.index(date.startIndex, offsetBy: 4) ... date.index(date.startIndex, offsetBy: 5)]
             let day = date[date.index(date.startIndex, offsetBy: 6) ... date.index(date.startIndex, offsetBy: 7)]
             date = String(year + "-" + month + "-" + day)
         }
+        
         tempCell.dateLabel.text = date
-        tempCell.heartImageView.isHidden = VOANewsList[indexPath.row].isLiked ? false : true
+        tempCell.heartImageView.isHidden = BBCNewsList[indexPath.row].isLiked ? false : true
         
         tempCell.frame = CGRect(x: 0, y: 0, width: tableView.bounds.width, height: tableView.bounds.height)
         tempCell.layoutIfNeeded()
@@ -197,14 +170,14 @@ class VOANewsController: UIViewController, UITableViewDelegate, UITableViewDataS
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cellIdentifier = "VOANewsCell"
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! VOANewsTableViewCell
+        let cellIdentifier = "BBCNewsCell"
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! BBCNewsTableViewCell
         
         // Configure the cell...
-        cell.nameLabel.text = VOANewsList[indexPath.row].name
+        cell.nameLabel.text = BBCNewsList[indexPath.row].name
         
-        let components = VOANewsList[indexPath.row].url.components(separatedBy: "/")
-        var date = components[6]
+        let components = BBCNewsList[indexPath.row].url.components(separatedBy: "/")
+        var date = components[5]
         if !date.contains("-") {
             let year = date[date.startIndex ... date.index(date.startIndex, offsetBy: 3)]
             let month = date[date.index(date.startIndex, offsetBy: 4) ... date.index(date.startIndex, offsetBy: 5)]
@@ -212,7 +185,7 @@ class VOANewsController: UIViewController, UITableViewDelegate, UITableViewDataS
             date = String(year + "-" + month + "-" + day)
         }
         cell.dateLabel.text = date
-        cell.heartImageView.isHidden = VOANewsList[indexPath.row].isLiked ? false : true
+        cell.heartImageView.isHidden = BBCNewsList[indexPath.row].isLiked ? false : true
         return cell
     }
     
@@ -221,7 +194,7 @@ class VOANewsController: UIViewController, UITableViewDelegate, UITableViewDataS
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        let lastElement = VOANewsList.count - 1
+        let lastElement = BBCNewsList.count - 1
         if indexPath.row == lastElement {
             activityIndicator.startAnimating()
             // handle your logic here to get more items, add it to dataSource and reload tableview
@@ -234,14 +207,14 @@ class VOANewsController: UIViewController, UITableViewDelegate, UITableViewDataS
         
         let checkInAction = UIContextualAction(style: .normal, title: "") { (action, sourceView, completionHandler) in
             
-            let cell = tableView.cellForRow(at: indexPath) as! VOANewsTableViewCell
-            self.VOANewsList[indexPath.row].isLiked = (self.VOANewsList[indexPath.row].isLiked) ? false : true
-            cell.heartImageView.isHidden = self.VOANewsList[indexPath.row].isLiked ? false : true
+            let cell = tableView.cellForRow(at: indexPath) as! BBCNewsTableViewCell
+            self.BBCNewsList[indexPath.row].isLiked = (self.BBCNewsList[indexPath.row].isLiked) ? false : true
+            cell.heartImageView.isHidden = self.BBCNewsList[indexPath.row].isLiked ? false : true
             
             completionHandler(true)
         }
         
-        let checkInIcon = VOANewsList[indexPath.row].isLiked ? "undo" : "tick"
+        let checkInIcon = BBCNewsList[indexPath.row].isLiked ? "undo" : "tick"
         checkInAction.backgroundColor = UIColor(red: 38, green: 162, blue: 78)
         checkInAction.image = UIImage(named: checkInIcon)
         
@@ -254,19 +227,18 @@ class VOANewsController: UIViewController, UITableViewDelegate, UITableViewDataS
         
         return UISwipeActionsConfiguration.init()
     }
-    
 }
 
-extension VOANewsController {
+extension BBCNewsController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showVOANewsDetail" {
-            if let indexPath = VOANewsTableView.indexPathForSelectedRow {
+        if segue.identifier == "showBBCNewsDetail" {
+            if let indexPath = BBCNewsTableView.indexPathForSelectedRow {
                 let destinationController = segue.destination as! NewsDetailViewController
-                destinationController.newsItems = VOANewsList
+                destinationController.newsItems = BBCNewsList
                 destinationController.indexOfnews = indexPath.row
-                destinationController.newsItemName = VOANewsList[indexPath.row].name
-                destinationController.newsItemURL = VOANewsList[indexPath.row].url
-                destinationController.newsType = "VOANews"
+                destinationController.newsItemName = BBCNewsList[indexPath.row].name
+                destinationController.newsItemURL = BBCNewsList[indexPath.row].url
+                destinationController.newsType = "BBCNews"
             }
         }
     }

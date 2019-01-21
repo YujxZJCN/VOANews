@@ -16,6 +16,7 @@ import MediaPlayer
 class NewsDetailViewController: UIViewController {
     var newsItems = [News]()
     var indexOfnews = 0
+    var newsType = ""
     var newsItemName = ""
     var newsItemURL = ""
     var newsDetails = [String]() {
@@ -24,7 +25,11 @@ class NewsDetailViewController: UIViewController {
         }
     }
     
-    var audioPlayer = AVAudioPlayer()
+    var audioPlayer = AVAudioPlayer() {
+        didSet {
+            audioPlayer.prepareToPlay()
+        }
+    }
     var musicPath = URL.init(string: "") {
         didSet {
             activityIndicator.stopAnimating()
@@ -175,12 +180,25 @@ class NewsDetailViewController: UIViewController {
                 let replaceString8 = "<a href=\"http://www.hxen.com/englishlistening/npr/\" target=\"_blank\" class=\"infotextkey\">NPR</a>"
                 let replaceString9 = "<a href=\"http://www.hxen.com\">www.hxen.com</a> ."
                 let replaceString10 = " <a href=\"http://www.hxen.com/\">www.hxen.com</a> "
-                
+                let replaceString11 = "<a href=\"http://www.hxen.com\" target=\"_blank\" class=\"infotextkey\">cnn</a>"
                 var countOfImage = [Int]()
+                
+                var numberOfNewsDetailsToBeDeleted = [Int]()
+                for index in 0 ..< self.newsDetails.count {
+                    if self.newsDetails[index] == " " {
+                        numberOfNewsDetailsToBeDeleted.append(index)
+                    }
+                }
+                
+                if numberOfNewsDetailsToBeDeleted.count >= 0 {
+                    for index in numberOfNewsDetailsToBeDeleted {
+                        self.newsDetails.remove(at: index)
+                    }
+                }
                 
                 for index in 0 ..< self.newsDetails.count {
                     if self.newsDetails[index].first == "\r\n" {
-                        let replacedString = self.newsDetails[index].replacingCharacters(in: ...self.newsDetails[index].index(self.newsDetails[index].startIndex, offsetBy: 1), with: "")
+                        let replacedString = self.newsDetails[index].replacingCharacters(in: ...self.newsDetails[index].startIndex, with: "")
                         self.newsDetails[index] = replacedString
                     }
                     if self.newsDetails[index].contains("\n") {
@@ -215,6 +233,9 @@ class NewsDetailViewController: UIViewController {
                     }
                     if self.newsDetails[index].contains(replaceString10) {
                         self.newsDetails[index] = self.newsDetails[index].replacingOccurrences(of: replaceString10, with: "")
+                    }
+                    if self.newsDetails[index].contains(replaceString11) {
+                        self.newsDetails[index] = self.newsDetails[index].replacingOccurrences(of: replaceString11, with: "")
                     }
                     if self.newsDetails[index].contains("<img") {
                         countOfImage.append(index)
@@ -260,23 +281,34 @@ class NewsDetailViewController: UIViewController {
     }
     
     func setMusic() {
+        var flag = true
         do {
             audioPlayer = try AVAudioPlayer(contentsOf: musicPath!)
         } catch {
-            print("Error")
+            print("Error at setMusic()")
+            flag = false
+            playButton.isEnabled = false
+            startNowPlayingAnimation(false)
         }
-        audioPlayer.prepareToPlay()
-        setStatusBar()
-        Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(self.updateSlider), userInfo: nil, repeats: true)
-        audioPlayer.volume = volumeSlider.value * 10
-        audioPlayer.enableRate = true
-        audioPlayer.rate = speedSlider.value
+//        audioPlayer.prepareToPlay()
         newsDetailTableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
-        audioPlayer.play()
+        if flag {
+            setStatusBar()
+            Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(self.updateSlider), userInfo: nil, repeats: true)
+            audioPlayer.volume = volumeSlider.value * 10
+            audioPlayer.enableRate = true
+            audioPlayer.rate = speedSlider.value
+            audioPlayer.play()
+            playStatus = true
+            loadedFlag = true
+        }else {
+            playStatus = false
+            loadedFlag = false
+        }
         loadDataTimes = 0
-        loadedFlag = true
-        playStatus = true
-        nowPlayingImageView.startAnimating()
+        if flag {
+            nowPlayingImageView.startAnimating()
+        }
     }
     
     func setStatusBar() {
@@ -322,7 +354,9 @@ class NewsDetailViewController: UIViewController {
     @IBAction func rewindTapped(_ sender: UIButton) {
         loadDataTimes = 0
         rewindButton.alpha = 1.0
-        audioPlayer.stop()
+        if loadedFlag {
+            audioPlayer.stop()
+        }
         playStatus = false
         activityIndicator.startAnimating()
         dismissButton.isEnabled = false
@@ -350,7 +384,9 @@ class NewsDetailViewController: UIViewController {
     @IBAction func forwardTapped(_ sender: UIButton) {
         loadDataTimes = 0
         forwardButton.alpha = 1.0
-        audioPlayer.stop()
+        if loadedFlag {
+            audioPlayer.stop()
+        }
         playStatus = false
         activityIndicator.startAnimating()
         dismissButton.isEnabled = false
@@ -457,6 +493,7 @@ class NewsDetailViewController: UIViewController {
     }
     
     @IBAction func speedController(_ sender: UISlider) {
+        speedLabel.text = String(format: "%.2f倍", speedSlider.value)
         var status = false
         if loadedFlag {
             status = audioPlayer.isPlaying
@@ -468,7 +505,6 @@ class NewsDetailViewController: UIViewController {
         }
         audioPlayer.enableRate = true
         audioPlayer.rate = speedSlider.value
-        speedLabel.text = String(format: "%.2f倍", speedSlider.value)
         if status, loadedFlag {
             audioPlayer.play()
         }
@@ -576,7 +612,7 @@ extension NewsDetailViewController {
     func setLockView(){
         MPNowPlayingInfoCenter.default().nowPlayingInfo = [
             MPMediaItemPropertyTitle: newsItemName,
-            MPMediaItemPropertyArtist: "VOANews",
+            MPMediaItemPropertyArtist: newsType,
             MPNowPlayingInfoPropertyPlaybackRate:1.0,
         ]
     }
