@@ -14,6 +14,8 @@ import AVFoundation
 import MediaPlayer
 
 class VOANewsDetailViewController: UIViewController {
+    var VOANewsItems = [VOANews]()
+    var indexOfVOANews = 0
     var VOANewsItemName = ""
     var VOANewsItemURL = ""
     var VOANewsDetails = [String]() {
@@ -31,10 +33,11 @@ class VOANewsDetailViewController: UIViewController {
             volumeSlider.isEnabled = true
             speedSlider.isEnabled = true
             playButton.isEnabled = true
+            rewindButton.isEnabled = true
+            forwardButton.isEnabled = true
             if musicPath != URL.init(string: "") {
                 setMusic()
             }
-            VOANewsDetailTableView.reloadData()
         }
     }
     
@@ -65,6 +68,8 @@ class VOANewsDetailViewController: UIViewController {
     @IBOutlet var speedLabel: UILabel!
     @IBOutlet var nameLabel: UILabel!
     @IBOutlet var VOANewsDetailTableView: UITableView!
+    @IBOutlet var rewindButton: UIButton!
+    @IBOutlet var forwardButton: UIButton!
     
     var activityIndicator: NVActivityIndicatorView!
 //    var timer = Timer()
@@ -110,6 +115,8 @@ class VOANewsDetailViewController: UIViewController {
         volumeSlider.isEnabled = false
         speedSlider.isEnabled = false
         playButton.isEnabled = false
+        rewindButton.isEnabled = false
+        forwardButton.isEnabled = false
         createNowPlayingAnimation()
         let doubleTap = UITapGestureRecognizer(target: self, action: #selector(onSpeedLabelTapped))
         doubleTap.numberOfTapsRequired = 2
@@ -123,12 +130,12 @@ class VOANewsDetailViewController: UIViewController {
         view.addSubview(activityIndicator)
         
         activityIndicator.startAnimating()
-        loadData()
+        loadData(url: VOANewsItemURL)
 //        timer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(loadData), userInfo: nil, repeats: true)
     }
     
-    @objc func loadData() {
-        Alamofire.request((VOANewsItemURL), method: .get).responseData { response in
+    func loadData(url: String) {
+        Alamofire.request((url), method: .get).responseData { response in
             let enc: String.Encoding = String.Encoding(rawValue: CFStringConvertEncodingToNSStringEncoding(0x0632))
 //            let str = NSString(data: response.data!, encoding: enc.rawValue) ?? "nodata"
             
@@ -136,25 +143,36 @@ class VOANewsDetailViewController: UIViewController {
                 for content in doc.css(".mp3player") {
                     if let innerHtml = content.innerHTML {
                         let components = innerHtml.components(separatedBy: "\"")
-                        let url = NSURL(string: components[components.count - 4])
+                        var url = NSURL(string: components[components.count - 4])
+                        if components.count > 40 {
+                            url = NSURL(string: components[components.count - 12])
+                        }
                         self.downloadFileFromURL(url: url!)
 //                        self.timer.invalidate()
                     }
                 }
-                
+                var VOANewsOriginalDetails = [String]()
                 for content in doc.css("p") {
                     if let innerHtml = content.innerHTML {
                         let components = innerHtml.components(separatedBy: "<br>")
                         for component in components {
-                            self.VOANewsDetails.append(component)
+                            VOANewsOriginalDetails.append(component)
                         }
                     }
                 }
+                self.VOANewsDetails = VOANewsOriginalDetails
+                
                 let replaceString1 = "<a href=\"http://wwW.hxen.com/englishvideo/\" target=\"_blank\" class=\"infotextkey\">视频</a>"
                 let replaceString2 = "<a href=\"http://www.hxen.com/englishnews/\" target=\"_blank\" class=\"infotextkey\">新闻</a>"
                 let replaceString3 = "<a href=\"http://www.hxen.com\" target=\"_blank\" class=\"infotextkey\">英语</a>"
                 let replaceString4 = " <a href=" + "\"http://www.hxen.com/englishlistening/\" target=\"_blank\"" + " class=\"infotextkey\">voice</a>"
                 let replaceString5 = "<a href=\"http://www.hxen.com/englishlistening/voaenglish/\" target=\"_blank\" class=\"infotextkey\">VOA</a>"
+                let replaceString6 = "<a href=\"http://www.hxen.com/englisharticle/\" target=\"_blank\" class=\"infotextkey\">阅读</a>"
+                let replaceString7 = "<a href=\"http://www.hxen.com\" target=\"_blank\" class=\"infotextkey\">study</a>"
+                let replaceString8 = "<a href=\"http://www.hxen.com/englishlistening/npr/\" target=\"_blank\" class=\"infotextkey\">NPR</a>"
+                let replaceString9 = "<a href=\"http://www.hxen.com\">www.hxen.com</a> ."
+                let replaceString10 = " <a href=\"http://www.hxen.com/\">www.hxen.com</a> "
+                var countOfImage = [Int]()
                 for index in 0 ..< self.VOANewsDetails.count {
                     if self.VOANewsDetails[index].contains("\n") {
                         self.VOANewsDetails[index] = self.VOANewsDetails[index].replacingOccurrences(of: "\n", with: "")
@@ -174,7 +192,39 @@ class VOANewsDetailViewController: UIViewController {
                     if self.VOANewsDetails[index].contains(replaceString5) {
                         self.VOANewsDetails[index] = self.VOANewsDetails[index].replacingOccurrences(of: replaceString5, with: "VOA")
                     }
+                    if self.VOANewsDetails[index].contains(replaceString6) {
+                        self.VOANewsDetails[index] = self.VOANewsDetails[index].replacingOccurrences(of: replaceString6, with: "阅读")
+                    }
+                    if self.VOANewsDetails[index].contains(replaceString7) {
+                        self.VOANewsDetails[index] = self.VOANewsDetails[index].replacingOccurrences(of: replaceString7, with: "study")
+                    }
+                    if self.VOANewsDetails[index].contains(replaceString8) {
+                        self.VOANewsDetails[index] = self.VOANewsDetails[index].replacingOccurrences(of: replaceString8, with: "NPR")
+                    }
+                    if self.VOANewsDetails[index].contains(replaceString9) {
+                        self.VOANewsDetails[index] = self.VOANewsDetails[index].replacingOccurrences(of: replaceString9, with: "us.")
+                    }
+                    if self.VOANewsDetails[index].contains(replaceString10) {
+                        self.VOANewsDetails[index] = self.VOANewsDetails[index].replacingOccurrences(of: replaceString10, with: "")
+                    }
+                    if self.VOANewsDetails[index].contains("<img") {
+                        countOfImage.append(index)
+                    }
+                    if self.VOANewsDetails[index].contains("<strong>") {
+                        self.VOANewsDetails[index] = self.VOANewsDetails[index].replacingOccurrences(of: "<strong>", with: "")
+                        self.VOANewsDetails[index] = self.VOANewsDetails[index].replacingOccurrences(of: "</strong>", with: "")
+                    }
+                    if self.VOANewsDetails[index].contains("<em>") {
+                        self.VOANewsDetails[index] = self.VOANewsDetails[index].replacingOccurrences(of: "<em>", with: "")
+                        self.VOANewsDetails[index] = self.VOANewsDetails[index].replacingOccurrences(of: "</em>", with: "")
+                    }
                     print(self.VOANewsDetails[index])
+                }
+                
+                if countOfImage.count > 0 {
+                    for index in countOfImage {
+                        self.VOANewsDetails.remove(at: index)
+                    }
                 }
                 
             }
@@ -209,9 +259,13 @@ class VOANewsDetailViewController: UIViewController {
         audioPlayer.prepareToPlay()
         setStatusBar()
         Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(self.updateSlider), userInfo: nil, repeats: true)
-        audioPlayer.volume = 5
+        audioPlayer.volume = volumeSlider.value * 10
+        audioPlayer.enableRate = true
+        audioPlayer.rate = speedSlider.value
+        VOANewsDetailTableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
         audioPlayer.play()
         loadedFlag = true
+        playStatus = true
         nowPlayingImageView.startAnimating()
     }
     
@@ -230,6 +284,7 @@ class VOANewsDetailViewController: UIViewController {
     }
 
     @IBAction func playTapped(_ sender: UIButton) {
+        playButton.alpha = 1.0
         if playStatus {
             Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(self.updateSlider), userInfo: nil, repeats: true)
             if loadedFlag {
@@ -252,6 +307,77 @@ class VOANewsDetailViewController: UIViewController {
             playButton.setImage(pauseImage, for: .normal)
             playStatus = true
         }
+    }
+    
+    @IBAction func rewindTapped(_ sender: UIButton) {
+        rewindButton.alpha = 1.0
+        audioPlayer.stop()
+        playStatus = false
+        activityIndicator.startAnimating()
+        dismissButton.isEnabled = false
+        processSlider.isEnabled = false
+        volumeSlider.isEnabled = false
+        speedSlider.isEnabled = false
+        playButton.isEnabled = false
+        rewindButton.isEnabled = false
+        forwardButton.isEnabled = false
+        playButton.setImage(pauseImage, for: .normal)
+        if indexOfVOANews == 0 {
+            indexOfVOANews = VOANewsItems.count - 1
+        }else {
+            indexOfVOANews -= 1
+        }
+        VOANewsItemName = VOANewsItems[indexOfVOANews].name
+        VOANewsItemURL = VOANewsItems[indexOfVOANews].url
+        nameLabel.text = VOANewsItemName
+        loadData(url: VOANewsItemURL)
+    }
+    
+    @IBAction func forwardTapped(_ sender: UIButton) {
+        forwardButton.alpha = 1.0
+        audioPlayer.stop()
+        playStatus = false
+        activityIndicator.startAnimating()
+        dismissButton.isEnabled = false
+        processSlider.isEnabled = false
+        volumeSlider.isEnabled = false
+        speedSlider.isEnabled = false
+        playButton.isEnabled = false
+        rewindButton.isEnabled = false
+        forwardButton.isEnabled = false
+        playButton.setImage(pauseImage, for: .normal)
+        if indexOfVOANews == VOANewsItems.count - 1 {
+            indexOfVOANews = 0
+        }else {
+            indexOfVOANews += 1
+        }
+        VOANewsItemName = VOANewsItems[indexOfVOANews].name
+        VOANewsItemURL = VOANewsItems[indexOfVOANews].url
+        nameLabel.text = VOANewsItemName
+        loadData(url: VOANewsItemURL)
+    }
+    
+    @IBAction func onPlayTouchDown(_ sender: UIButton) {
+        playButton.alpha = 0.5
+    }
+    
+    @IBAction func onRewindTouchDown(_ sender: UIButton) {
+        rewindButton.alpha = 0.5
+    }
+    @IBAction func onForwardTouchDown(_ sender: UIButton) {
+        forwardButton.alpha = 0.5
+    }
+    
+    @IBAction func onPlayTouchUpOutside(_ sender: UIButton) {
+        playButton.alpha = 1.0
+    }
+    
+    @IBAction func onRewindTouchUpOutside(_ sender: UIButton) {
+        rewindButton.alpha = 1.0
+    }
+    
+    @IBAction func onForwardTouchUpOutside(_ sender: UIButton) {
+        forwardButton.alpha = 1.0
     }
     
     @objc func updateSlider() {
@@ -361,21 +487,6 @@ extension VOANewsDetailViewController: URLSessionDelegate {
         }
         task.resume()
     }
-    
-//    func play(url:NSURL) {
-//        print("playing \(url)")
-//        do {
-//            self.audioPlayer = try AVAudioPlayer(contentsOf: url as URL)
-//            audioPlayer.prepareToPlay()
-//            audioPlayer.volume = 1.0
-//            audioPlayer.play()
-//        } catch let error as NSError {
-//            //self.player = nil
-//            print(error.localizedDescription)
-//        } catch {
-//            print("AVAudioPlayer init failed")
-//        }
-//    }
 }
 
 extension VOANewsDetailViewController {

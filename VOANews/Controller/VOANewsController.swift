@@ -14,6 +14,24 @@ import NVActivityIndicatorView
 class VOANewsController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet var VOANewsTableView: UITableView!
+    @IBOutlet var segmentedControl: UISegmentedControl!
+    
+    var url = "http://www.hxen.com/englishlistening/voaenglish/voaspecialenglish/index"
+    
+    @IBAction func showMode(_ sender: UISegmentedControl) {
+        page = 2
+        switch segmentedControl.selectedSegmentIndex {
+        case 0:
+            url = "http://www.hxen.com/englishlistening/voaenglish/voaspecialenglish/index"
+            VOANewsList = [VOANews]()
+            loadData()
+        case 1:
+            url = "http://www.hxen.com/englishlistening/voaenglish/voastandardenglish/index"
+            VOANewsList = [VOANews]()
+            loadData()
+        default: break
+        }
+    }
     
     var VOANewsList = [VOANews]() {
         didSet {
@@ -66,15 +84,14 @@ class VOANewsController: UIViewController, UITableViewDelegate, UITableViewDataS
     }
     
     @objc fileprivate func loadData() {
-        let url = "http://www.hxen.com/englishlistening/voaenglish/voastandardenglish/index"
-        
-        Alamofire.request((url + ".html"), method: .get).responseString { response in
+        Alamofire.request((url + ".html"), method: .get).responseData { response in
             if let error = response.error {
                 if error.localizedDescription == "The Internet connection appears to be offline." {
                     print("未连接网络")
                 }
             }
-            if let html = response.result.value, let doc = try? HTML(html: html, encoding: .utf8) {
+            let enc: String.Encoding = String.Encoding(rawValue: CFStringConvertEncodingToNSStringEncoding(0x0632))
+            if let html = response.result.value, let doc = try? HTML(html: html, encoding: enc) {
                 for content in doc.css(".fz18") {
                     if let innerHtml = content.innerHTML {
                         let components = innerHtml.components(separatedBy: "\"")
@@ -88,8 +105,11 @@ class VOANewsController: UIViewController, UITableViewDelegate, UITableViewDataS
                 if self.VOANewsList[index].name.contains("¡¯") {
                     self.VOANewsList[index].name = self.VOANewsList[index].name.replacingOccurrences(of: "¡¯", with: "\'")
                 }
-                if self.VOANewsList[index].name.contains("VOA³£ËÙÓ¢Óï:") {
-                    self.VOANewsList[index].name = self.VOANewsList[index].name.replacingOccurrences(of: "VOA³£ËÙÓ¢Óï:", with: "")
+                if self.VOANewsList[index].name.contains("VOA慢速英语:") {
+                    self.VOANewsList[index].name = self.VOANewsList[index].name.replacingOccurrences(of: "VOA慢速英语:", with: "VOA慢速英语：")
+                }
+                if self.VOANewsList[index].name.contains("VOA常速英语:") {
+                    self.VOANewsList[index].name = self.VOANewsList[index].name.replacingOccurrences(of: "VOA常速英语:", with: "VOA常速英语：")
                 }
             }
         }
@@ -97,13 +117,14 @@ class VOANewsController: UIViewController, UITableViewDelegate, UITableViewDataS
     }
     
     func loadMore(url: String) {
-        Alamofire.request((url + ".html"), method: .get).responseString { response in
+        Alamofire.request((url + ".html"), method: .get).responseData { response in
             if let error = response.error {
                 if error.localizedDescription == "The Internet connection appears to be offline." {
                     print("未连接网络")
                 }
             }
-            if let html = response.result.value, let doc = try? HTML(html: html, encoding: .utf8) {
+            let enc: String.Encoding = String.Encoding(rawValue: CFStringConvertEncodingToNSStringEncoding(0x0632))
+            if let html = response.result.value, let doc = try? HTML(html: html, encoding: enc) {
                 for content in doc.css(".fz18") {
                     if let innerHtml = content.innerHTML {
                         let components = innerHtml.components(separatedBy: "\"")
@@ -117,8 +138,11 @@ class VOANewsController: UIViewController, UITableViewDelegate, UITableViewDataS
                 if self.VOANewsList[index].name.contains("¡¯") {
                     self.VOANewsList[index].name = self.VOANewsList[index].name.replacingOccurrences(of: "¡¯", with: "\'")
                 }
-                if self.VOANewsList[index].name.contains("VOA³£ËÙÓ¢Óï:") {
-                    self.VOANewsList[index].name = self.VOANewsList[index].name.replacingOccurrences(of: "VOA³£ËÙÓ¢Óï:", with: "")
+                if self.VOANewsList[index].name.contains("VOA慢速英语:") {
+                    self.VOANewsList[index].name = self.VOANewsList[index].name.replacingOccurrences(of: "VOA慢速英语:", with: "VOA慢速英语：")
+                }
+                if self.VOANewsList[index].name.contains("VOA常速英语:") {
+                    self.VOANewsList[index].name = self.VOANewsList[index].name.replacingOccurrences(of: "VOA常速英语:", with: "VOA常速英语：")
                 }
             }
         }
@@ -134,7 +158,7 @@ class VOANewsController: UIViewController, UITableViewDelegate, UITableViewDataS
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 90
+        return 95
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -159,14 +183,14 @@ class VOANewsController: UIViewController, UITableViewDelegate, UITableViewDataS
         if indexPath.row == lastElement {
             activityIndicator.startAnimating()
             // handle your logic here to get more items, add it to dataSource and reload tableview
-            loadMore(url: "http://www.hxen.com/englishlistening/voaenglish/voastandardenglish/index" + "_\(page)")
+            loadMore(url: url + "_\(page)")
             page += 1
         }
     }
     
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
-        let checkInAction = UIContextualAction(style: .normal, title: "Check-in") { (action, sourceView, completionHandler) in
+        let checkInAction = UIContextualAction(style: .normal, title: "") { (action, sourceView, completionHandler) in
             
             let cell = tableView.cellForRow(at: indexPath) as! VOANewsTableViewCell
             self.VOANewsList[indexPath.row].isLiked = (self.VOANewsList[indexPath.row].isLiked) ? false : true
@@ -196,6 +220,8 @@ extension VOANewsController {
         if segue.identifier == "showVOANewsDetail" {
             if let indexPath = VOANewsTableView.indexPathForSelectedRow {
                 let destinationController = segue.destination as! VOANewsDetailViewController
+                destinationController.VOANewsItems = VOANewsList
+                destinationController.indexOfVOANews = indexPath.row
                 destinationController.VOANewsItemName = VOANewsList[indexPath.row].name
                 destinationController.VOANewsItemURL = VOANewsList[indexPath.row].url
             }
