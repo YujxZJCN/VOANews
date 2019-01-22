@@ -32,6 +32,7 @@
                                     <segment title="慢速"/>
                                     <segment title="常速"/>
                                 </segments>
+                                <color key="tintColor" red="0.90588235289999997" green="0.29803921570000003" blue="0.23529411759999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <action selector="showMode:" destination="dOH-MM-Bf6" eventType="valueChanged" id="W6e-Th-Syt"/>
                                 </connections>
@@ -361,10 +362,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4C7-3u-q4E">
-                                <rect key="frame" x="164.5" y="608" width="46" height="47"/>
+                                <rect key="frame" x="163" y="607" width="49" height="49"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="46" id="7PB-yi-Y7h"/>
-                                    <constraint firstAttribute="height" constant="47" id="EHK-Yy-x27"/>
+                                    <constraint firstAttribute="width" constant="49" id="7PB-yi-Y7h"/>
+                                    <constraint firstAttribute="height" constant="49" id="EHK-Yy-x27"/>
                                 </constraints>
                                 <state key="normal" image="pause_btn"/>
                                 <connections>
@@ -416,7 +417,7 @@
                                 </connections>
                             </button>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="X9O-Dm-Hgm">
-                                <rect key="frame" x="226.5" y="534" width="108.5" height="31"/>
+                                <rect key="frame" x="228" y="534" width="107" height="31"/>
                                 <connections>
                                     <action selector="volumeController:" destination="OrM-OH-L68" eventType="valueChanged" id="3NS-mG-OiS"/>
                                 </connections>
@@ -429,20 +430,20 @@
                                 </constraints>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="min" translatesAutoresizingMaskIntoConstraints="NO" id="E7l-cc-Inx">
-                                <rect key="frame" x="206.5" y="541" width="14" height="16"/>
+                                <rect key="frame" x="208" y="541" width="14" height="16"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="14" id="OXm-h9-Gsi"/>
                                     <constraint firstAttribute="height" constant="16" id="c1V-lU-59E"/>
                                 </constraints>
                             </imageView>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="0.5" maxValue="2" translatesAutoresizingMaskIntoConstraints="NO" id="clp-PF-pyn">
-                                <rect key="frame" x="16" y="534" width="112.5" height="31"/>
+                                <rect key="frame" x="16" y="534" width="111" height="31"/>
                                 <connections>
                                     <action selector="speedController:" destination="OrM-OH-L68" eventType="valueChanged" id="mgB-Fs-xrg"/>
                                 </connections>
                             </slider>
                             <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1.00倍" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NmS-Jd-PAU">
-                                <rect key="frame" x="134.5" y="538" width="49.5" height="22"/>
+                                <rect key="frame" x="133" y="538" width="49.5" height="22"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -492,10 +493,10 @@
                                 </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E9u-r9-ybp">
-                                <rect key="frame" x="86.5" y="612.5" width="38" height="38"/>
+                                <rect key="frame" x="90" y="614" width="35" height="35"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="38" id="utd-HG-kuB"/>
-                                    <constraint firstAttribute="width" constant="38" id="wNK-dh-WXE"/>
+                                    <constraint firstAttribute="height" constant="35" id="utd-HG-kuB"/>
+                                    <constraint firstAttribute="width" constant="35" id="wNK-dh-WXE"/>
                                 </constraints>
                                 <state key="normal" image="rewind_btn"/>
                                 <connections>
@@ -505,10 +506,10 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xd5-pe-WKT">
-                                <rect key="frame" x="250.5" y="612.5" width="38" height="38"/>
+                                <rect key="frame" x="250" y="614" width="35" height="35"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="38" id="naU-91-x8D"/>
-                                    <constraint firstAttribute="height" constant="38" id="ug7-KW-cXj"/>
+                                    <constraint firstAttribute="width" constant="35" id="naU-91-x8D"/>
+                                    <constraint firstAttribute="height" constant="35" id="ug7-KW-cXj"/>
                                 </constraints>
                                 <state key="normal" image="fastforward_btn"/>
                                 <connections>
@@ -532,7 +533,7 @@
                             <constraint firstItem="NmS-Jd-PAU" firstAttribute="leading" secondItem="4C7-3u-q4E" secondAttribute="leading" constant="-30" id="772-bC-3yc"/>
                             <constraint firstItem="CDA-gM-lTn" firstAttribute="leading" secondItem="yKC-Pm-W65" secondAttribute="trailing" constant="35" id="AGR-KP-cIQ"/>
                             <constraint firstItem="NmS-Jd-PAU" firstAttribute="centerY" secondItem="clp-PF-pyn" secondAttribute="centerY" id="DfQ-EE-ZqC"/>
-                            <constraint firstItem="Xd5-pe-WKT" firstAttribute="leading" secondItem="4C7-3u-q4E" secondAttribute="trailing" constant="40" id="EAa-0S-A0o"/>
+                            <constraint firstItem="Xd5-pe-WKT" firstAttribute="leading" secondItem="4C7-3u-q4E" secondAttribute="trailing" constant="38" id="EAa-0S-A0o"/>
                             <constraint firstItem="E7l-cc-Inx" firstAttribute="trailing" secondItem="4C7-3u-q4E" secondAttribute="trailing" constant="10" id="Fxb-Gl-n1J"/>
                             <constraint firstItem="E9u-r9-ybp" firstAttribute="centerY" secondItem="4C7-3u-q4E" secondAttribute="centerY" id="GTz-Qb-NQC"/>
                             <constraint firstItem="QH8-wb-R0d" firstAttribute="trailing" secondItem="DGQ-Kh-oEv" secondAttribute="trailing" constant="16" id="GZF-4m-PqN"/>
@@ -543,20 +544,20 @@
                             <constraint firstItem="DGQ-Kh-oEv" firstAttribute="leading" secondItem="X9O-Dm-Hgm" secondAttribute="trailing" constant="8" id="VLm-CX-PUk"/>
                             <constraint firstItem="4C7-3u-q4E" firstAttribute="centerX" secondItem="VOl-KG-ntx" secondAttribute="centerX" id="Vdp-qU-yC1"/>
                             <constraint firstItem="9xT-ZE-XvX" firstAttribute="top" secondItem="DGQ-Kh-oEv" secondAttribute="bottom" constant="11" id="XLp-we-rt2"/>
-                            <constraint firstItem="4C7-3u-q4E" firstAttribute="top" secondItem="9xT-ZE-XvX" secondAttribute="bottom" constant="6" id="dpu-LK-tjy"/>
+                            <constraint firstItem="4C7-3u-q4E" firstAttribute="top" secondItem="9xT-ZE-XvX" secondAttribute="bottom" constant="5" id="dpu-LK-tjy"/>
                             <constraint firstItem="NmS-Jd-PAU" firstAttribute="leading" secondItem="clp-PF-pyn" secondAttribute="trailing" constant="8" id="fj2-mZ-8ww"/>
                             <constraint firstItem="9xT-ZE-XvX" firstAttribute="top" secondItem="clp-PF-pyn" secondAttribute="bottom" constant="8" id="ggW-Tn-Avu"/>
                             <constraint firstItem="9xT-ZE-XvX" firstAttribute="centerX" secondItem="VOl-KG-ntx" secondAttribute="centerX" id="gt0-Ny-y8w"/>
                             <constraint firstItem="X9O-Dm-Hgm" firstAttribute="leading" secondItem="E7l-cc-Inx" secondAttribute="trailing" constant="8" id="gvB-ss-UgU"/>
                             <constraint firstItem="9xT-ZE-XvX" firstAttribute="top" secondItem="E7l-cc-Inx" secondAttribute="bottom" constant="15" id="h6k-fd-FGl"/>
-                            <constraint firstItem="4C7-3u-q4E" firstAttribute="leading" secondItem="E9u-r9-ybp" secondAttribute="trailing" constant="40" id="icC-dF-Ok4"/>
+                            <constraint firstItem="4C7-3u-q4E" firstAttribute="leading" secondItem="E9u-r9-ybp" secondAttribute="trailing" constant="38" id="icC-dF-Ok4"/>
                             <constraint firstItem="9xT-ZE-XvX" firstAttribute="leading" secondItem="QH8-wb-R0d" secondAttribute="leading" constant="15" id="ifn-XY-aWl"/>
                             <constraint firstItem="yKC-Pm-W65" firstAttribute="leading" secondItem="Ruo-Ml-0So" secondAttribute="trailing" constant="30" id="jSZ-9v-AxC"/>
                             <constraint firstItem="9xT-ZE-XvX" firstAttribute="top" secondItem="NmS-Jd-PAU" secondAttribute="bottom" constant="12" id="kH7-Ol-7kl"/>
                             <constraint firstItem="8bk-tx-2ta" firstAttribute="leading" secondItem="QH8-wb-R0d" secondAttribute="leading" id="s6B-Yz-dQB"/>
                             <constraint firstItem="clp-PF-pyn" firstAttribute="leading" secondItem="QH8-wb-R0d" secondAttribute="leading" constant="18" id="tT3-8p-rAY"/>
                             <constraint firstItem="8bk-tx-2ta" firstAttribute="top" secondItem="yKC-Pm-W65" secondAttribute="bottom" constant="8" id="tcE-O0-kiM"/>
-                            <constraint firstItem="QH8-wb-R0d" firstAttribute="bottom" secondItem="4C7-3u-q4E" secondAttribute="bottom" constant="12" id="u6D-xk-DHQ"/>
+                            <constraint firstItem="QH8-wb-R0d" firstAttribute="bottom" secondItem="4C7-3u-q4E" secondAttribute="bottom" constant="11" id="u6D-xk-DHQ"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="QH8-wb-R0d"/>
                     </view>
@@ -615,6 +616,6 @@
         <image name="rewind_btn" width="96" height="96"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="lid-Z4-Aru"/>
+        <segue reference="4Tr-rq-Ab2"/>
     </inferredMetricsTieBreakers>
 </document>

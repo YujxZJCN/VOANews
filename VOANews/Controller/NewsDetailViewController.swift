@@ -181,6 +181,7 @@ class NewsDetailViewController: UIViewController {
                 let replaceString9 = "<a href=\"http://www.hxen.com\">www.hxen.com</a> ."
                 let replaceString10 = " <a href=\"http://www.hxen.com/\">www.hxen.com</a> "
                 let replaceString11 = "<a href=\"http://www.hxen.com\" target=\"_blank\" class=\"infotextkey\">cnn</a>"
+                let replaceString12 = "&amp;"
                 var countOfImage = [Int]()
                 
                 var numberOfNewsDetailsToBeDeleted = [Int]()
@@ -236,6 +237,9 @@ class NewsDetailViewController: UIViewController {
                     }
                     if self.newsDetails[index].contains(replaceString11) {
                         self.newsDetails[index] = self.newsDetails[index].replacingOccurrences(of: replaceString11, with: "")
+                    }
+                    if self.newsDetails[index].contains(replaceString12) {
+                        self.newsDetails[index] = self.newsDetails[index].replacingOccurrences(of: replaceString12, with: "&")
                     }
                     if self.newsDetails[index].contains("<img") {
                         countOfImage.append(index)
@@ -316,7 +320,7 @@ class NewsDetailViewController: UIViewController {
         let imageForVolume = UIImage(named: "img_volume")
         let imageForSpeed = UIImage(named: "img_volume")
         processSlider.setThumbImage(imageForThumb, for: .normal)
-        processSlider.minimumTrackTintColor = UIColor.orange
+        processSlider.minimumTrackTintColor = UIColor(red: 231, green: 76, blue: 60)
         processSlider.maximumTrackTintColor = UIColor.gray
         processSlider.maximumValue = Float(audioPlayer.duration)
         volumeSlider.setThumbImage(imageForVolume, for: .normal)
