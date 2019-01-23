@@ -19,6 +19,8 @@ class NewsDetailViewController: UIViewController, AVAudioPlayerDelegate {
     var newsType = ""
     var newsItemName = ""
     var newsItemURL = ""
+    var downloadUrl = NSURL(string: "")
+    var downloadTask: URLSessionDownloadTask? = nil
     var newsDetails = [String]() {
         didSet {
             newsDetailTableView.reloadData()
@@ -32,14 +34,6 @@ class NewsDetailViewController: UIViewController, AVAudioPlayerDelegate {
     }
     var musicPath = URL.init(string: "") {
         didSet {
-            activityIndicator.stopAnimating()
-            dismissButton.isEnabled = true
-            processSlider.isEnabled = true
-            volumeSlider.isEnabled = true
-            speedSlider.isEnabled = true
-            playButton.isEnabled = true
-            rewindButton.isEnabled = true
-            forwardButton.isEnabled = true
             if musicPath != URL.init(string: "") {
                 setMusic()
             }
@@ -97,8 +91,31 @@ class NewsDetailViewController: UIViewController, AVAudioPlayerDelegate {
         }
     }
     
+    @objc func applicationWillResignActive(){
+        downloadTask?.cancel()
+    }
+    
+    @objc func applicationDidBecomeActive(){
+        if downloadUrl != NSURL(string: ""), loadedFlag == false {
+            downloadTask?.cancel()
+            downloadFileFromURL(url: downloadUrl!)
+        }
+    }
+    
+    @objc func applicationWillTerminate(){
+        print("监听是否进入后台或被kill")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //监听是否触发home键挂起程序.
+        NotificationCenter.default.addObserver(self, selector: #selector(self.applicationWillResignActive), name: UIApplication.willResignActiveNotification, object: nil)
+        ///监听是否重新进入程序程序.
+        NotificationCenter.default.addObserver(self, selector: #selector(self.applicationDidBecomeActive), name: UIApplication.didBecomeActiveNotification, object: nil)
+        ///监听是否被kill
+        NotificationCenter.default.addObserver(self, selector: #selector(self.applicationWillTerminate), name: UIApplication.willTerminateNotification, object: nil)
+        
         
         do {
             try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playAndRecord, mode: .default, options: .defaultToSpeaker)
@@ -150,11 +167,11 @@ class NewsDetailViewController: UIViewController, AVAudioPlayerDelegate {
                 for content in doc.css(".mp3player") {
                     if let innerHtml = content.innerHTML {
                         let components = innerHtml.components(separatedBy: "\"")
-                        var url = NSURL(string: components[components.count - 4])
+                        self.downloadUrl = NSURL(string: components[components.count - 4])!
                         if components.count > 40 {
-                            url = NSURL(string: components[components.count - 12])
+                            self.downloadUrl = NSURL(string: components[components.count - 12])!
                         }
-                        self.downloadFileFromURL(url: url!)
+                        self.downloadFileFromURL(url: self.downloadUrl!)
                         self.timerOfLoadData.invalidate()
                     }
                 }
@@ -302,6 +319,14 @@ class NewsDetailViewController: UIViewController, AVAudioPlayerDelegate {
             audioPlayer.enableRate = true
             audioPlayer.rate = speedSlider.value
             audioPlayer.delegate = self
+            activityIndicator.stopAnimating()
+            dismissButton.isEnabled = true
+            processSlider.isEnabled = true
+            volumeSlider.isEnabled = true
+            speedSlider.isEnabled = true
+            playButton.isEnabled = true
+            rewindButton.isEnabled = true
+            forwardButton.isEnabled = true
             audioPlayer.play()
             playStatus = true
             loadedFlag = true
@@ -361,6 +386,7 @@ class NewsDetailViewController: UIViewController, AVAudioPlayerDelegate {
             audioPlayer.stop()
         }
         playStatus = false
+        loadedFlag = false
         activityIndicator.startAnimating()
         dismissButton.isEnabled = false
         processSlider.isEnabled = false
@@ -391,6 +417,7 @@ class NewsDetailViewController: UIViewController, AVAudioPlayerDelegate {
             audioPlayer.stop()
         }
         playStatus = false
+        loadedFlag = false
         activityIndicator.startAnimating()
         dismissButton.isEnabled = false
         processSlider.isEnabled = false
@@ -523,6 +550,9 @@ class NewsDetailViewController: UIViewController, AVAudioPlayerDelegate {
                 audioPlayer.stop()
             }
         }
+        if downloadTask != nil {
+            downloadTask?.cancel()
+        }
         self.dismiss(animated: true, completion: nil)
     }
     
@@ -540,13 +570,18 @@ class NewsDetailViewController: UIViewController, AVAudioPlayerDelegate {
 
 extension NewsDetailViewController: URLSessionDelegate {
     func downloadFileFromURL(url: NSURL){
+        dismissButton.isEnabled = true
         let req = NSMutableURLRequest(url:url as URL)
         let config = URLSessionConfiguration.default
         let session = URLSession(configuration: config, delegate: self, delegateQueue: OperationQueue.main)
-        let task: URLSessionDownloadTask = session.downloadTask(with: req as URLRequest) { (URL, response, error) in
+        downloadTask = session.downloadTask(with: req as URLRequest) { (URL, response, error) in
+            if let error = error {
+                print(error.localizedDescription)
+                return
+            }
             self.musicPath = URL
         }
-        task.resume()
+        downloadTask!.resume()
     }
 }
 
