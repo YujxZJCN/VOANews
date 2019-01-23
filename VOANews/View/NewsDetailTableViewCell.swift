@@ -10,7 +10,7 @@ import UIKit
 
 class NewsDetailTableViewCell: UITableViewCell {
 
-    @IBOutlet var detailLabel: UILabel!
+    @IBOutlet var detailLabel: UITextView!
     
     override func awakeFromNib() {
         super.awakeFromNib()

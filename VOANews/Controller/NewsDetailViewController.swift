@@ -103,7 +103,7 @@ class NewsDetailViewController: UIViewController, AVAudioPlayerDelegate {
     }
     
     @objc func applicationWillTerminate(){
-        print("监听是否进入后台或被kill")
+        //监听是否进入后台或被kill
     }
     
     override func viewDidLoad() {
@@ -660,7 +660,13 @@ extension NewsDetailViewController {
     }
 }
 
-extension NewsDetailViewController: UITableViewDataSource, UITableViewDelegate {
+extension NewsDetailViewController: UITableViewDataSource, UITableViewDelegate, UITextViewDelegate {
+    
+    func heightForTextView(textView: UITextView, fixedWidth: CGFloat) -> CGFloat {
+        let size = CGSize(width: fixedWidth, height: CGFloat.greatestFiniteMagnitude)
+        let constraint = textView.sizeThatFits(size)
+        return constraint.height
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return newsDetails.count
@@ -669,9 +675,11 @@ extension NewsDetailViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let identifier = "NewsDetailTableViewCell"
         let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! NewsDetailTableViewCell
-        
+        cell.detailLabel.delegate = self
+        cell.detailLabel.isEditable = false
+        cell.detailLabel.isScrollEnabled = false
         cell.detailLabel.text = newsDetails[indexPath.row]
-        
+        cell.detailLabel.frame = CGRect(x: cell.detailLabel.frame.origin.x, y: cell.detailLabel.frame.origin.y, width: cell.detailLabel.frame.width, height: heightForTextView(textView: cell.detailLabel, fixedWidth: cell.detailLabel.frame.width))
         return cell
     }
     

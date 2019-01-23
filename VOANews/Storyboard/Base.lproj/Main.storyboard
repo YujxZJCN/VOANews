@@ -465,25 +465,24 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="89.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Details" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DNh-7a-KeI">
-                                                    <rect key="frame" x="15" y="8" width="345" height="73.5"/>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Details" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="40A-Xf-4c5">
+                                                    <rect key="frame" x="15" y="6" width="345" height="77.5"/>
                                                     <color key="backgroundColor" red="0.86275094747543335" green="0.86273467540740967" blue="0.86274570226669312" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="16"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                </textView>
                                             </subviews>
                                             <color key="backgroundColor" red="0.86275094747543335" green="0.86273467540740967" blue="0.86274570226669312" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             <constraints>
-                                                <constraint firstItem="DNh-7a-KeI" firstAttribute="leading" secondItem="c3k-ap-bqA" secondAttribute="leading" constant="15" id="En9-x7-wL5"/>
-                                                <constraint firstAttribute="trailing" secondItem="DNh-7a-KeI" secondAttribute="trailing" constant="15" id="Eo9-dC-FN2"/>
-                                                <constraint firstAttribute="bottom" secondItem="DNh-7a-KeI" secondAttribute="bottom" constant="8" id="w9l-Sn-fyI"/>
-                                                <constraint firstItem="DNh-7a-KeI" firstAttribute="top" secondItem="c3k-ap-bqA" secondAttribute="top" constant="8" id="wRb-T2-BPM"/>
+                                                <constraint firstAttribute="bottom" secondItem="40A-Xf-4c5" secondAttribute="bottom" constant="6" id="9xd-Lv-Moq"/>
+                                                <constraint firstItem="40A-Xf-4c5" firstAttribute="leading" secondItem="c3k-ap-bqA" secondAttribute="leading" constant="15" id="KHe-KI-7DG"/>
+                                                <constraint firstItem="40A-Xf-4c5" firstAttribute="top" secondItem="c3k-ap-bqA" secondAttribute="top" constant="6" id="bPg-1d-y2p"/>
+                                                <constraint firstAttribute="trailing" secondItem="40A-Xf-4c5" secondAttribute="trailing" constant="15" id="mw4-bX-Cpa"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.86275094747543335" green="0.86273467540740967" blue="0.86274570226669312" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <connections>
-                                            <outlet property="detailLabel" destination="DNh-7a-KeI" id="Lb5-t0-kOB"/>
+                                            <outlet property="detailLabel" destination="40A-Xf-4c5" id="brG-0z-efD"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -578,7 +577,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="byf-OB-VCh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2086" y="-645"/>
+            <point key="canvasLocation" x="2085.5999999999999" y="-645.42728635682158"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="pUV-jL-5qc">
