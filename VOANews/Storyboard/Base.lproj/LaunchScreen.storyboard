@@ -19,11 +19,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launch" translatesAutoresizingMaskIntoConstraints="NO" id="W6m-0N-vV3">
-                                <rect key="frame" x="115.5" y="306" width="144" height="55"/>
+                                <rect key="frame" x="120" y="298.5" width="135" height="70"/>
                                 <color key="tintColor" red="0.92041993141174316" green="0.31629019975662231" blue="0.15279996395111084" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="55" id="eDo-qi-wig"/>
-                                    <constraint firstAttribute="width" constant="144" id="jHW-h7-QMe"/>
+                                    <constraint firstAttribute="height" constant="70" id="eDo-qi-wig"/>
+                                    <constraint firstAttribute="width" constant="135" id="jHW-h7-QMe"/>
                                 </constraints>
                             </imageView>
                         </subviews>
@@ -41,6 +41,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="launch" width="1024" height="393"/>
+        <image name="launch" width="757" height="393"/>
     </resources>
 </document>

@@ -13,7 +13,7 @@ import Kanna
 import AVFoundation
 import MediaPlayer
 
-class NewsDetailViewController: UIViewController {
+class NewsDetailViewController: UIViewController, AVAudioPlayerDelegate {
     var newsItems = [News]()
     var indexOfnews = 0
     var newsType = ""
@@ -58,7 +58,6 @@ class NewsDetailViewController: UIViewController {
     }
     
     var loadedFlag = false
-    var playTime = 0.0
     
     let playImage = UIImage(named: "play_btn")
     let pauseImage = UIImage(named: "pause_btn")
@@ -78,13 +77,13 @@ class NewsDetailViewController: UIViewController {
     
     var activityIndicator: NVActivityIndicatorView!
     
-    var timer = Timer()
+    var timerOfLoadData = Timer()
     
     var loadDataTimes = 0 {
         didSet {
             if loadDataTimes > 20 {
                 self.activityIndicator.stopAnimating()
-                timer.invalidate()
+                timerOfLoadData.invalidate()
                 dismissButton.isEnabled = true
                 let alertController = UIAlertController(title: "请检查网络连接", message: "", preferredStyle: .alert)
                 self.present(alertController, animated: true, completion: nil)
@@ -138,7 +137,7 @@ class NewsDetailViewController: UIViewController {
         
         activityIndicator.startAnimating()
         loadData()
-        timer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(loadData), userInfo: nil, repeats: true)
+        timerOfLoadData = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(loadData), userInfo: nil, repeats: true)
     }
     
     @objc func loadData() {
@@ -156,7 +155,7 @@ class NewsDetailViewController: UIViewController {
                             url = NSURL(string: components[components.count - 12])
                         }
                         self.downloadFileFromURL(url: url!)
-                        self.timer.invalidate()
+                        self.timerOfLoadData.invalidate()
                     }
                 }
                 var newsOriginalDetails = [String]()
@@ -302,6 +301,7 @@ class NewsDetailViewController: UIViewController {
             audioPlayer.volume = volumeSlider.value * 10
             audioPlayer.enableRate = true
             audioPlayer.rate = speedSlider.value
+            audioPlayer.delegate = self
             audioPlayer.play()
             playStatus = true
             loadedFlag = true
@@ -335,9 +335,8 @@ class NewsDetailViewController: UIViewController {
             Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(self.updateSlider), userInfo: nil, repeats: true)
             if loadedFlag {
                 if audioPlayer.isPlaying {
-                   audioPlayer.stop()
+                   audioPlayer.pause()
                 }
-                playTime = audioPlayer.currentTime
             }
             playButton.setImage(playImage, for: .normal)
             playStatus = false
@@ -381,7 +380,7 @@ class NewsDetailViewController: UIViewController {
         nameLabel.text = newsItemName
         newsDetails.removeAll()
         newsDetailTableView.reloadData()
-        timer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(loadData), userInfo: nil, repeats: true)
+        timerOfLoadData = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(loadData), userInfo: nil, repeats: true)
         setLockView()
     }
     
@@ -411,7 +410,7 @@ class NewsDetailViewController: UIViewController {
         newsDetails.removeAll()
         newsDetailTableView.reloadData()
         nameLabel.text = newsItemName
-        timer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(loadData), userInfo: nil, repeats: true)
+        timerOfLoadData = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(loadData), userInfo: nil, repeats: true)
         setLockView()
     }
     
@@ -446,12 +445,16 @@ class NewsDetailViewController: UIViewController {
         }
         currentTime.text = getFormatPlayTime(secounds: audioPlayer.currentTime)
         if processSlider.value >= processSlider.maximumValue - 0.15 {
-//            playingNumber += 1
-//            setMusic()
             audioPlayer.stop()
             playButton.setImage(playImage, for: .normal)
             playStatus = false
         }
+    }
+    
+    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
+        audioPlayer.stop()
+        playStatus = false
+        processSlider.value = processSlider.maximumValue
     }
     
     func getFormatPlayTime(secounds:TimeInterval) -> String {
@@ -579,7 +582,7 @@ extension NewsDetailViewController {
             nameLabel.text = newsItemName
             newsDetails.removeAll()
             newsDetailTableView.reloadData()
-            timer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(loadData), userInfo: nil, repeats: true)
+            timerOfLoadData = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(loadData), userInfo: nil, repeats: true)
             setLockView()
             break
         case .remoteControlPreviousTrack:  // previous
@@ -605,7 +608,7 @@ extension NewsDetailViewController {
             nameLabel.text = newsItemName
             newsDetails.removeAll()
             newsDetailTableView.reloadData()
-            timer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(loadData), userInfo: nil, repeats: true)
+            timerOfLoadData = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(loadData), userInfo: nil, repeats: true)
             setLockView()
             break
         default:

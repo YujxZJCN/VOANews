@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "launchIcon-1.png",
+      "filename" : "shijie.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "launchIcon-2.png",
+      "filename" : "shijie-1.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "launchIcon.png",
+      "filename" : "shijie-2.png",
       "scale" : "3x"
     }
   ],

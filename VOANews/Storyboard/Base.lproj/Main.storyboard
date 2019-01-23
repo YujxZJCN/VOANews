@@ -42,7 +42,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="38" id="6Su-fe-joS"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="BradleyHandITCTT-Bold" family="Bradley Hand" pointSize="20"/>
+                                <fontDescription key="fontDescription" name="BradleyHandITCTT-Bold" family="Bradley Hand" pointSize="28"/>
                                 <color key="textColor" red="0.90588235294117647" green="0.29803921568627451" blue="0.23529411764705882" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -139,7 +139,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Am1-hc-gsu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="465" y="-1554"/>
+            <point key="canvasLocation" x="494" y="-1430"/>
         </scene>
         <!--CNN-->
         <scene sceneID="Cyy-Io-lCf">
@@ -150,8 +150,8 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CNN News" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BUJ-SE-1wE">
-                                <rect key="frame" x="16" y="34.5" width="343" height="25"/>
-                                <fontDescription key="fontDescription" name="BradleyHandITCTT-Bold" family="Bradley Hand" pointSize="20"/>
+                                <rect key="frame" x="16" y="29.5" width="343" height="35"/>
+                                <fontDescription key="fontDescription" name="BradleyHandITCTT-Bold" family="Bradley Hand" pointSize="28"/>
                                 <color key="textColor" red="0.90588235289999997" green="0.29803921570000003" blue="0.23529411759999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -167,7 +167,7 @@
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="w2I-Nm-GiY">
-                                <rect key="frame" x="0.0" y="65.5" width="375" height="552.5"/>
+                                <rect key="frame" x="0.0" y="70.5" width="375" height="547.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CNNNewsCell" rowHeight="83" id="mIK-pa-SSe" customClass="CNNNewsTableViewCell" customModule="VOANews" customModuleProvider="target">
@@ -232,7 +232,7 @@
                             <constraint firstItem="1We-3a-qWz" firstAttribute="centerY" secondItem="BUJ-SE-1wE" secondAttribute="centerY" id="GIA-WR-TBF"/>
                             <constraint firstItem="w2I-Nm-GiY" firstAttribute="top" secondItem="BUJ-SE-1wE" secondAttribute="bottom" constant="6" id="Hpw-T6-3RJ"/>
                             <constraint firstItem="1We-3a-qWz" firstAttribute="leading" secondItem="hZy-ss-ftd" secondAttribute="leading" constant="12" id="YTt-aD-hpz"/>
-                            <constraint firstItem="BUJ-SE-1wE" firstAttribute="top" secondItem="hZy-ss-ftd" secondAttribute="top" constant="14.5" id="ek4-3X-yna"/>
+                            <constraint firstItem="BUJ-SE-1wE" firstAttribute="top" secondItem="hZy-ss-ftd" secondAttribute="top" constant="9.5" id="ek4-3X-yna"/>
                             <constraint firstItem="BUJ-SE-1wE" firstAttribute="leading" secondItem="hZy-ss-ftd" secondAttribute="leading" constant="16" id="hmj-or-feC"/>
                             <constraint firstItem="w2I-Nm-GiY" firstAttribute="bottom" secondItem="hZy-ss-ftd" secondAttribute="bottom" id="n6U-Uq-kfy"/>
                         </constraints>
@@ -245,7 +245,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bfT-s6-WHa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="474.39999999999998" y="-643.62818590704649"/>
+            <point key="canvasLocation" x="494" y="-645"/>
         </scene>
         <!--BBC-->
         <scene sceneID="hVL-mV-kVt">
@@ -256,13 +256,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BBC News" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zwa-Yo-QK5">
-                                <rect key="frame" x="16" y="34.5" width="343" height="25"/>
-                                <fontDescription key="fontDescription" name="BradleyHandITCTT-Bold" family="Bradley Hand" pointSize="20"/>
+                                <rect key="frame" x="16" y="29.5" width="343" height="35"/>
+                                <fontDescription key="fontDescription" name="BradleyHandITCTT-Bold" family="Bradley Hand" pointSize="28"/>
                                 <color key="textColor" red="0.90588235289999997" green="0.29803921570000003" blue="0.23529411759999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="y39-5H-6e7">
-                                <rect key="frame" x="0.0" y="65.5" width="375" height="552.5"/>
+                                <rect key="frame" x="0.0" y="70.5" width="375" height="547.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="BBCNewsCell" rowHeight="83" id="EDb-zt-PLe" customClass="BBCNewsTableViewCell" customModule="VOANews" customModuleProvider="target">
@@ -334,7 +334,7 @@
                             <constraint firstItem="eN0-CE-63w" firstAttribute="trailing" secondItem="Zwa-Yo-QK5" secondAttribute="trailing" constant="16" id="1Wm-t1-2Mp"/>
                             <constraint firstItem="cEs-kU-dNQ" firstAttribute="centerY" secondItem="Zwa-Yo-QK5" secondAttribute="centerY" id="3ks-gh-gOg"/>
                             <constraint firstItem="eN0-CE-63w" firstAttribute="trailing" secondItem="y39-5H-6e7" secondAttribute="trailing" id="8GW-LT-CGR"/>
-                            <constraint firstItem="Zwa-Yo-QK5" firstAttribute="top" secondItem="eN0-CE-63w" secondAttribute="top" constant="14.5" id="AQN-Qt-69K"/>
+                            <constraint firstItem="Zwa-Yo-QK5" firstAttribute="top" secondItem="eN0-CE-63w" secondAttribute="top" constant="9.5" id="AQN-Qt-69K"/>
                             <constraint firstItem="y39-5H-6e7" firstAttribute="top" secondItem="Zwa-Yo-QK5" secondAttribute="bottom" constant="6" id="F6R-lA-dRf"/>
                             <constraint firstItem="y39-5H-6e7" firstAttribute="centerX" secondItem="UIh-Wz-c3N" secondAttribute="centerX" id="Imz-R8-ijL"/>
                             <constraint firstItem="Zwa-Yo-QK5" firstAttribute="leading" secondItem="eN0-CE-63w" secondAttribute="leading" constant="16" id="LHT-K6-SKA"/>
@@ -351,7 +351,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ODX-0y-5Vc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="466" y="214"/>
+            <point key="canvasLocation" x="494" y="142"/>
         </scene>
         <!--News Detail View Controller-->
         <scene sceneID="RUL-vB-ETZ">
@@ -578,7 +578,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="byf-OB-VCh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2113" y="-338"/>
+            <point key="canvasLocation" x="2086" y="-645"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="pUV-jL-5qc">
@@ -598,7 +598,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vOm-He-8hI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1718" y="-845"/>
+            <point key="canvasLocation" x="-1089" y="-644"/>
         </scene>
     </scenes>
     <resources>
