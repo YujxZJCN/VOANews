@@ -552,7 +552,9 @@ class NewsDetailViewController: UIViewController, AVAudioPlayerDelegate {
         }
         if downloadTask != nil {
             downloadTask?.cancel()
+            downloadTask = nil
         }
+        downloadUrl = NSURL(string: "")
         self.dismiss(animated: true, completion: nil)
     }
     

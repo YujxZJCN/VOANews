@@ -123,6 +123,7 @@ class BBCNewsController: UIViewController, UITableViewDelegate, UITableViewDataS
                         self.BBCNewsList.append(BBCNewsItem)
                     }
                 }
+                self.page += 1
             }
             
             for index in 0 ..< self.BBCNewsList.count {
@@ -199,7 +200,6 @@ class BBCNewsController: UIViewController, UITableViewDelegate, UITableViewDataS
             activityIndicator.startAnimating()
             // handle your logic here to get more items, add it to dataSource and reload tableview
             loadMore(url: url + "_\(page)")
-            page += 1
         }
     }
     

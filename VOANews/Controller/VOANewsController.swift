@@ -143,6 +143,7 @@ class VOANewsController: UIViewController, UITableViewDelegate, UITableViewDataS
                         self.VOANewsList.append(VOANewsItem)
                     }
                 }
+                self.page += 1
             }
             
             for index in 0 ..< self.VOANewsList.count {
@@ -226,7 +227,6 @@ class VOANewsController: UIViewController, UITableViewDelegate, UITableViewDataS
             activityIndicator.startAnimating()
             // handle your logic here to get more items, add it to dataSource and reload tableview
             loadMore(url: url + "_\(page)")
-            page += 1
         }
     }
     
