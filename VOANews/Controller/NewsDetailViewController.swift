@@ -677,11 +677,11 @@ extension NewsDetailViewController: UITableViewDataSource, UITableViewDelegate, 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let identifier = "NewsDetailTableViewCell"
         let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! NewsDetailTableViewCell
-        cell.detailLabel.delegate = self
-        cell.detailLabel.isEditable = false
-        cell.detailLabel.isScrollEnabled = false
-        cell.detailLabel.text = newsDetails[indexPath.row]
-        cell.detailLabel.frame = CGRect(x: cell.detailLabel.frame.origin.x, y: cell.detailLabel.frame.origin.y, width: cell.detailLabel.frame.width, height: heightForTextView(textView: cell.detailLabel, fixedWidth: cell.detailLabel.frame.width))
+        cell.detailTextView.delegate = self
+        cell.detailTextView.isEditable = false
+        cell.detailTextView.isScrollEnabled = false
+        cell.detailTextView.text = newsDetails[indexPath.row]
+        cell.detailTextView.frame = CGRect(x: cell.detailTextView.frame.origin.x, y: cell.detailTextView.frame.origin.y, width: cell.detailTextView.frame.width, height: heightForTextView(textView: cell.detailTextView, fixedWidth: cell.detailTextView.frame.width))
         return cell
     }
     
@@ -690,7 +690,7 @@ extension NewsDetailViewController: UITableViewDataSource, UITableViewDelegate, 
         let hsCell = tableView.dequeueReusableCell(withIdentifier: identifier) as? NewsDetailTableViewCell
         var tempCell: NewsDetailTableViewCell
         hsCell != nil ? (tempCell = hsCell!) : (tempCell = NewsDetailTableViewCell())
-        tempCell.detailLabel.text = newsDetails[indexPath.row]
+        tempCell.detailTextView.text = newsDetails[indexPath.row]
         tempCell.frame = CGRect(x: 0, y: 0, width: tableView.bounds.width, height: tableView.bounds.height)
         tempCell.layoutIfNeeded()
         return tempCell.contentView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize).height + 1

@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		4C21D4318314E8D3C3B9EC47 /* Pods_VOANews.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA5C7760E5438829CE1C6D22 /* Pods_VOANews.framework */; };
+		F616EDA021F9FAA500704237 /* PublicVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = F616ED9F21F9FAA500704237 /* PublicVariables.swift */; };
+		F616EDA221F9FBC800704237 /* FavoriteNewsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F616EDA121F9FBC800704237 /* FavoriteNewsController.swift */; };
+		F616EDA421F9FC4000704237 /* FavorateNewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F616EDA321F9FC4000704237 /* FavorateNewsTableViewCell.swift */; };
+		F616EDA721FA05F800704237 /* ManageFavorateNews+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F616EDA521FA05F800704237 /* ManageFavorateNews+CoreDataClass.swift */; };
+		F616EDA821FA05F800704237 /* ManageFavorateNews+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F616EDA621FA05F800704237 /* ManageFavorateNews+CoreDataProperties.swift */; };
+		F616EDAC21FA06D100704237 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F616EDAB21FA06D100704237 /* DataManager.swift */; };
 		F6829A6421F602040020BB30 /* BBCNewsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6829A6321F602040020BB30 /* BBCNewsController.swift */; };
 		F6829A6621F603430020BB30 /* BBCNewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6829A6521F603430020BB30 /* BBCNewsTableViewCell.swift */; };
 		F6829A6821F61F000020BB30 /* CNNNewsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6829A6721F61F000020BB30 /* CNNNewsController.swift */; };
@@ -30,6 +36,12 @@
 		680AB3CC064BAB42EDE5E7B1 /* Pods-VOANews.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VOANews.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VOANews/Pods-VOANews.debug.xcconfig"; sourceTree = "<group>"; };
 		BA5C7760E5438829CE1C6D22 /* Pods_VOANews.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VOANews.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCC451EB7D415345C829EC4A /* Pods-VOANews.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VOANews.release.xcconfig"; path = "Pods/Target Support Files/Pods-VOANews/Pods-VOANews.release.xcconfig"; sourceTree = "<group>"; };
+		F616ED9F21F9FAA500704237 /* PublicVariables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicVariables.swift; sourceTree = "<group>"; };
+		F616EDA121F9FBC800704237 /* FavoriteNewsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteNewsController.swift; sourceTree = "<group>"; };
+		F616EDA321F9FC4000704237 /* FavorateNewsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavorateNewsTableViewCell.swift; sourceTree = "<group>"; };
+		F616EDA521FA05F800704237 /* ManageFavorateNews+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ManageFavorateNews+CoreDataClass.swift"; sourceTree = "<group>"; };
+		F616EDA621FA05F800704237 /* ManageFavorateNews+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ManageFavorateNews+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		F616EDAB21FA06D100704237 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		F6829A6321F602040020BB30 /* BBCNewsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BBCNewsController.swift; sourceTree = "<group>"; };
 		F6829A6521F603430020BB30 /* BBCNewsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BBCNewsTableViewCell.swift; sourceTree = "<group>"; };
 		F6829A6721F61F000020BB30 /* CNNNewsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CNNNewsController.swift; sourceTree = "<group>"; };
@@ -129,8 +141,12 @@
 		F6EB096621F31988009B4785 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				F6EB093121F2EBC6009B4785 /* VOANews.xcdatamodeld */,
+				F616ED9F21F9FAA500704237 /* PublicVariables.swift */,
 				F6EB093F21F2FD5B009B4785 /* News.swift */,
+				F6EB093121F2EBC6009B4785 /* VOANews.xcdatamodeld */,
+				F616EDAB21FA06D100704237 /* DataManager.swift */,
+				F616EDA521FA05F800704237 /* ManageFavorateNews+CoreDataClass.swift */,
+				F616EDA621FA05F800704237 /* ManageFavorateNews+CoreDataProperties.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -141,6 +157,7 @@
 				F6EB092C21F2EBC6009B4785 /* VOANewsController.swift */,
 				F6829A6321F602040020BB30 /* BBCNewsController.swift */,
 				F6829A6721F61F000020BB30 /* CNNNewsController.swift */,
+				F616EDA121F9FBC800704237 /* FavoriteNewsController.swift */,
 				F6BEC16021F42C4400290F7D /* NewsDetailViewController.swift */,
 			);
 			path = Controller;
@@ -162,6 +179,7 @@
 				F6EB094121F30041009B4785 /* VOANewsTableViewCell.swift */,
 				F6829A6521F603430020BB30 /* BBCNewsTableViewCell.swift */,
 				F6829A6921F621070020BB30 /* CNNNewsTableViewCell.swift */,
+				F616EDA321F9FC4000704237 /* FavorateNewsTableViewCell.swift */,
 				F6BEC16421F49B3C00290F7D /* NewsDetailTableViewCell.swift */,
 				F6BEC16221F44B1C00290F7D /* AnimationFrames.swift */,
 			);
@@ -306,19 +324,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F616EDA021F9FAA500704237 /* PublicVariables.swift in Sources */,
 				F6EB093321F2EBC6009B4785 /* VOANews.xcdatamodeld in Sources */,
+				F616EDA421F9FC4000704237 /* FavorateNewsTableViewCell.swift in Sources */,
+				F616EDA821FA05F800704237 /* ManageFavorateNews+CoreDataProperties.swift in Sources */,
 				F6829A6621F603430020BB30 /* BBCNewsTableViewCell.swift in Sources */,
 				F6EB092D21F2EBC6009B4785 /* VOANewsController.swift in Sources */,
 				F6EB094221F30041009B4785 /* VOANewsTableViewCell.swift in Sources */,
 				F6EB094F21F30F91009B4785 /* UIColor+Ext.swift in Sources */,
+				F616EDA221F9FBC800704237 /* FavoriteNewsController.swift in Sources */,
 				F6BEC16121F42C4400290F7D /* NewsDetailViewController.swift in Sources */,
 				F6829A6A21F621070020BB30 /* CNNNewsTableViewCell.swift in Sources */,
 				F6EB092B21F2EBC6009B4785 /* AppDelegate.swift in Sources */,
 				F6829A6421F602040020BB30 /* BBCNewsController.swift in Sources */,
 				F6BEC16521F49B3C00290F7D /* NewsDetailTableViewCell.swift in Sources */,
+				F616EDAC21FA06D100704237 /* DataManager.swift in Sources */,
 				F6829A6821F61F000020BB30 /* CNNNewsController.swift in Sources */,
 				F6BEC16321F44B1C00290F7D /* AnimationFrames.swift in Sources */,
 				F6EB094021F2FD5B009B4785 /* News.swift in Sources */,
+				F616EDA721FA05F800704237 /* ManageFavorateNews+CoreDataClass.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

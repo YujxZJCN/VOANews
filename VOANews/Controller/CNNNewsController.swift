@@ -72,6 +72,11 @@ class CNNNewsController: UIViewController, UITableViewDelegate, UITableViewDataS
         timer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(loadData), userInfo: nil, repeats: true)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        CNNNewsTableView.reloadData()
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         timer.fire()
@@ -109,6 +114,11 @@ class CNNNewsController: UIViewController, UITableViewDelegate, UITableViewDataS
                 }
                 if self.CNNNewsList[index].name.contains("CNN News:") {
                     self.CNNNewsList[index].name = self.CNNNewsList[index].name.replacingOccurrences(of: "CNN News:", with: "CNN新闻：")
+                }
+                for news in favoriteNews {
+                    if news.name == self.CNNNewsList[index].name {
+                        self.CNNNewsList[index].isLiked = true
+                    }
                 }
             }
         }
@@ -148,6 +158,11 @@ class CNNNewsController: UIViewController, UITableViewDelegate, UITableViewDataS
                 }
                 if self.CNNNewsList[index].name.contains("CNN News:") {
                     self.CNNNewsList[index].name = self.CNNNewsList[index].name.replacingOccurrences(of: "CNN News:", with: "CNN新闻：")
+                }
+                for news in favoriteNews {
+                    if news.name == self.CNNNewsList[index].name {
+                        self.CNNNewsList[index].isLiked = true
+                    }
                 }
             }
         }
@@ -202,6 +217,12 @@ class CNNNewsController: UIViewController, UITableViewDelegate, UITableViewDataS
             date = String(year + "-" + month + "-" + day)
         }
         cell.dateLabel.text = date
+        CNNNewsList[indexPath.row].isLiked = false
+        for news in favoriteNews {
+            if news.name == CNNNewsList[indexPath.row].name {
+                CNNNewsList[indexPath.row].isLiked = true
+            }
+        }
         cell.heartImageView.isHidden = CNNNewsList[indexPath.row].isLiked ? false : true
         return cell
     }
@@ -227,7 +248,19 @@ class CNNNewsController: UIViewController, UITableViewDelegate, UITableViewDataS
             let cell = tableView.cellForRow(at: indexPath) as! CNNNewsTableViewCell
             self.CNNNewsList[indexPath.row].isLiked = (self.CNNNewsList[indexPath.row].isLiked) ? false : true
             cell.heartImageView.isHidden = self.CNNNewsList[indexPath.row].isLiked ? false : true
-            
+            if self.CNNNewsList[indexPath.row].isLiked {
+                favoriteNews.append(self.CNNNewsList[indexPath.row])
+                DataManager.shared.createFavorateNews(item: self.CNNNewsList[indexPath.row])
+            } else {
+                var numberOfFavorateNewsToBeDeleted = 0
+                for index in 0 ..< favoriteNews.count {
+                    if favoriteNews[index].name == self.CNNNewsList[indexPath.row].name {
+                        numberOfFavorateNewsToBeDeleted = index
+                    }
+                }
+                favoriteNews.remove(at: numberOfFavorateNewsToBeDeleted)
+                DataManager.shared.removeFavorateNews(item: self.CNNNewsList[indexPath.row])
+            }
             completionHandler(true)
         }
         

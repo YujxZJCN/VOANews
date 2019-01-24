@@ -1,26 +1,20 @@
 //
-//  VOANewsDetailTableViewCell.swift
+//  FavorateNewsTableViewCell.swift
 //  VOANews
 //
-//  Created by 俞佳兴 on 2019/1/20.
+//  Created by 俞佳兴 on 2019/1/24.
 //  Copyright © 2019 Albert. All rights reserved.
 //
 
 import UIKit
 
-class NewsDetailTableViewCell: UITableViewCell {
-
-    @IBOutlet var detailTextView: UITextView!
+class FavorateNewsTableViewCell: UITableViewCell {
+    @IBOutlet var nameLabel: UILabel!
+    @IBOutlet var dateLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-    }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        self.contentView.setNeedsLayout()
-        self.contentView.layoutIfNeeded()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

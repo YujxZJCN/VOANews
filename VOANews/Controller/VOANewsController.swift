@@ -79,6 +79,7 @@ class VOANewsController: UIViewController, UITableViewDelegate, UITableViewDataS
         super.viewDidLoad()
         
         // Do any additional setup after loading the view, typically from a nib.
+        favoriteNews = DataManager.shared.getAllFavorateNews()
         let indicatorSize: CGFloat = 70
         let indicatorFrame = CGRect(x: (view.frame.width-indicatorSize)/2, y: (view.frame.height-indicatorSize)/2, width: indicatorSize, height: indicatorSize)
         activityIndicator = NVActivityIndicatorView(frame: indicatorFrame, type: .ballRotateChase, color: UIColor.white, padding: 20.0)
@@ -87,6 +88,11 @@ class VOANewsController: UIViewController, UITableViewDelegate, UITableViewDataS
         
         activityIndicator.startAnimating()
         timer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(loadData), userInfo: nil, repeats: true)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        VOANewsTableView.reloadData()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -122,6 +128,11 @@ class VOANewsController: UIViewController, UITableViewDelegate, UITableViewDataS
                 if self.VOANewsList[index].name.contains("VOA常速英语:") {
                     self.VOANewsList[index].name = self.VOANewsList[index].name.replacingOccurrences(of: "VOA常速英语:", with: "VOA常速英语：")
                 }
+                for news in favoriteNews {
+                    if news.name == self.VOANewsList[index].name {
+                        self.VOANewsList[index].isLiked = true
+                    }
+                }
             }
         }
         loadDataTimes += 1
@@ -155,6 +166,11 @@ class VOANewsController: UIViewController, UITableViewDelegate, UITableViewDataS
                 }
                 if self.VOANewsList[index].name.contains("VOA常速英语:") {
                     self.VOANewsList[index].name = self.VOANewsList[index].name.replacingOccurrences(of: "VOA常速英语:", with: "VOA常速英语：")
+                }
+                for news in favoriteNews {
+                    if news.name == self.VOANewsList[index].name {
+                        self.VOANewsList[index].isLiked = true
+                    }
                 }
             }
         }
@@ -213,6 +229,12 @@ class VOANewsController: UIViewController, UITableViewDelegate, UITableViewDataS
             date = String(year + "-" + month + "-" + day)
         }
         cell.dateLabel.text = date
+        VOANewsList[indexPath.row].isLiked = false
+        for news in favoriteNews {
+            if news.name == VOANewsList[indexPath.row].name {
+                VOANewsList[indexPath.row].isLiked = true
+            }
+        }
         cell.heartImageView.isHidden = VOANewsList[indexPath.row].isLiked ? false : true
         return cell
     }
@@ -237,7 +259,19 @@ class VOANewsController: UIViewController, UITableViewDelegate, UITableViewDataS
             let cell = tableView.cellForRow(at: indexPath) as! VOANewsTableViewCell
             self.VOANewsList[indexPath.row].isLiked = (self.VOANewsList[indexPath.row].isLiked) ? false : true
             cell.heartImageView.isHidden = self.VOANewsList[indexPath.row].isLiked ? false : true
-            
+            if self.VOANewsList[indexPath.row].isLiked {
+                favoriteNews.append(self.VOANewsList[indexPath.row])
+                DataManager.shared.createFavorateNews(item: self.VOANewsList[indexPath.row])
+            } else {
+                var numberOfFavorateNewsToBeDeleted = 0
+                for index in 0 ..< favoriteNews.count {
+                    if favoriteNews[index].name == self.VOANewsList[indexPath.row].name {
+                        numberOfFavorateNewsToBeDeleted = index
+                    }
+                }
+                favoriteNews.remove(at: numberOfFavorateNewsToBeDeleted)
+                DataManager.shared.removeFavorateNews(item: self.VOANewsList[indexPath.row])
+            }
             completionHandler(true)
         }
         

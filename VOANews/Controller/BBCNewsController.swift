@@ -72,6 +72,11 @@ class BBCNewsController: UIViewController, UITableViewDelegate, UITableViewDataS
         timer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(loadData), userInfo: nil, repeats: true)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        BBCNewsTableView.reloadData()
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         timer.fire()
@@ -101,6 +106,11 @@ class BBCNewsController: UIViewController, UITableViewDelegate, UITableViewDataS
                 }
                 if self.BBCNewsList[index].name.contains("BBC在线收听下载:") {
                     self.BBCNewsList[index].name = self.BBCNewsList[index].name.replacingOccurrences(of: "BBC在线收听下载:", with: "BBC新闻：")
+                }
+                for news in favoriteNews {
+                    if news.name == self.BBCNewsList[index].name {
+                        self.BBCNewsList[index].isLiked = true
+                    }
                 }
             }
         }
@@ -132,6 +142,11 @@ class BBCNewsController: UIViewController, UITableViewDelegate, UITableViewDataS
                 }
                 if self.BBCNewsList[index].name.contains("BBC在线收听下载:") {
                     self.BBCNewsList[index].name = self.BBCNewsList[index].name.replacingOccurrences(of: "BBC在线收听下载:", with: "BBC新闻：")
+                }
+                for news in favoriteNews {
+                    if news.name == self.BBCNewsList[index].name {
+                        self.BBCNewsList[index].isLiked = true
+                    }
                 }
             }
         }
@@ -186,6 +201,12 @@ class BBCNewsController: UIViewController, UITableViewDelegate, UITableViewDataS
             date = String(year + "-" + month + "-" + day)
         }
         cell.dateLabel.text = date
+        BBCNewsList[indexPath.row].isLiked = false
+        for news in favoriteNews {
+            if news.name == BBCNewsList[indexPath.row].name {
+                BBCNewsList[indexPath.row].isLiked = true
+            }
+        }
         cell.heartImageView.isHidden = BBCNewsList[indexPath.row].isLiked ? false : true
         return cell
     }
@@ -210,7 +231,19 @@ class BBCNewsController: UIViewController, UITableViewDelegate, UITableViewDataS
             let cell = tableView.cellForRow(at: indexPath) as! BBCNewsTableViewCell
             self.BBCNewsList[indexPath.row].isLiked = (self.BBCNewsList[indexPath.row].isLiked) ? false : true
             cell.heartImageView.isHidden = self.BBCNewsList[indexPath.row].isLiked ? false : true
-            
+            if self.BBCNewsList[indexPath.row].isLiked {
+                favoriteNews.append(self.BBCNewsList[indexPath.row])
+                DataManager.shared.createFavorateNews(item: self.BBCNewsList[indexPath.row])
+            } else {
+                var numberOfFavorateNewsToBeDeleted = 0
+                for index in 0 ..< favoriteNews.count {
+                    if favoriteNews[index].name == self.BBCNewsList[indexPath.row].name {
+                        numberOfFavorateNewsToBeDeleted = index
+                    }
+                }
+                favoriteNews.remove(at: numberOfFavorateNewsToBeDeleted)
+                DataManager.shared.removeFavorateNews(item: self.BBCNewsList[indexPath.row])
+            }
             completionHandler(true)
         }
         
