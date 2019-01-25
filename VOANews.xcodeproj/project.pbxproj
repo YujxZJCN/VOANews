@@ -116,7 +116,6 @@
 		F6EB092921F2EBC6009B4785 /* VOANews */ = {
 			isa = PBXGroup;
 			children = (
-				F6EB094321F30365009B4785 /* Localizations */,
 				F6EB096521F3196F009B4785 /* Extensions */,
 				F6EB098021F31ABD009B4785 /* Storyboard */,
 				F6EB096621F31988009B4785 /* Models */,
@@ -125,13 +124,6 @@
 				F6EB097C21F31A7E009B4785 /* Supporting Files */,
 			);
 			path = VOANews;
-			sourceTree = "<group>";
-		};
-		F6EB094321F30365009B4785 /* Localizations */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Localizations;
 			sourceTree = "<group>";
 		};
 		F6EB096521F3196F009B4785 /* Extensions */ = {
