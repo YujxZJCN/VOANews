@@ -15,6 +15,11 @@
 		F616EDA821FA05F800704237 /* ManageFavorateNews+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F616EDA621FA05F800704237 /* ManageFavorateNews+CoreDataProperties.swift */; };
 		F616EDAC21FA06D100704237 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F616EDAB21FA06D100704237 /* DataManager.swift */; };
 		F64D769521FAB19400B69746 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F64D769721FAB19400B69746 /* InfoPlist.strings */; };
+		F676DD4321FACDEA00175C7B /* WalkthroughContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F676DD4221FACDEA00175C7B /* WalkthroughContentViewController.swift */; };
+		F676DD4521FACF2600175C7B /* WalkthroughPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F676DD4421FACF2600175C7B /* WalkthroughPageViewController.swift */; };
+		F676DD4721FAD16D00175C7B /* WalkthroughViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F676DD4621FAD16D00175C7B /* WalkthroughViewController.swift */; };
+		F676DD4D21FAE4FC00175C7B /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F676DD4F21FAE4FC00175C7B /* Onboarding.storyboard */; };
+		F676DD5F21FAEF9400175C7B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F676DD6121FAEF9400175C7B /* Localizable.strings */; };
 		F6829A6421F602040020BB30 /* BBCNewsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6829A6321F602040020BB30 /* BBCNewsController.swift */; };
 		F6829A6621F603430020BB30 /* BBCNewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6829A6521F603430020BB30 /* BBCNewsTableViewCell.swift */; };
 		F6829A6821F61F000020BB30 /* CNNNewsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6829A6721F61F000020BB30 /* CNNNewsController.swift */; };
@@ -46,6 +51,11 @@
 		F64D769621FAB19400B69746 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		F65B96B821FAA5BE00B9DE77 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		F65B96B921FAA5BE00B9DE77 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
+		F676DD4221FACDEA00175C7B /* WalkthroughContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkthroughContentViewController.swift; sourceTree = "<group>"; };
+		F676DD4421FACF2600175C7B /* WalkthroughPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkthroughPageViewController.swift; sourceTree = "<group>"; };
+		F676DD4621FAD16D00175C7B /* WalkthroughViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkthroughViewController.swift; sourceTree = "<group>"; };
+		F676DD4E21FAE4FC00175C7B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Onboarding.storyboard; sourceTree = "<group>"; };
+		F676DD6021FAEF9400175C7B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		F6829A6321F602040020BB30 /* BBCNewsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BBCNewsController.swift; sourceTree = "<group>"; };
 		F6829A6521F603430020BB30 /* BBCNewsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BBCNewsTableViewCell.swift; sourceTree = "<group>"; };
 		F6829A6721F61F000020BB30 /* CNNNewsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CNNNewsController.swift; sourceTree = "<group>"; };
@@ -150,6 +160,10 @@
 		F6EB097B21F31A25009B4785 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				F676DD6121FAEF9400175C7B /* Localizable.strings */,
+				F676DD4421FACF2600175C7B /* WalkthroughPageViewController.swift */,
+				F676DD4221FACDEA00175C7B /* WalkthroughContentViewController.swift */,
+				F676DD4621FAD16D00175C7B /* WalkthroughViewController.swift */,
 				F6EB092C21F2EBC6009B4785 /* VOANewsController.swift */,
 				F6829A6321F602040020BB30 /* BBCNewsController.swift */,
 				F6829A6721F61F000020BB30 /* CNNNewsController.swift */,
@@ -188,6 +202,7 @@
 			children = (
 				F6EB093621F2EBC7009B4785 /* LaunchScreen.storyboard */,
 				F6EB092E21F2EBC6009B4785 /* Main.storyboard */,
+				F676DD4F21FAE4FC00175C7B /* Onboarding.storyboard */,
 			);
 			path = Storyboard;
 			sourceTree = "<group>";
@@ -241,6 +256,7 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hans",
 			);
 			mainGroup = F6EB091E21F2EBC6009B4785;
 			productRefGroup = F6EB092821F2EBC6009B4785 /* Products */;
@@ -258,6 +274,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				F6EB093821F2EBC7009B4785 /* LaunchScreen.storyboard in Resources */,
+				F676DD5F21FAEF9400175C7B /* Localizable.strings in Resources */,
+				F676DD4D21FAE4FC00175C7B /* Onboarding.storyboard in Resources */,
 				F64D769521FAB19400B69746 /* InfoPlist.strings in Resources */,
 				F6EB093521F2EBC7009B4785 /* Assets.xcassets in Resources */,
 				F6EB093021F2EBC6009B4785 /* Main.storyboard in Resources */,
@@ -325,8 +343,10 @@
 				F616EDA021F9FAA500704237 /* PublicVariables.swift in Sources */,
 				F6EB093321F2EBC6009B4785 /* VOANews.xcdatamodeld in Sources */,
 				F616EDA421F9FC4000704237 /* FavorateNewsTableViewCell.swift in Sources */,
+				F676DD4321FACDEA00175C7B /* WalkthroughContentViewController.swift in Sources */,
 				F616EDA821FA05F800704237 /* ManageFavorateNews+CoreDataProperties.swift in Sources */,
 				F6829A6621F603430020BB30 /* BBCNewsTableViewCell.swift in Sources */,
+				F676DD4521FACF2600175C7B /* WalkthroughPageViewController.swift in Sources */,
 				F6EB092D21F2EBC6009B4785 /* VOANewsController.swift in Sources */,
 				F6EB094221F30041009B4785 /* VOANewsTableViewCell.swift in Sources */,
 				F6EB094F21F30F91009B4785 /* UIColor+Ext.swift in Sources */,
@@ -341,6 +361,7 @@
 				F6BEC16321F44B1C00290F7D /* AnimationFrames.swift in Sources */,
 				F6EB094021F2FD5B009B4785 /* News.swift in Sources */,
 				F616EDA721FA05F800704237 /* ManageFavorateNews+CoreDataClass.swift in Sources */,
+				F676DD4721FAD16D00175C7B /* WalkthroughViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -353,6 +374,22 @@
 				F64D769621FAB19400B69746 /* zh-Hans */,
 			);
 			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		F676DD4F21FAE4FC00175C7B /* Onboarding.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F676DD4E21FAE4FC00175C7B /* Base */,
+			);
+			name = Onboarding.storyboard;
+			sourceTree = "<group>";
+		};
+		F676DD6121FAEF9400175C7B /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F676DD6021FAEF9400175C7B /* zh-Hans */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 		F6EB092E21F2EBC6009B4785 /* Main.storyboard */ = {

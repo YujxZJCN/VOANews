@@ -1,0 +1,12 @@
+
+/* Class = "UIButton"; normalTitle = "Skip"; ObjectID = "QQp-ge-nwW"; */
+"QQp-ge-nwW.title" = "跳过";
+
+/* Class = "UILabel"; text = "HEADING"; ObjectID = "Tui-PC-hl3"; */
+"Tui-PC-hl3.text" = "HEADING";
+
+/* Class = "UILabel"; text = "Subheading"; ObjectID = "g5B-I3-nje"; */
+"g5B-I3-nje.text" = "Subheading";
+
+/* Class = "UIButton"; normalTitle = "NEXT"; ObjectID = "tQx-ve-czJ"; */
+"tQx-ve-czJ.normalTitle" = "接下来";

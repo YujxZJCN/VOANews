@@ -1,0 +1,25 @@
+/* 
+  Localizable.strings
+  VOANews
+
+  Created by 俞佳兴 on 2019/1/25.
+  Copyright © 2019 Albert. All rights reserved.
+*/
+
+"NEXT" = "接下来";
+
+"GET STARTED" = "开始吧";
+
+"Skip" = "跳过";
+
+"Pick the news you like" = "选择你喜爱的新闻";
+
+"Click to play" = "点击播放";
+
+"Manage your favorate" = "管理你的个人收藏";
+
+"Whether it is VOA, BBC or CNN" = "无论是VOA、BBC，或是CNN";
+
+"Speed up, slow down or stop" = "加速、减速，或者停下";
+
+"I only want to listen to my favorate news" = "我只想听收藏中的内容";

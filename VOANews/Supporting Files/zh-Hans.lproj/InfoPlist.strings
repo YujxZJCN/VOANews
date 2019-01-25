@@ -1,8 +1,4 @@
-/* 
-  InfoPlist.strings
-  VOANews
-
-  Created by 俞佳兴 on 2019/1/25.
-  Copyright © 2019 Albert. All rights reserved.
-*/
+/* Bundle display name */
 "CFBundleDisplayName" = "听·世·界";
+
+"Favorate News" = "个人收藏";

@@ -98,6 +98,14 @@ class VOANewsController: UIViewController, UITableViewDelegate, UITableViewDataS
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         timer.fire()
+        if !UserDefaults.standard.bool(forKey: "hasViewedWalkthrough") {
+            let storyboard = UIStoryboard(name: "Onboarding", bundle: nil)
+            if let walkthroughViewController = storyboard.instantiateViewController(withIdentifier: "WalkthroughViewController") as? WalkthroughViewController {
+                
+                present(walkthroughViewController, animated: true, completion: nil)
+            }
+        }
+        
     }
     
     @objc fileprivate func loadData() {
@@ -185,9 +193,9 @@ class VOANewsController: UIViewController, UITableViewDelegate, UITableViewDataS
         return VOANewsList.count
     }
     
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        return 88
-//    }
+    //    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    //        return 88
+    //    }
     
     private func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         let identifier = "VOANewsCell"
