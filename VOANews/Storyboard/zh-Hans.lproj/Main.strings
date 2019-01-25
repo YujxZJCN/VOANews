@@ -1,0 +1,66 @@
+/* Class = "UITabBarItem"; title = "BBC"; ObjectID = "2fJ-7K-ULc"; */
+"2fJ-7K-ULc.title" = "BBC";
+
+/* Class = "UITextView"; text = "Details"; ObjectID = "40A-Xf-4c5"; */
+"40A-Xf-4c5.text" = "Details";
+
+/* Class = "UILabel"; text = "Date"; ObjectID = "btR-s5-QVA"; */
+"btR-s5-QVA.text" = "Date";
+
+/* Class = "UILabel"; text = "CNN News"; ObjectID = "BUJ-SE-1wE"; */
+"BUJ-SE-1wE.text" = "CNN News";
+
+/* Class = "UILabel"; text = "Name"; ObjectID = "G67-BF-e8B"; */
+"G67-BF-e8B.text" = "Name";
+
+/* Class = "UISegmentedControl"; gmh-wD-HGI.segmentTitles[0] = "Spcl"; ObjectID = "gmh-wD-HGI"; */
+"gmh-wD-HGI.segmentTitles[0]" = "慢速";
+
+/* Class = "UISegmentedControl"; gmh-wD-HGI.segmentTitles[1] = "Std"; ObjectID = "gmh-wD-HGI"; */
+"gmh-wD-HGI.segmentTitles[1]" = "常速";
+
+/* Class = "UILabel"; text = "Date"; ObjectID = "hRn-ow-shW"; */
+"hRn-ow-shW.text" = "Date";
+
+/* Class = "UITabBarItem"; title = "VOA"; ObjectID = "JQA-Vh-hHt"; */
+"JQA-Vh-hHt.title" = "VOA";
+
+/* Class = "UILabel"; text = "VOA News"; ObjectID = "lga-zU-z22"; */
+"lga-zU-z22.text" = "VOA News";
+
+/* Class = "UILabel"; text = "Favorites"; ObjectID = "lxK-T7-7oT"; */
+"lxK-T7-7oT.text" = "Favorites";
+
+/* Class = "UILabel"; text = "Name"; ObjectID = "Mcx-cr-Xgh"; */
+"Mcx-cr-Xgh.text" = "Name";
+
+/* Class = "UILabel"; text = "00:00"; ObjectID = "mLn-Sc-sHk"; */
+"mLn-Sc-sHk.text" = "00:00";
+
+/* Class = "UILabel"; text = "1.00倍"; ObjectID = "NmS-Jd-PAU"; */
+"NmS-Jd-PAU.text" = "1.00倍";
+
+/* Class = "UILabel"; text = "00:00"; ObjectID = "oj8-pn-yeG"; */
+"oj8-pn-yeG.text" = "00:00";
+
+/* Class = "UILabel"; text = "Date"; ObjectID = "PXr-hc-n5J"; */
+"PXr-hc-n5J.text" = "Date";
+
+/* Class = "UILabel"; text = "Name"; ObjectID = "SVa-po-f7f"; */
+"SVa-po-f7f.text" = "Name";
+
+/* Class = "UITabBarItem"; title = "CNN"; ObjectID = "tvK-yy-dfP"; */
+"tvK-yy-dfP.title" = "CNN";
+
+/* Class = "UILabel"; text = "Date"; ObjectID = "WDj-qU-V3d"; */
+"WDj-qU-V3d.text" = "Date";
+
+/* Class = "UILabel"; text = "Name"; ObjectID = "xwj-39-03N"; */
+"xwj-39-03N.text" = "Name";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "yKC-Pm-W65"; */
+"yKC-Pm-W65.text" = "Label";
+
+/* Class = "UILabel"; text = "BBC News"; ObjectID = "Zwa-Yo-QK5"; */
+"Zwa-Yo-QK5.text" = "BBC News";
+

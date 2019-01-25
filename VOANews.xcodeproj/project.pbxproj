@@ -14,6 +14,7 @@
 		F616EDA721FA05F800704237 /* ManageFavorateNews+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F616EDA521FA05F800704237 /* ManageFavorateNews+CoreDataClass.swift */; };
 		F616EDA821FA05F800704237 /* ManageFavorateNews+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F616EDA621FA05F800704237 /* ManageFavorateNews+CoreDataProperties.swift */; };
 		F616EDAC21FA06D100704237 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F616EDAB21FA06D100704237 /* DataManager.swift */; };
+		F64D769521FAB19400B69746 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F64D769721FAB19400B69746 /* InfoPlist.strings */; };
 		F6829A6421F602040020BB30 /* BBCNewsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6829A6321F602040020BB30 /* BBCNewsController.swift */; };
 		F6829A6621F603430020BB30 /* BBCNewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6829A6521F603430020BB30 /* BBCNewsTableViewCell.swift */; };
 		F6829A6821F61F000020BB30 /* CNNNewsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6829A6721F61F000020BB30 /* CNNNewsController.swift */; };
@@ -42,6 +43,9 @@
 		F616EDA521FA05F800704237 /* ManageFavorateNews+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ManageFavorateNews+CoreDataClass.swift"; sourceTree = "<group>"; };
 		F616EDA621FA05F800704237 /* ManageFavorateNews+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ManageFavorateNews+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		F616EDAB21FA06D100704237 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		F64D769621FAB19400B69746 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		F65B96B821FAA5BE00B9DE77 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		F65B96B921FAA5BE00B9DE77 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		F6829A6321F602040020BB30 /* BBCNewsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BBCNewsController.swift; sourceTree = "<group>"; };
 		F6829A6521F603430020BB30 /* BBCNewsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BBCNewsTableViewCell.swift; sourceTree = "<group>"; };
 		F6829A6721F61F000020BB30 /* CNNNewsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CNNNewsController.swift; sourceTree = "<group>"; };
@@ -112,7 +116,7 @@
 		F6EB092921F2EBC6009B4785 /* VOANews */ = {
 			isa = PBXGroup;
 			children = (
-				F6EB094321F30365009B4785 /* Resources */,
+				F6EB094321F30365009B4785 /* Localizations */,
 				F6EB096521F3196F009B4785 /* Extensions */,
 				F6EB098021F31ABD009B4785 /* Storyboard */,
 				F6EB096621F31988009B4785 /* Models */,
@@ -123,11 +127,11 @@
 			path = VOANews;
 			sourceTree = "<group>";
 		};
-		F6EB094321F30365009B4785 /* Resources */ = {
+		F6EB094321F30365009B4785 /* Localizations */ = {
 			isa = PBXGroup;
 			children = (
 			);
-			path = Resources;
+			path = Localizations;
 			sourceTree = "<group>";
 		};
 		F6EB096521F3196F009B4785 /* Extensions */ = {
@@ -169,6 +173,7 @@
 				F6EB092A21F2EBC6009B4785 /* AppDelegate.swift */,
 				F6EB093421F2EBC7009B4785 /* Assets.xcassets */,
 				F6EB093921F2EBC7009B4785 /* Info.plist */,
+				F64D769721FAB19400B69746 /* InfoPlist.strings */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -261,6 +266,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F6EB093821F2EBC7009B4785 /* LaunchScreen.storyboard in Resources */,
+				F64D769521FAB19400B69746 /* InfoPlist.strings in Resources */,
 				F6EB093521F2EBC7009B4785 /* Assets.xcassets in Resources */,
 				F6EB093021F2EBC6009B4785 /* Main.storyboard in Resources */,
 			);
@@ -349,10 +355,19 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		F64D769721FAB19400B69746 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F64D769621FAB19400B69746 /* zh-Hans */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 		F6EB092E21F2EBC6009B4785 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				F6EB092F21F2EBC6009B4785 /* Base */,
+				F65B96B921FAA5BE00B9DE77 /* zh-Hans */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -361,6 +376,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				F6EB093721F2EBC7009B4785 /* Base */,
+				F65B96B821FAA5BE00B9DE77 /* zh-Hans */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -372,6 +388,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -433,6 +450,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -496,7 +514,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.yjx.VOANews;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yjx.HearTheWorld;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -515,7 +533,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.yjx.VOANews;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yjx.HearTheWorld;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";

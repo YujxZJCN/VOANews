@@ -143,12 +143,12 @@ class FavorateNewsController: UIViewController, UITableViewDelegate, UITableView
         let deleteAction = UIContextualAction(style: .destructive, title: "") { (action, sourceView, completionHandler) in
             
             // Delete the row from the data source
-//            for news in favoriteNews {
-//                if news.name ==
-//            }
-//            DataManager.shared.removeFavorateNews(item: <#T##News#>)
-//            self.bikeInfos.remove(at: indexPath.row)
-//            self.tableView.deleteRows(at: [indexPath], with: .fade)
+            //            for news in favoriteNews {
+            //                if news.name ==
+            //            }
+            //            DataManager.shared.removeFavorateNews(item: <#T##News#>)
+            //            self.bikeInfos.remove(at: indexPath.row)
+            //            self.tableView.deleteRows(at: [indexPath], with: .fade)
             var newsName = ""
             switch indexPath.section {
             case 0:
@@ -198,20 +198,35 @@ class FavorateNewsController: UIViewController, UITableViewDelegate, UITableView
         }
         return date
     }
-
+    
 }
 
-//extension FavorateNewsController {
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.identifier == "showFavorateNewsDetail" {
-//            if let indexPath = favorateNewsTableView.indexPathForSelectedRow {
-//                let destinationController = segue.destination as! NewsDetailViewController
-//                destinationController.newsItems = CNNNewsList
-//                destinationController.indexOfnews = indexPath.row
-//                destinationController.newsItemName = CNNNewsList[indexPath.row].name
-//                destinationController.newsItemURL = CNNNewsList[indexPath.row].url
-//                destinationController.newsType = "FavorateNews"
-//            }
-//        }
-//    }
-//}
+extension FavorateNewsController {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let allFavorateNews = VOANews + BBCNews + CNNNews + otherNews
+        var indexNumber = 0
+        if let indexPath = favorateNewsTableView.indexPathForSelectedRow {
+            switch indexPath.section {
+            case 0:
+                indexNumber = indexPath.row
+            case 1:
+                indexNumber = indexPath.row + VOANews.count
+            case 2:
+                indexNumber = indexPath.row + VOANews.count + BBCNews.count
+            case 3:
+                indexNumber = indexPath.row + VOANews.count + BBCNews.count + CNNNews.count
+            default:
+                indexNumber = 0
+            }
+        }
+        
+        if segue.identifier == "showFavorateNewsDetail" {
+            let destinationController = segue.destination as! NewsDetailViewController
+            destinationController.newsItems = allFavorateNews
+            destinationController.indexOfnews = indexNumber
+            destinationController.newsItemName = allFavorateNews[indexNumber].name
+            destinationController.newsItemURL = allFavorateNews[indexNumber].url
+            destinationController.newsType = "FavorateNews"
+        }
+    }
+}

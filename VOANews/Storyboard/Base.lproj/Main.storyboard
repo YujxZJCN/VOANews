@@ -29,8 +29,8 @@
                                     <constraint firstAttribute="width" constant="83" id="N3H-XX-vxb"/>
                                 </constraints>
                                 <segments>
-                                    <segment title="慢速"/>
-                                    <segment title="常速"/>
+                                    <segment title="Spcl"/>
+                                    <segment title="Std"/>
                                 </segments>
                                 <color key="tintColor" red="0.90588235289999997" green="0.29803921570000003" blue="0.23529411759999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
@@ -413,6 +413,7 @@
                                         <connections>
                                             <outlet property="dateLabel" destination="hRn-ow-shW" id="cf0-5m-GRQ"/>
                                             <outlet property="nameLabel" destination="Mcx-cr-Xgh" id="GoR-mK-qv0"/>
+                                            <segue destination="OrM-OH-L68" kind="show" identifier="showFavorateNewsDetail" id="vAP-2L-YFf"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -706,6 +707,6 @@
         <image name="rewind_btn" width="96" height="96"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="lid-Z4-Aru"/>
+        <segue reference="4Tr-rq-Ab2"/>
     </inferredMetricsTieBreakers>
 </document>
