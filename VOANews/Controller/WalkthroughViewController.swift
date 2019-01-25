@@ -29,7 +29,7 @@ class WalkthroughViewController: UIViewController, WalkthroughPageViewController
     }
     // Portrait only
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
-        return UIInterfaceOrientationMask.all //return the value as per the required orientation
+        return UIInterfaceOrientationMask.portrait //return the value as per the required orientation
     }
     
     override var shouldAutorotate: Bool {
