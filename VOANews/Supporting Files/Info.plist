@@ -19,7 +19,9 @@
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>3</string>
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
@@ -38,6 +40,41 @@
 			</dict>
 		</dict>
 	</dict>
+	<key>UIApplicationShortcutItems</key>
+	<array>
+		<dict>
+			<key>UIApplicationShortcutItemIconFile</key>
+			<string>VOANewsIcon</string>
+			<key>UIApplicationShortcutItemTitle</key>
+			<string>VOA News</string>
+			<key>UIApplicationShortcutItemType</key>
+			<string>com.yjx.VOANews</string>
+		</dict>
+		<dict>
+			<key>UIApplicationShortcutItemIconFile</key>
+			<string>BBCNewsIcon</string>
+			<key>UIApplicationShortcutItemTitle</key>
+			<string>BBC News</string>
+			<key>UIApplicationShortcutItemType</key>
+			<string>com.yjx.BBCNews</string>
+		</dict>
+		<dict>
+			<key>UIApplicationShortcutItemIconFile</key>
+			<string>CNNNewsIcon</string>
+			<key>UIApplicationShortcutItemTitle</key>
+			<string>CNN News</string>
+			<key>UIApplicationShortcutItemType</key>
+			<string>com.yjx.CNNNews</string>
+		</dict>
+		<dict>
+			<key>UIApplicationShortcutItemIconType</key>
+			<string>UIApplicationShortcutIconTypeFavorite</string>
+			<key>UIApplicationShortcutItemTitle</key>
+			<string>Favorate News</string>
+			<key>UIApplicationShortcutItemType</key>
+			<string>com.yjx.FavorateNews</string>
+		</dict>
+	</array>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>audio</string>
@@ -49,41 +86,6 @@
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>
-	</array>
-	<key>UIApplicationShortcutItems</key>
-	<array>
-		<dict>
-			<key>UIApplicationShortcutItemType</key>
-			<string>com.yjx.VOANews</string>
-			<key>UIApplicationShortcutItemTitle</key>
-			<string>VOA News</string>
-			<key>UIApplicationShortcutItemIconFile</key>
-			<string>VOANewsIcon</string>
-		</dict>
-		<dict>
-			<key>UIApplicationShortcutItemType</key>
-			<string>com.yjx.BBCNews</string>
-			<key>UIApplicationShortcutItemTitle</key>
-			<string>BBC News</string>
-			<key>UIApplicationShortcutItemIconFile</key>
-			<string>BBCNewsIcon</string>
-		</dict>
-		<dict>
-			<key>UIApplicationShortcutItemType</key>
-			<string>com.yjx.CNNNews</string>
-			<key>UIApplicationShortcutItemTitle</key>
-			<string>CNN News</string>
-			<key>UIApplicationShortcutItemIconFile</key>
-			<string>CNNNewsIcon</string>
-		</dict>
-		<dict>
-			<key>UIApplicationShortcutItemType</key>
-			<string>com.yjx.FavorateNews</string>
-			<key>UIApplicationShortcutItemTitle</key>
-			<string>Favorate News</string>
-			<key>UIApplicationShortcutItemIconType</key>
-			<string>UIApplicationShortcutIconTypeFavorite</string>
-		</dict>
 	</array>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>

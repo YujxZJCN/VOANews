@@ -158,12 +158,19 @@ class NewsDetailViewController: UIViewController, AVAudioPlayerDelegate {
     }
     
     @objc func loadData() {
+        var nextPageFlag = false
         newsDetails.removeAll()
         newsDetailTableView.reloadData()
         Alamofire.request((newsItemURL), method: .get).responseData { response in
             let enc: String.Encoding = String.Encoding(rawValue: CFStringConvertEncodingToNSStringEncoding(0x0632))
             
             if let html = response.result.value, let doc = try? HTML(html: html, encoding: enc) {
+                if let content = doc.content {
+                    if content.contains("下一页") {
+                        nextPageFlag = true
+                    }
+                }
+                
                 for content in doc.css(".mp3player") {
                     if let innerHtml = content.innerHTML {
                         let components = innerHtml.components(separatedBy: "\"")
@@ -252,7 +259,7 @@ class NewsDetailViewController: UIViewController, AVAudioPlayerDelegate {
                         self.newsDetails[index] = self.newsDetails[index].replacingOccurrences(of: replaceString10, with: "")
                     }
                     if self.newsDetails[index].contains(replaceString11) {
-                        self.newsDetails[index] = self.newsDetails[index].replacingOccurrences(of: replaceString11, with: "")
+                        self.newsDetails[index] = self.newsDetails[index].replacingOccurrences(of: replaceString11, with: "CNN")
                     }
                     if self.newsDetails[index].contains(replaceString12) {
                         self.newsDetails[index] = self.newsDetails[index].replacingOccurrences(of: replaceString12, with: "&")
@@ -277,9 +284,45 @@ class NewsDetailViewController: UIViewController, AVAudioPlayerDelegate {
                 }
                 
             }
-            
+            if nextPageFlag {
+                let index = self.newsItemURL.index(self.newsItemURL.endIndex, offsetBy: -6)
+                var nextPageUrl = self.newsItemURL[self.newsItemURL.startIndex ... index]
+                nextPageUrl += "_2.html"
+                self.loadNextPage(url: String(nextPageUrl))
+            }
         }
         loadDataTimes += 1
+        
+    }
+    
+    func loadNextPage(url: String) {
+        if url.contains("bbc") {
+            newsDetails.removeAll()
+            newsDetailTableView.reloadData()
+        }
+        Alamofire.request((url), method: .get).responseData { response in
+            let enc: String.Encoding = String.Encoding(rawValue: CFStringConvertEncodingToNSStringEncoding(0x0632))
+            if let html = response.result.value, let doc = try? HTML(html: html, encoding: enc) {
+                var count = 0
+                for content in doc.css(".center") {
+                    count += 1
+                    if count == 1 {
+                        continue
+                    }else if count > 2 {
+                        break
+                    }
+                    if let secondContent = content.content {
+                        let components = secondContent.components(separatedBy: "音频下载[点击右键另存为]\r\n")
+                        var thirdContent = components[1]
+                        thirdContent = thirdContent.components(separatedBy: "2/2")[0]
+                        let thirdContentComponents = thirdContent.components(separatedBy: "\r\n")
+                        for thirdContentComponent in thirdContentComponents {
+                            self.newsDetails.append(thirdContentComponent)
+                        }
+                    }
+                }
+            }
+        }
     }
     
     @objc func onSpeedLabelTapped() {
