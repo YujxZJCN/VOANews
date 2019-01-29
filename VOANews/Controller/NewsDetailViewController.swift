@@ -723,7 +723,15 @@ extension NewsDetailViewController: UITableViewDataSource, UITableViewDelegate, 
         cell.detailTextView.delegate = self
         cell.detailTextView.isEditable = false
         cell.detailTextView.isScrollEnabled = false
-        cell.detailTextView.text = newsDetails[indexPath.row]
+        if newsItemURL.contains("cnn") {
+            if indexPath.row % 2 == 0 {
+                cell.detailTextView.text = newsDetails[indexPath.row / 2]
+            }else {
+                cell.detailTextView.text = newsDetails[(indexPath.row - 1) / 2 + newsDetails.count / 2]
+            }
+        }else {
+            cell.detailTextView.text = newsDetails[indexPath.row]
+        }
         cell.detailTextView.frame = CGRect(x: cell.detailTextView.frame.origin.x, y: cell.detailTextView.frame.origin.y, width: cell.detailTextView.frame.width, height: heightForTextView(textView: cell.detailTextView, fixedWidth: cell.detailTextView.frame.width))
         return cell
     }
