@@ -60,11 +60,11 @@
 		</dict>
 		<dict>
 			<key>UIApplicationShortcutItemIconFile</key>
-			<string>CNNNewsIcon</string>
+			<string>NewsIcon</string>
 			<key>UIApplicationShortcutItemTitle</key>
-			<string>CNN News</string>
+			<string>More News</string>
 			<key>UIApplicationShortcutItemType</key>
-			<string>com.yjx.CNNNews</string>
+			<string>com.yjx.MoreNews</string>
 		</dict>
 		<dict>
 			<key>UIApplicationShortcutItemIconType</key>

@@ -10,7 +10,7 @@ import UIKit
 
 class AllNewsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return 4
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -22,6 +22,8 @@ class AllNewsViewController: UIViewController, UITableViewDelegate, UITableViewD
             identifier = "AllNewsOfBBCNewsCell"
         case 2:
             identifier = "AllNewsOfCNNNewsCell"
+        case 3:
+            identifier = "AllNewsOfAsItIsCell"
         default:
             break
         }
@@ -40,6 +42,11 @@ class AllNewsViewController: UIViewController, UITableViewDelegate, UITableViewD
             let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! AllNewsOfCNNNewsTableViewCell
             cell.NewsNameLabel.text = "CNN News"
             cell.CNNNewxIconImageView.image = UIImage(named: "letterC")
+            return cell
+        case 3:
+            let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! AllNewsOfAsItIsTableViewCell
+            cell.NewsNameLabel.text = "As It Is"
+            cell.AsItIsIconImageView.image = UIImage(named: "letterA")
             return cell
         default:
             return UITableViewCell.init()

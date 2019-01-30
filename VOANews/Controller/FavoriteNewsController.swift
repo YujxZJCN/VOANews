@@ -13,7 +13,7 @@ class FavorateNewsController: UIViewController, UITableViewDelegate, UITableView
     var VOANews = [News]()
     var BBCNews = [News]()
     var CNNNews = [News]()
-    var otherNews = [News]()
+    var AsItIs = [News]()
     //    var count = 0
     
     override func viewDidLoad() {
@@ -29,7 +29,7 @@ class FavorateNewsController: UIViewController, UITableViewDelegate, UITableView
         VOANews.removeAll()
         BBCNews.removeAll()
         CNNNews.removeAll()
-        otherNews.removeAll()
+        AsItIs.removeAll()
         for news in favoriteNews {
             if news.name.contains("VOA") {
                 VOANews.append(news)
@@ -38,7 +38,7 @@ class FavorateNewsController: UIViewController, UITableViewDelegate, UITableView
             }else if news.name.contains("CNN") {
                 CNNNews.append(news)
             }else {
-                otherNews.append(news)
+                AsItIs.append(news)
             }
         }
         favorateNewsTableView.reloadData()
@@ -57,7 +57,7 @@ class FavorateNewsController: UIViewController, UITableViewDelegate, UITableView
         case 2:
             return CNNNews.count
         case 3:
-            return otherNews.count
+            return AsItIs.count
         default:
             return 0
         }
@@ -72,7 +72,7 @@ class FavorateNewsController: UIViewController, UITableViewDelegate, UITableView
         case 2:
             return "CNN News"
         case 3:
-            return "Other News"
+            return "As It Is"
         default:
             return ""
         }
@@ -91,13 +91,17 @@ class FavorateNewsController: UIViewController, UITableViewDelegate, UITableView
             cell.dateLabel.text = transformToDate(url: VOANews[indexPath.row].url, number: 6)
         case 1:
             cell.nameLabel.text = BBCNews[indexPath.row].name
-            cell.dateLabel.text = transformToDate(url: BBCNews[indexPath.row].url, number: 5)
+            var number = 5
+            if BBCNews[indexPath.row].url.contains("huanqiu") {
+                number = 6
+            }
+            cell.dateLabel.text = transformToDate(url: BBCNews[indexPath.row].url, number: number)
         case 2:
             cell.nameLabel.text = CNNNews[indexPath.row].name
             cell.dateLabel.text = transformToDate(url: CNNNews[indexPath.row].url, number: 5)
         case 3:
-            cell.nameLabel.text = otherNews[indexPath.row].name
-            cell.dateLabel.text = transformToDate(url: otherNews[indexPath.row].url, number: 5)
+            cell.nameLabel.text = AsItIs[indexPath.row].name
+            cell.dateLabel.text = transformToDate(url: AsItIs[indexPath.row].url, number: 6)
         default:
             cell.nameLabel.text = ""
             cell.dateLabel.text = ""
@@ -117,13 +121,17 @@ class FavorateNewsController: UIViewController, UITableViewDelegate, UITableView
             tempCell.dateLabel.text = transformToDate(url: VOANews[indexPath.row].url, number: 6)
         case 1:
             tempCell.nameLabel.text = BBCNews[indexPath.row].name
-            tempCell.dateLabel.text = transformToDate(url: BBCNews[indexPath.row].url, number: 5)
+            var number = 5
+            if BBCNews[indexPath.row].url.contains("huanqiu") {
+                number = 6
+            }
+            tempCell.dateLabel.text = transformToDate(url: BBCNews[indexPath.row].url, number: number)
         case 2:
             tempCell.nameLabel.text = CNNNews[indexPath.row].name
             tempCell.dateLabel.text = transformToDate(url: CNNNews[indexPath.row].url, number: 5)
         case 3:
-            tempCell.nameLabel.text = otherNews[indexPath.row].name
-            tempCell.dateLabel.text = transformToDate(url: otherNews[indexPath.row].url, number: 5)
+            tempCell.nameLabel.text = AsItIs[indexPath.row].name
+            tempCell.dateLabel.text = transformToDate(url: AsItIs[indexPath.row].url, number: 6)
         default:
             tempCell.nameLabel.text = ""
             tempCell.dateLabel.text = ""
@@ -161,8 +169,8 @@ class FavorateNewsController: UIViewController, UITableViewDelegate, UITableView
                 newsName = self.CNNNews[indexPath.row].name
                 self.CNNNews.remove(at: indexPath.row)
             case 3:
-                newsName = self.otherNews[indexPath.row].name
-                self.otherNews.remove(at: indexPath.row)
+                newsName = self.AsItIs[indexPath.row].name
+                self.AsItIs.remove(at: indexPath.row)
             default:
                 newsName = ""
             }
@@ -203,7 +211,7 @@ class FavorateNewsController: UIViewController, UITableViewDelegate, UITableView
 
 extension FavorateNewsController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let allFavorateNews = VOANews + BBCNews + CNNNews + otherNews
+        let allFavorateNews = VOANews + BBCNews + CNNNews + AsItIs
         var indexNumber = 0
         if let indexPath = favorateNewsTableView.indexPathForSelectedRow {
             switch indexPath.section {

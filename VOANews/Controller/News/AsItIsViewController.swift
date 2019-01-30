@@ -1,8 +1,8 @@
 //
-//  BBCNewsController.swift
+//  AsItIsViewController.swift
 //  VOANews
 //
-//  Created by 俞佳兴 on 2019/1/21.
+//  Created by 俞佳兴 on 2019/1/30.
 //  Copyright © 2019 Albert. All rights reserved.
 //
 
@@ -13,44 +13,25 @@ import Kanna
 import AVFoundation
 import MediaPlayer
 
-class BBCNewsController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    
-    @IBOutlet var segmentedControl: UISegmentedControl!
-    @IBOutlet var BBCNewsTableView: UITableView!
-    
+class AsItIsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    @IBOutlet var AsItIsTableView: UITableView!
     @IBAction func refresh(_ sender: UIButton) {
-        BBCNewsList.removeAll()
+        AsItIsList.removeAll()
         activityIndicator.startAnimating()
         loadDataTimes = 0
         page = 2
         timer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(loadData), userInfo: nil, repeats: true)
     }
-    @IBAction func showMode(_ sender: UISegmentedControl) {
-        page = 2
-        switch segmentedControl.selectedSegmentIndex {
-        case 0:
-            url = "http://www.hxen.com/englishlistening/rumen/huanqiu/index"
-            BBCNewsList = [News]()
-            activityIndicator.startAnimating()
-            loadData()
-        case 1:
-            url = "http://www.hxen.com/englishlistening/bbc/index"
-            BBCNewsList = [News]()
-            activityIndicator.startAnimating()
-            loadData()
-        default: break
-        }
-    }
     @IBAction func dismiss(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
     }
     
-    var url = "http://www.hxen.com/englishlistening/rumen/huanqiu/index"
+    var url = "http://www.hxen.com/englishlistening/voaenglish/AS_IT_IS/index"
     
-    var BBCNewsList = [News]() {
+    var AsItIsList = [News]() {
         didSet {
             self.activityIndicator.stopAnimating()
-            BBCNewsTableView.reloadData()
+            AsItIsTableView.reloadData()
             if timer.isValid {
                 timer.invalidate()
             }
@@ -59,6 +40,7 @@ class BBCNewsController: UIViewController, UITableViewDelegate, UITableViewDataS
     
     var activityIndicator: NVActivityIndicatorView!
     var timer = Timer()
+    
     var loadDataTimes = 0 {
         didSet {
             if loadDataTimes > 20 {
@@ -80,8 +62,10 @@ class BBCNewsController: UIViewController, UITableViewDelegate, UITableViewDataS
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Do any additional setup after loading the view, typically from a nib.
+
+        // Do any additional setup after loading the view.
+        AsItIsTableView.delegate = self
+        AsItIsTableView.dataSource = self
         let indicatorSize: CGFloat = 70
         let indicatorFrame = CGRect(x: (view.frame.width-indicatorSize)/2, y: (view.frame.height-indicatorSize)/2, width: indicatorSize, height: indicatorSize)
         activityIndicator = NVActivityIndicatorView(frame: indicatorFrame, type: .ballRotateChase, color: UIColor.white, padding: 20.0)
@@ -94,7 +78,7 @@ class BBCNewsController: UIViewController, UITableViewDelegate, UITableViewDataS
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        BBCNewsTableView.reloadData()
+        AsItIsTableView.reloadData()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -113,23 +97,31 @@ class BBCNewsController: UIViewController, UITableViewDelegate, UITableViewDataS
             if let html = response.result.value, let doc = try? HTML(html: html, encoding: enc) {
                 for content in doc.css(".fz18") {
                     if let innerHtml = content.innerHTML {
-                        let components = innerHtml.components(separatedBy: "\"")
-                        let BBCNewsItem = News.init(name: components[1], url: "http://www.hxen.com" + components[3], isLiked: false)
-                        self.BBCNewsList.append(BBCNewsItem)
+                        var components = innerHtml.components(separatedBy: "\'")
+                        var name = ""
+                        if components.count != 1 {
+                            name = components[1]
+                        }else {
+                            components = innerHtml.components(separatedBy: "\"")
+                            name = components[1]
+                        }
+                        components = innerHtml.components(separatedBy: "\"")
+                        let AsItIsItem = News.init(name: name, url: "http://www.hxen.com" + components[3], isLiked: false)
+                        self.AsItIsList.append(AsItIsItem)
                     }
                 }
             }
             
-            for index in 0 ..< self.BBCNewsList.count {
-                if self.BBCNewsList[index].name.contains("¡¯") {
-                    self.BBCNewsList[index].name = self.BBCNewsList[index].name.replacingOccurrences(of: "¡¯", with: "\'")
+            for index in 0 ..< self.AsItIsList.count {
+                if self.AsItIsList[index].name.contains("¡¯") {
+                    self.AsItIsList[index].name = self.AsItIsList[index].name.replacingOccurrences(of: "¡¯", with: "\'")
                 }
-                if self.BBCNewsList[index].name.contains("BBC在线收听下载:") {
-                    self.BBCNewsList[index].name = self.BBCNewsList[index].name.replacingOccurrences(of: "BBC在线收听下载:", with: "BBC新闻：")
+                if self.AsItIsList[index].name.contains("CNN News:") {
+                    self.AsItIsList[index].name = self.AsItIsList[index].name.replacingOccurrences(of: "CNN News:", with: "CNN新闻：")
                 }
                 for news in favoriteNews {
-                    if news.name == self.BBCNewsList[index].name {
-                        self.BBCNewsList[index].isLiked = true
+                    if news.name == self.AsItIsList[index].name {
+                        self.AsItIsList[index].isLiked = true
                     }
                 }
             }
@@ -146,32 +138,34 @@ class BBCNewsController: UIViewController, UITableViewDelegate, UITableViewDataS
             }
             let enc: String.Encoding = String.Encoding(rawValue: CFStringConvertEncodingToNSStringEncoding(0x0632))
             if let html = response.result.value, let doc = try? HTML(html: html, encoding: enc) {
-                if let content = doc.content {
-                    if content.contains("没有找到您要访问的页面") {
-                        self.activityIndicator.stopAnimating()
-                        return
-                    }
-                }
                 for content in doc.css(".fz18") {
                     if let innerHtml = content.innerHTML {
-                        let components = innerHtml.components(separatedBy: "\"")
-                        let BBCNewsItem = News.init(name: components[1], url: "http://www.hxen.com" + components[3], isLiked: false)
-                        self.BBCNewsList.append(BBCNewsItem)
+                        var components = innerHtml.components(separatedBy: "\'")
+                        var name = ""
+                        if components.count != 1 {
+                            name = components[1]
+                        }else {
+                            components = innerHtml.components(separatedBy: "\"")
+                            name = components[1]
+                        }
+                        components = innerHtml.components(separatedBy: "\"")
+                        let AsItIsItem = News.init(name: name, url: "http://www.hxen.com" + components[3], isLiked: false)
+                        self.AsItIsList.append(AsItIsItem)
                     }
                 }
                 self.page += 1
             }
             
-            for index in 0 ..< self.BBCNewsList.count {
-                if self.BBCNewsList[index].name.contains("¡¯") {
-                    self.BBCNewsList[index].name = self.BBCNewsList[index].name.replacingOccurrences(of: "¡¯", with: "\'")
+            for index in 0 ..< self.AsItIsList.count {
+                if self.AsItIsList[index].name.contains("¡¯") {
+                    self.AsItIsList[index].name = self.AsItIsList[index].name.replacingOccurrences(of: "¡¯", with: "\'")
                 }
-                if self.BBCNewsList[index].name.contains("BBC在线收听下载:") {
-                    self.BBCNewsList[index].name = self.BBCNewsList[index].name.replacingOccurrences(of: "BBC在线收听下载:", with: "BBC新闻：")
+                if self.AsItIsList[index].name.contains("CNN News:") {
+                    self.AsItIsList[index].name = self.AsItIsList[index].name.replacingOccurrences(of: "CNN News:", with: "CNN新闻：")
                 }
                 for news in favoriteNews {
-                    if news.name == self.BBCNewsList[index].name {
-                        self.BBCNewsList[index].isLiked = true
+                    if news.name == self.AsItIsList[index].name {
+                        self.AsItIsList[index].isLiked = true
                     }
                 }
             }
@@ -184,21 +178,18 @@ class BBCNewsController: UIViewController, UITableViewDelegate, UITableViewDataS
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return BBCNewsList.count
+        return AsItIsList.count
     }
     
     private func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        let identifier = "BBCNewsCell"
-        let hsCell = tableView.dequeueReusableCell(withIdentifier: identifier) as? BBCNewsTableViewCell
-        var tempCell: BBCNewsTableViewCell
-        hsCell != nil ? (tempCell = hsCell!) : (tempCell = BBCNewsTableViewCell())
-        tempCell.nameLabel.text = BBCNewsList[indexPath.row].name
+        let identifier = "AsItIsCell"
+        let hsCell = tableView.dequeueReusableCell(withIdentifier: identifier) as? AsItIsTableViewCell
+        var tempCell: AsItIsTableViewCell
+        hsCell != nil ? (tempCell = hsCell!) : (tempCell = AsItIsTableViewCell())
+        tempCell.nameLabel.text = AsItIsList[indexPath.row].name
         
-        let components = BBCNewsList[indexPath.row].url.components(separatedBy: "/")
+        let components = AsItIsList[indexPath.row].url.components(separatedBy: "/")
         var date = components[5]
-        if BBCNewsList[indexPath.row].url.contains("huanqiu") {
-            date = components[6]
-        }
         if !date.contains("-") {
             let year = date[date.startIndex ... date.index(date.startIndex, offsetBy: 3)]
             let month = date[date.index(date.startIndex, offsetBy: 4) ... date.index(date.startIndex, offsetBy: 5)]
@@ -207,7 +198,7 @@ class BBCNewsController: UIViewController, UITableViewDelegate, UITableViewDataS
         }
         
         tempCell.dateLabel.text = date
-        tempCell.heartImageView.isHidden = BBCNewsList[indexPath.row].isLiked ? false : true
+        tempCell.heartImageView.isHidden = AsItIsList[indexPath.row].isLiked ? false : true
         
         tempCell.frame = CGRect(x: 0, y: 0, width: tableView.bounds.width, height: tableView.bounds.height)
         tempCell.layoutIfNeeded()
@@ -215,17 +206,14 @@ class BBCNewsController: UIViewController, UITableViewDelegate, UITableViewDataS
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cellIdentifier = "BBCNewsCell"
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! BBCNewsTableViewCell
+        let cellIdentifier = "AsItIsCell"
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! AsItIsTableViewCell
         
         // Configure the cell...
-        cell.nameLabel.text = BBCNewsList[indexPath.row].name
+        cell.nameLabel.text = AsItIsList[indexPath.row].name
         
-        let components = BBCNewsList[indexPath.row].url.components(separatedBy: "/")
-        var date = components[5]
-        if BBCNewsList[indexPath.row].url.contains("huanqiu") {
-            date = components[6]
-        }
+        let components = AsItIsList[indexPath.row].url.components(separatedBy: "/")
+        var date = components[6]
         if !date.contains("-") {
             let year = date[date.startIndex ... date.index(date.startIndex, offsetBy: 3)]
             let month = date[date.index(date.startIndex, offsetBy: 4) ... date.index(date.startIndex, offsetBy: 5)]
@@ -233,13 +221,13 @@ class BBCNewsController: UIViewController, UITableViewDelegate, UITableViewDataS
             date = String(year + "-" + month + "-" + day)
         }
         cell.dateLabel.text = date
-        BBCNewsList[indexPath.row].isLiked = false
+        AsItIsList[indexPath.row].isLiked = false
         for news in favoriteNews {
-            if news.name == BBCNewsList[indexPath.row].name {
-                BBCNewsList[indexPath.row].isLiked = true
+            if news.name == AsItIsList[indexPath.row].name {
+                AsItIsList[indexPath.row].isLiked = true
             }
         }
-        cell.heartImageView.isHidden = BBCNewsList[indexPath.row].isLiked ? false : true
+        cell.heartImageView.isHidden = AsItIsList[indexPath.row].isLiked ? false : true
         return cell
     }
     
@@ -248,10 +236,11 @@ class BBCNewsController: UIViewController, UITableViewDelegate, UITableViewDataS
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        let lastElement = BBCNewsList.count - 1
+        let lastElement = AsItIsList.count - 1
         if indexPath.row == lastElement {
             activityIndicator.startAnimating()
             // handle your logic here to get more items, add it to dataSource and reload tableview
+            print(page)
             loadMore(url: url + "_\(page)")
         }
     }
@@ -260,26 +249,26 @@ class BBCNewsController: UIViewController, UITableViewDelegate, UITableViewDataS
         
         let checkInAction = UIContextualAction(style: .normal, title: "") { (action, sourceView, completionHandler) in
             
-            let cell = tableView.cellForRow(at: indexPath) as! BBCNewsTableViewCell
-            self.BBCNewsList[indexPath.row].isLiked = (self.BBCNewsList[indexPath.row].isLiked) ? false : true
-            cell.heartImageView.isHidden = self.BBCNewsList[indexPath.row].isLiked ? false : true
-            if self.BBCNewsList[indexPath.row].isLiked {
-                favoriteNews.append(self.BBCNewsList[indexPath.row])
-                DataManager.shared.createFavorateNews(item: self.BBCNewsList[indexPath.row])
+            let cell = tableView.cellForRow(at: indexPath) as! AsItIsTableViewCell
+            self.AsItIsList[indexPath.row].isLiked = (self.AsItIsList[indexPath.row].isLiked) ? false : true
+            cell.heartImageView.isHidden = self.AsItIsList[indexPath.row].isLiked ? false : true
+            if self.AsItIsList[indexPath.row].isLiked {
+                favoriteNews.append(self.AsItIsList[indexPath.row])
+                DataManager.shared.createFavorateNews(item: self.AsItIsList[indexPath.row])
             } else {
                 var numberOfFavorateNewsToBeDeleted = 0
                 for index in 0 ..< favoriteNews.count {
-                    if favoriteNews[index].name == self.BBCNewsList[indexPath.row].name {
+                    if favoriteNews[index].name == self.AsItIsList[indexPath.row].name {
                         numberOfFavorateNewsToBeDeleted = index
                     }
                 }
                 favoriteNews.remove(at: numberOfFavorateNewsToBeDeleted)
-                DataManager.shared.removeFavorateNews(item: self.BBCNewsList[indexPath.row])
+                DataManager.shared.removeFavorateNews(item: self.AsItIsList[indexPath.row])
             }
             completionHandler(true)
         }
         
-        let checkInIcon = BBCNewsList[indexPath.row].isLiked ? "undo" : "tick"
+        let checkInIcon = AsItIsList[indexPath.row].isLiked ? "undo" : "tick"
         checkInAction.backgroundColor = UIColor(red: 38, green: 162, blue: 78)
         checkInAction.image = UIImage(named: checkInIcon)
         
@@ -294,17 +283,18 @@ class BBCNewsController: UIViewController, UITableViewDelegate, UITableViewDataS
     }
 }
 
-extension BBCNewsController {
+extension AsItIsViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showBBCNewsDetail" {
-            if let indexPath = BBCNewsTableView.indexPathForSelectedRow {
+        if segue.identifier == "showAsItIsDetail" {
+            if let indexPath = AsItIsTableView.indexPathForSelectedRow {
                 let destinationController = segue.destination as! NewsDetailViewController
-                destinationController.newsItems = BBCNewsList
+                destinationController.newsItems = AsItIsList
                 destinationController.indexOfnews = indexPath.row
-                destinationController.newsItemName = BBCNewsList[indexPath.row].name
-                destinationController.newsItemURL = BBCNewsList[indexPath.row].url
-                destinationController.newsType = "BBCNews"
+                destinationController.newsItemName = AsItIsList[indexPath.row].name
+                destinationController.newsItemURL = AsItIsList[indexPath.row].url
+                destinationController.newsType = "As It Is"
             }
         }
     }
 }
+

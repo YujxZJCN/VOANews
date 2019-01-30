@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     enum QuickAction: String {
         case VOANews = "VOANews"
         case BBCNews = "BBCNews"
-        case CNNNews = "CNNNews"
+        case MoreNews = "MoreNews"
         case FavorateNews = "FavorateNews"
         
         init?(fullIdentifier: String) {
@@ -147,12 +147,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             if let navC = window?.rootViewController as! UITabBarController? {
                 navC.show(targetVC, sender: nil)
             }
-        case .CNNNews:
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let targetVC = storyboard.instantiateViewController(withIdentifier :"CNNNewsController") as! CNNNewsController
-            if let navC = window?.rootViewController as! UITabBarController? {
-                navC.show(targetVC, sender: nil)
-            }
+        case .MoreNews:
+            tabBarController.selectedIndex = 0
         case .FavorateNews:
             tabBarController.selectedIndex = 1
         }
