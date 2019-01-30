@@ -1,55 +1,37 @@
 //
-//  VOANewsTableViewController.swift
+//  ScientificAmericanViewController.swift
 //  VOANews
 //
-//  Created by 俞佳兴 on 2019/1/19.
+//  Created by 俞佳兴 on 2019/1/30.
 //  Copyright © 2019 Albert. All rights reserved.
 //
 
 import UIKit
+import NVActivityIndicatorView
 import Alamofire
 import Kanna
-import NVActivityIndicatorView
+import AVFoundation
+import MediaPlayer
 
-class VOANewsController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    
-    @IBOutlet var VOANewsTableView: UITableView!
-    @IBOutlet var segmentedControl: UISegmentedControl!
-    
-    var url = "http://www.hxen.com/englishlistening/voaenglish/voaspecialenglish/index"
-    
-    @IBAction func showMode(_ sender: UISegmentedControl) {
-        page = 2
-        switch segmentedControl.selectedSegmentIndex {
-        case 0:
-            url = "http://www.hxen.com/englishlistening/voaenglish/voaspecialenglish/index"
-            VOANewsList = [News]()
-            activityIndicator.startAnimating()
-            loadData()
-        case 1:
-            url = "http://www.hxen.com/englishlistening/voaenglish/voastandardenglish/index"
-            VOANewsList = [News]()
-            activityIndicator.startAnimating()
-            loadData()
-        default: break
-        }
+class ScientificAmericanViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    @IBOutlet var ScientificAmericanTableView: UITableView!
+    @IBAction func dismiss(_ sender: UIButton) {
+        self.dismiss(animated: true, completion: nil)
     }
-    
     @IBAction func refresh(_ sender: UIButton) {
-        VOANewsList.removeAll()
+        ScientificAmericanList.removeAll()
         activityIndicator.startAnimating()
         loadDataTimes = 0
         page = 2
         timer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(loadData), userInfo: nil, repeats: true)
     }
-    @IBAction func dismiss(_ sender: UIButton) {
-        self.dismiss(animated: true, completion: nil)
-    }
     
-    var VOANewsList = [News]() {
+    var url = "http://www.hxen.com/englishlistening/other/scientificamerican/index"
+    
+    var ScientificAmericanList = [News]() {
         didSet {
             self.activityIndicator.stopAnimating()
-            VOANewsTableView.reloadData()
+            ScientificAmericanTableView.reloadData()
             if timer.isValid {
                 timer.invalidate()
             }
@@ -58,6 +40,7 @@ class VOANewsController: UIViewController, UITableViewDelegate, UITableViewDataS
     
     var activityIndicator: NVActivityIndicatorView!
     var timer = Timer()
+    
     var loadDataTimes = 0 {
         didSet {
             if loadDataTimes > 20 {
@@ -75,12 +58,15 @@ class VOANewsController: UIViewController, UITableViewDelegate, UITableViewDataS
             }
         }
     }
+    
     var page = 2
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Do any additional setup after loading the view, typically from a nib.
+
+        // Do any additional setup after loading the view.
+        ScientificAmericanTableView.delegate = self
+        ScientificAmericanTableView.dataSource = self
         let indicatorSize: CGFloat = 70
         let indicatorFrame = CGRect(x: (view.frame.width-indicatorSize)/2, y: (view.frame.height-indicatorSize)/2, width: indicatorSize, height: indicatorSize)
         activityIndicator = NVActivityIndicatorView(frame: indicatorFrame, type: .ballRotateChase, color: UIColor.white, padding: 20.0)
@@ -93,7 +79,7 @@ class VOANewsController: UIViewController, UITableViewDelegate, UITableViewDataS
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        VOANewsTableView.reloadData()
+        ScientificAmericanTableView.reloadData()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -112,26 +98,28 @@ class VOANewsController: UIViewController, UITableViewDelegate, UITableViewDataS
             if let html = response.result.value, let doc = try? HTML(html: html, encoding: enc) {
                 for content in doc.css(".fz18") {
                     if let innerHtml = content.innerHTML {
-                        let components = innerHtml.components(separatedBy: "\"")
-                        let VOANewsItem = News.init(name: components[1], url: "http://www.hxen.com" + components[3], isLiked: false)
-                        self.VOANewsList.append(VOANewsItem)
+                        var components = innerHtml.components(separatedBy: "\'")
+                        if components.count != 1 {
+                        }else {
+                            components = innerHtml.components(separatedBy: "\"")
+                         }
+                        components = innerHtml.components(separatedBy: "\"")
+                        let ScientificAmericanItem = News.init(name: content.content ?? "", url: "http://www.hxen.com" + components[3], isLiked: false)
+                        self.ScientificAmericanList.append(ScientificAmericanItem)
                     }
                 }
             }
             
-            for index in 0 ..< self.VOANewsList.count {
-                if self.VOANewsList[index].name.contains("¡¯") {
-                    self.VOANewsList[index].name = self.VOANewsList[index].name.replacingOccurrences(of: "¡¯", with: "\'")
+            for index in 0 ..< self.ScientificAmericanList.count {
+                if self.ScientificAmericanList[index].name.contains("¡¯") {
+                    self.ScientificAmericanList[index].name = self.ScientificAmericanList[index].name.replacingOccurrences(of: "¡¯", with: "\'")
                 }
-                if self.VOANewsList[index].name.contains("VOA慢速英语:") {
-                    self.VOANewsList[index].name = self.VOANewsList[index].name.replacingOccurrences(of: "VOA慢速英语:", with: "VOA慢速英语：")
-                }
-                if self.VOANewsList[index].name.contains("VOA常速英语:") {
-                    self.VOANewsList[index].name = self.VOANewsList[index].name.replacingOccurrences(of: "VOA常速英语:", with: "VOA常速英语：")
+                if self.ScientificAmericanList[index].name.contains("60秒:") {
+                    self.ScientificAmericanList[index].name = self.ScientificAmericanList[index].name.replacingOccurrences(of: "60秒:", with: "60秒：")
                 }
                 for news in favoriteNews {
-                    if news.name == self.VOANewsList[index].name {
-                        self.VOANewsList[index].isLiked = true
+                    if news.name == self.ScientificAmericanList[index].name {
+                        self.ScientificAmericanList[index].isLiked = true
                     }
                 }
             }
@@ -150,27 +138,29 @@ class VOANewsController: UIViewController, UITableViewDelegate, UITableViewDataS
             if let html = response.result.value, let doc = try? HTML(html: html, encoding: enc) {
                 for content in doc.css(".fz18") {
                     if let innerHtml = content.innerHTML {
-                        let components = innerHtml.components(separatedBy: "\"")
-                        let VOANewsItem = News.init(name: components[1], url: "http://www.hxen.com" + components[3], isLiked: false)
-                        self.VOANewsList.append(VOANewsItem)
+                        var components = innerHtml.components(separatedBy: "\'")
+                        if components.count != 1 {
+                        }else {
+                            components = innerHtml.components(separatedBy: "\"")
+                        }
+                        components = innerHtml.components(separatedBy: "\"")
+                        let ScientificAmericanItem = News.init(name: content.content ?? "", url: "http://www.hxen.com" + components[3], isLiked: false)
+                        self.ScientificAmericanList.append(ScientificAmericanItem)
                     }
                 }
                 self.page += 1
             }
             
-            for index in 0 ..< self.VOANewsList.count {
-                if self.VOANewsList[index].name.contains("¡¯") {
-                    self.VOANewsList[index].name = self.VOANewsList[index].name.replacingOccurrences(of: "¡¯", with: "\'")
+            for index in 0 ..< self.ScientificAmericanList.count {
+                if self.ScientificAmericanList[index].name.contains("¡¯") {
+                    self.ScientificAmericanList[index].name = self.ScientificAmericanList[index].name.replacingOccurrences(of: "¡¯", with: "\'")
                 }
-                if self.VOANewsList[index].name.contains("VOA慢速英语:") {
-                    self.VOANewsList[index].name = self.VOANewsList[index].name.replacingOccurrences(of: "VOA慢速英语:", with: "VOA慢速英语：")
-                }
-                if self.VOANewsList[index].name.contains("VOA常速英语:") {
-                    self.VOANewsList[index].name = self.VOANewsList[index].name.replacingOccurrences(of: "VOA常速英语:", with: "VOA常速英语：")
+                if self.ScientificAmericanList[index].name.contains("60秒:") {
+                    self.ScientificAmericanList[index].name = self.ScientificAmericanList[index].name.replacingOccurrences(of: "60秒:", with: "60秒：")
                 }
                 for news in favoriteNews {
-                    if news.name == self.VOANewsList[index].name {
-                        self.VOANewsList[index].isLiked = true
+                    if news.name == self.ScientificAmericanList[index].name {
+                        self.ScientificAmericanList[index].isLiked = true
                     }
                 }
             }
@@ -183,31 +173,27 @@ class VOANewsController: UIViewController, UITableViewDelegate, UITableViewDataS
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return VOANewsList.count
+        return ScientificAmericanList.count
     }
     
-    //    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-    //        return 88
-    //    }
-    
     private func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        let identifier = "VOANewsCell"
-        let hsCell = tableView.dequeueReusableCell(withIdentifier: identifier) as? VOANewsTableViewCell
-        var tempCell: VOANewsTableViewCell
-        hsCell != nil ? (tempCell = hsCell!) : (tempCell = VOANewsTableViewCell())
-        tempCell.nameLabel.text = VOANewsList[indexPath.row].name
+        let identifier = "ScientificAmericanCell"
+        let hsCell = tableView.dequeueReusableCell(withIdentifier: identifier) as? ScientificAmericanTableViewCell
+        var tempCell: ScientificAmericanTableViewCell
+        hsCell != nil ? (tempCell = hsCell!) : (tempCell = ScientificAmericanTableViewCell())
+        tempCell.nameLabel.text = ScientificAmericanList[indexPath.row].name
         
-        let components = VOANewsList[indexPath.row].url.components(separatedBy: "/")
-        
-        var date = components[6]
+        let components = ScientificAmericanList[indexPath.row].url.components(separatedBy: "/")
+        var date = components[5]
         if !date.contains("-") {
             let year = date[date.startIndex ... date.index(date.startIndex, offsetBy: 3)]
             let month = date[date.index(date.startIndex, offsetBy: 4) ... date.index(date.startIndex, offsetBy: 5)]
             let day = date[date.index(date.startIndex, offsetBy: 6) ... date.index(date.startIndex, offsetBy: 7)]
             date = String(year + "-" + month + "-" + day)
         }
+        
         tempCell.dateLabel.text = date
-        tempCell.heartImageView.isHidden = VOANewsList[indexPath.row].isLiked ? false : true
+        tempCell.heartImageView.isHidden = ScientificAmericanList[indexPath.row].isLiked ? false : true
         
         tempCell.frame = CGRect(x: 0, y: 0, width: tableView.bounds.width, height: tableView.bounds.height)
         tempCell.layoutIfNeeded()
@@ -215,13 +201,13 @@ class VOANewsController: UIViewController, UITableViewDelegate, UITableViewDataS
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cellIdentifier = "VOANewsCell"
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! VOANewsTableViewCell
+        let cellIdentifier = "ScientificAmericanCell"
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! ScientificAmericanTableViewCell
         
         // Configure the cell...
-        cell.nameLabel.text = VOANewsList[indexPath.row].name
+        cell.nameLabel.text = ScientificAmericanList[indexPath.row].name
         
-        let components = VOANewsList[indexPath.row].url.components(separatedBy: "/")
+        let components = ScientificAmericanList[indexPath.row].url.components(separatedBy: "/")
         var date = components[6]
         if !date.contains("-") {
             let year = date[date.startIndex ... date.index(date.startIndex, offsetBy: 3)]
@@ -230,13 +216,13 @@ class VOANewsController: UIViewController, UITableViewDelegate, UITableViewDataS
             date = String(year + "-" + month + "-" + day)
         }
         cell.dateLabel.text = date
-        VOANewsList[indexPath.row].isLiked = false
+        ScientificAmericanList[indexPath.row].isLiked = false
         for news in favoriteNews {
-            if news.name == VOANewsList[indexPath.row].name {
-                VOANewsList[indexPath.row].isLiked = true
+            if news.name == ScientificAmericanList[indexPath.row].name {
+                ScientificAmericanList[indexPath.row].isLiked = true
             }
         }
-        cell.heartImageView.isHidden = VOANewsList[indexPath.row].isLiked ? false : true
+        cell.heartImageView.isHidden = ScientificAmericanList[indexPath.row].isLiked ? false : true
         return cell
     }
     
@@ -245,7 +231,7 @@ class VOANewsController: UIViewController, UITableViewDelegate, UITableViewDataS
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        let lastElement = VOANewsList.count - 1
+        let lastElement = ScientificAmericanList.count - 1
         if indexPath.row == lastElement {
             activityIndicator.startAnimating()
             // handle your logic here to get more items, add it to dataSource and reload tableview
@@ -257,26 +243,26 @@ class VOANewsController: UIViewController, UITableViewDelegate, UITableViewDataS
         
         let checkInAction = UIContextualAction(style: .normal, title: "") { (action, sourceView, completionHandler) in
             
-            let cell = tableView.cellForRow(at: indexPath) as! VOANewsTableViewCell
-            self.VOANewsList[indexPath.row].isLiked = (self.VOANewsList[indexPath.row].isLiked) ? false : true
-            cell.heartImageView.isHidden = self.VOANewsList[indexPath.row].isLiked ? false : true
-            if self.VOANewsList[indexPath.row].isLiked {
-                favoriteNews.append(self.VOANewsList[indexPath.row])
-                DataManager.shared.createFavorateNews(item: self.VOANewsList[indexPath.row])
+            let cell = tableView.cellForRow(at: indexPath) as! ScientificAmericanTableViewCell
+            self.ScientificAmericanList[indexPath.row].isLiked = (self.ScientificAmericanList[indexPath.row].isLiked) ? false : true
+            cell.heartImageView.isHidden = self.ScientificAmericanList[indexPath.row].isLiked ? false : true
+            if self.ScientificAmericanList[indexPath.row].isLiked {
+                favoriteNews.append(self.ScientificAmericanList[indexPath.row])
+                DataManager.shared.createFavorateNews(item: self.ScientificAmericanList[indexPath.row])
             } else {
                 var numberOfFavorateNewsToBeDeleted = 0
                 for index in 0 ..< favoriteNews.count {
-                    if favoriteNews[index].name == self.VOANewsList[indexPath.row].name {
+                    if favoriteNews[index].name == self.ScientificAmericanList[indexPath.row].name {
                         numberOfFavorateNewsToBeDeleted = index
                     }
                 }
                 favoriteNews.remove(at: numberOfFavorateNewsToBeDeleted)
-                DataManager.shared.removeFavorateNews(item: self.VOANewsList[indexPath.row])
+                DataManager.shared.removeFavorateNews(item: self.ScientificAmericanList[indexPath.row])
             }
             completionHandler(true)
         }
         
-        let checkInIcon = VOANewsList[indexPath.row].isLiked ? "undo" : "tick"
+        let checkInIcon = ScientificAmericanList[indexPath.row].isLiked ? "undo" : "tick"
         checkInAction.backgroundColor = UIColor(red: 38, green: 162, blue: 78)
         checkInAction.image = UIImage(named: checkInIcon)
         
@@ -289,19 +275,18 @@ class VOANewsController: UIViewController, UITableViewDelegate, UITableViewDataS
         
         return UISwipeActionsConfiguration.init()
     }
-    
 }
 
-extension VOANewsController {
+extension ScientificAmericanViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showVOANewsDetail" {
-            if let indexPath = VOANewsTableView.indexPathForSelectedRow {
+        if segue.identifier == "showScientificAmericanDetail" {
+            if let indexPath = ScientificAmericanTableView.indexPathForSelectedRow {
                 let destinationController = segue.destination as! NewsDetailViewController
-                destinationController.newsItems = VOANewsList
+                destinationController.newsItems = ScientificAmericanList
                 destinationController.indexOfnews = indexPath.row
-                destinationController.newsItemName = VOANewsList[indexPath.row].name
-                destinationController.newsItemURL = VOANewsList[indexPath.row].url
-                destinationController.newsType = "VOANews"
+                destinationController.newsItemName = ScientificAmericanList[indexPath.row].name
+                destinationController.newsItemURL = ScientificAmericanList[indexPath.row].url
+                destinationController.newsType = "Scientific American"
             }
         }
     }

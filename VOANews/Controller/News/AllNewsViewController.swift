@@ -10,51 +10,56 @@ import UIKit
 
 class AllNewsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return 5
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var identifier = "AllNewsCell"
+        let identifier = "AllNewsCell"
+        let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! AllNewsTableViewCell
+        print(indexPath.row)
         switch indexPath.row {
         case 0:
-            identifier = "AllNewsOfVOANewsCell"
+            cell.newsIconImageView.image = UIImage(named: "letterV")
+            cell.newsNameLabel.text = "VOA News"
         case 1:
-            identifier = "AllNewsOfBBCNewsCell"
+            cell.newsIconImageView.image = UIImage(named: "letterB")
+            cell.newsNameLabel.text = "BBC News"
         case 2:
-            identifier = "AllNewsOfCNNNewsCell"
+            cell.newsIconImageView.image = UIImage(named: "letterC")
+            cell.newsNameLabel.text = "CNN News"
         case 3:
-            identifier = "AllNewsOfAsItIsCell"
+            cell.newsIconImageView.image = UIImage(named: "letterA")
+            cell.newsNameLabel.text = "As It Is"
+        case 4:
+            cell.newsIconImageView.image = UIImage(named: "letterS")
+            cell.newsNameLabel.text = "Scientific American"
         default:
-            break
+            cell.newsIconImageView.image = UIImage(named: "")
+            cell.newsNameLabel.text = ""
         }
-        switch indexPath.row {
-        case 0:
-            let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! AllNewsOfVOANewsTableViewCell
-            cell.NewsNameLabel.text = "VOA News"
-            cell.VOANewsIconImageView.image = UIImage(named: "letterV")
-            return cell
-        case 1:
-            let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! AllNewsOfBBCNewsTableViewCell
-            cell.NewsNameLabel.text = "BBC News"
-            cell.BBCNewsIconImageView.image = UIImage(named: "letterB")
-            return cell
-        case 2:
-            let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! AllNewsOfCNNNewsTableViewCell
-            cell.NewsNameLabel.text = "CNN News"
-            cell.CNNNewxIconImageView.image = UIImage(named: "letterC")
-            return cell
-        case 3:
-            let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! AllNewsOfAsItIsTableViewCell
-            cell.NewsNameLabel.text = "As It Is"
-            cell.AsItIsIconImageView.image = UIImage(named: "letterA")
-            return cell
-        default:
-            return UITableViewCell.init()
-        }
+        
+        return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        var targetVC = storyboard.instantiateInitialViewController()
+        switch indexPath.row {
+        case 0:
+            targetVC = storyboard.instantiateViewController(withIdentifier :"VOANewsController") as! VOANewsController
+        case 1:
+            targetVC = storyboard.instantiateViewController(withIdentifier :"BBCNewsController") as! BBCNewsController
+        case 2:
+            targetVC = storyboard.instantiateViewController(withIdentifier :"CNNNewsController") as! CNNNewsController
+        case 3:
+            targetVC = storyboard.instantiateViewController(withIdentifier :"AsItIsController") as! AsItIsViewController
+        case 4:
+            targetVC = storyboard.instantiateViewController(withIdentifier :"ScientificAmericanViewController") as! ScientificAmericanViewController
+        default:
+            targetVC = storyboard.instantiateViewController(withIdentifier :"AllNewsViewController") as! AllNewsViewController
+        }
+        self.present(targetVC!, animated: true, completion: nil)
     }
     
     @IBOutlet var NewsTableView: UITableView!

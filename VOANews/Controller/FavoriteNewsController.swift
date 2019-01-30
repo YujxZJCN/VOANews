@@ -14,6 +14,7 @@ class FavorateNewsController: UIViewController, UITableViewDelegate, UITableView
     var BBCNews = [News]()
     var CNNNews = [News]()
     var AsItIs = [News]()
+    var ScientificAmerican = [News]()
     //    var count = 0
     
     override func viewDidLoad() {
@@ -30,6 +31,7 @@ class FavorateNewsController: UIViewController, UITableViewDelegate, UITableView
         BBCNews.removeAll()
         CNNNews.removeAll()
         AsItIs.removeAll()
+        ScientificAmerican.removeAll()
         for news in favoriteNews {
             if news.name.contains("VOA") {
                 VOANews.append(news)
@@ -37,6 +39,8 @@ class FavorateNewsController: UIViewController, UITableViewDelegate, UITableView
                 BBCNews.append(news)
             }else if news.name.contains("CNN") {
                 CNNNews.append(news)
+            }else if news.name.contains("科学美国人") {
+                ScientificAmerican.append(news)
             }else {
                 AsItIs.append(news)
             }
@@ -45,7 +49,7 @@ class FavorateNewsController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 4
+        return 5
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -58,6 +62,8 @@ class FavorateNewsController: UIViewController, UITableViewDelegate, UITableView
             return CNNNews.count
         case 3:
             return AsItIs.count
+        case 4:
+            return ScientificAmerican.count
         default:
             return 0
         }
@@ -73,6 +79,8 @@ class FavorateNewsController: UIViewController, UITableViewDelegate, UITableView
             return "CNN News"
         case 3:
             return "As It Is"
+        case 4:
+            return "Scientific American"
         default:
             return ""
         }
@@ -102,6 +110,9 @@ class FavorateNewsController: UIViewController, UITableViewDelegate, UITableView
         case 3:
             cell.nameLabel.text = AsItIs[indexPath.row].name
             cell.dateLabel.text = transformToDate(url: AsItIs[indexPath.row].url, number: 6)
+        case 4:
+            cell.nameLabel.text = ScientificAmerican[indexPath.row].name
+            cell.dateLabel.text = transformToDate(url: ScientificAmerican[indexPath.row].url, number: 6)
         default:
             cell.nameLabel.text = ""
             cell.dateLabel.text = ""
@@ -132,6 +143,9 @@ class FavorateNewsController: UIViewController, UITableViewDelegate, UITableView
         case 3:
             tempCell.nameLabel.text = AsItIs[indexPath.row].name
             tempCell.dateLabel.text = transformToDate(url: AsItIs[indexPath.row].url, number: 6)
+        case 4:
+            tempCell.nameLabel.text = ScientificAmerican[indexPath.row].name
+            tempCell.dateLabel.text = transformToDate(url: ScientificAmerican[indexPath.row].url, number: 6)
         default:
             tempCell.nameLabel.text = ""
             tempCell.dateLabel.text = ""
@@ -171,6 +185,9 @@ class FavorateNewsController: UIViewController, UITableViewDelegate, UITableView
             case 3:
                 newsName = self.AsItIs[indexPath.row].name
                 self.AsItIs.remove(at: indexPath.row)
+            case 4:
+                newsName = self.ScientificAmerican[indexPath.row].name
+                self.ScientificAmerican.remove(at: indexPath.row)
             default:
                 newsName = ""
             }
@@ -223,6 +240,8 @@ extension FavorateNewsController {
                 indexNumber = indexPath.row + VOANews.count + BBCNews.count
             case 3:
                 indexNumber = indexPath.row + VOANews.count + BBCNews.count + CNNNews.count
+            case 4:
+                indexNumber = indexPath.row + VOANews.count + BBCNews.count + CNNNews.count + AsItIs.count
             default:
                 indexNumber = 0
             }

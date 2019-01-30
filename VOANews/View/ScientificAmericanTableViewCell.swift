@@ -1,5 +1,5 @@
 //
-//  AllNewsOfBBCNewsTableViewCell.swift
+//  ScientificAmericanTableViewCell.swift
 //  VOANews
 //
 //  Created by 俞佳兴 on 2019/1/30.
@@ -8,14 +8,10 @@
 
 import UIKit
 
-class AllNewsOfBBCNewsTableViewCell: UITableViewCell {
-    @IBOutlet var BBCNewsIconImageView: UIImageView! {
-        didSet {
-            BBCNewsIconImageView.layer.cornerRadius = BBCNewsIconImageView.bounds.width / 2
-            BBCNewsIconImageView.layer.masksToBounds = true
-        }
-    }
-    @IBOutlet var NewsNameLabel: UILabel!
+class ScientificAmericanTableViewCell: UITableViewCell {
+    @IBOutlet var nameLabel: UILabel!
+    @IBOutlet var dateLabel: UILabel!
+    @IBOutlet var heartImageView: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()

@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		4C21D4318314E8D3C3B9EC47 /* Pods_VOANews.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA5C7760E5438829CE1C6D22 /* Pods_VOANews.framework */; };
+		F607918C2201E036001A0DDA /* ScientificAmericanTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F607918B2201E036001A0DDA /* ScientificAmericanTableViewCell.swift */; };
+		F607918E2201E090001A0DDA /* ScientificAmericanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F607918D2201E090001A0DDA /* ScientificAmericanViewController.swift */; };
 		F616EDA021F9FAA500704237 /* PublicVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = F616ED9F21F9FAA500704237 /* PublicVariables.swift */; };
 		F616EDA221F9FBC800704237 /* FavoriteNewsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F616EDA121F9FBC800704237 /* FavoriteNewsController.swift */; };
 		F616EDA421F9FC4000704237 /* FavorateNewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F616EDA321F9FC4000704237 /* FavorateNewsTableViewCell.swift */; };
@@ -16,12 +18,9 @@
 		F616EDAC21FA06D100704237 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F616EDAB21FA06D100704237 /* DataManager.swift */; };
 		F61A7D70220167C8007C5C2B /* AsItIsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F61A7D6F220167C8007C5C2B /* AsItIsTableViewCell.swift */; };
 		F61A7D722201684F007C5C2B /* AsItIsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F61A7D712201684F007C5C2B /* AsItIsViewController.swift */; };
-		F61A7D7422016CB0007C5C2B /* AllNewsOfAsItIsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F61A7D7322016CB0007C5C2B /* AllNewsOfAsItIsTableViewCell.swift */; };
 		F64D769521FAB19400B69746 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F64D769721FAB19400B69746 /* InfoPlist.strings */; };
 		F6503F3E220139E400CC744A /* AllNewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6503F3D220139E400CC744A /* AllNewsViewController.swift */; };
-		F6503F4022013B0200CC744A /* AllNewsOfVOANewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6503F3F22013B0200CC744A /* AllNewsOfVOANewsTableViewCell.swift */; };
-		F6503F4222013F9B00CC744A /* AllNewsOfBBCNewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6503F4122013F9A00CC744A /* AllNewsOfBBCNewsTableViewCell.swift */; };
-		F6503F4422013FA900CC744A /* AllNewsOfCNNNewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6503F4322013FA900CC744A /* AllNewsOfCNNNewsTableViewCell.swift */; };
+		F6503F4022013B0200CC744A /* AllNewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6503F3F22013B0200CC744A /* AllNewsTableViewCell.swift */; };
 		F676DD4321FACDEA00175C7B /* WalkthroughContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F676DD4221FACDEA00175C7B /* WalkthroughContentViewController.swift */; };
 		F676DD4521FACF2600175C7B /* WalkthroughPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F676DD4421FACF2600175C7B /* WalkthroughPageViewController.swift */; };
 		F676DD4721FAD16D00175C7B /* WalkthroughViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F676DD4621FAD16D00175C7B /* WalkthroughViewController.swift */; };
@@ -49,6 +48,8 @@
 		680AB3CC064BAB42EDE5E7B1 /* Pods-VOANews.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VOANews.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VOANews/Pods-VOANews.debug.xcconfig"; sourceTree = "<group>"; };
 		BA5C7760E5438829CE1C6D22 /* Pods_VOANews.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VOANews.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCC451EB7D415345C829EC4A /* Pods-VOANews.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VOANews.release.xcconfig"; path = "Pods/Target Support Files/Pods-VOANews/Pods-VOANews.release.xcconfig"; sourceTree = "<group>"; };
+		F607918B2201E036001A0DDA /* ScientificAmericanTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScientificAmericanTableViewCell.swift; sourceTree = "<group>"; };
+		F607918D2201E090001A0DDA /* ScientificAmericanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScientificAmericanViewController.swift; sourceTree = "<group>"; };
 		F616ED9F21F9FAA500704237 /* PublicVariables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicVariables.swift; sourceTree = "<group>"; };
 		F616EDA121F9FBC800704237 /* FavoriteNewsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteNewsController.swift; sourceTree = "<group>"; };
 		F616EDA321F9FC4000704237 /* FavorateNewsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavorateNewsTableViewCell.swift; sourceTree = "<group>"; };
@@ -57,12 +58,9 @@
 		F616EDAB21FA06D100704237 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		F61A7D6F220167C8007C5C2B /* AsItIsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsItIsTableViewCell.swift; sourceTree = "<group>"; };
 		F61A7D712201684F007C5C2B /* AsItIsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsItIsViewController.swift; sourceTree = "<group>"; };
-		F61A7D7322016CB0007C5C2B /* AllNewsOfAsItIsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllNewsOfAsItIsTableViewCell.swift; sourceTree = "<group>"; };
 		F64D769621FAB19400B69746 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		F6503F3D220139E400CC744A /* AllNewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllNewsViewController.swift; sourceTree = "<group>"; };
-		F6503F3F22013B0200CC744A /* AllNewsOfVOANewsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllNewsOfVOANewsTableViewCell.swift; sourceTree = "<group>"; };
-		F6503F4122013F9A00CC744A /* AllNewsOfBBCNewsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllNewsOfBBCNewsTableViewCell.swift; sourceTree = "<group>"; };
-		F6503F4322013FA900CC744A /* AllNewsOfCNNNewsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllNewsOfCNNNewsTableViewCell.swift; sourceTree = "<group>"; };
+		F6503F3F22013B0200CC744A /* AllNewsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllNewsTableViewCell.swift; sourceTree = "<group>"; };
 		F65B96B821FAA5BE00B9DE77 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		F65B96B921FAA5BE00B9DE77 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		F676DD4221FACDEA00175C7B /* WalkthroughContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkthroughContentViewController.swift; sourceTree = "<group>"; };
@@ -127,6 +125,7 @@
 				F6829A6321F602040020BB30 /* BBCNewsController.swift */,
 				F6829A6721F61F000020BB30 /* CNNNewsController.swift */,
 				F61A7D712201684F007C5C2B /* AsItIsViewController.swift */,
+				F607918D2201E090001A0DDA /* ScientificAmericanViewController.swift */,
 			);
 			path = News;
 			sourceTree = "<group>";
@@ -211,14 +210,12 @@
 		F6EB097F21F31AAA009B4785 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				F6503F3F22013B0200CC744A /* AllNewsOfVOANewsTableViewCell.swift */,
-				F6503F4122013F9A00CC744A /* AllNewsOfBBCNewsTableViewCell.swift */,
-				F6503F4322013FA900CC744A /* AllNewsOfCNNNewsTableViewCell.swift */,
-				F61A7D7322016CB0007C5C2B /* AllNewsOfAsItIsTableViewCell.swift */,
+				F6503F3F22013B0200CC744A /* AllNewsTableViewCell.swift */,
 				F6EB094121F30041009B4785 /* VOANewsTableViewCell.swift */,
 				F6829A6521F603430020BB30 /* BBCNewsTableViewCell.swift */,
 				F6829A6921F621070020BB30 /* CNNNewsTableViewCell.swift */,
 				F61A7D6F220167C8007C5C2B /* AsItIsTableViewCell.swift */,
+				F607918B2201E036001A0DDA /* ScientificAmericanTableViewCell.swift */,
 				F616EDA321F9FC4000704237 /* FavorateNewsTableViewCell.swift */,
 				F6BEC16421F49B3C00290F7D /* NewsDetailTableViewCell.swift */,
 				F6BEC16221F44B1C00290F7D /* AnimationFrames.swift */,
@@ -376,17 +373,16 @@
 				F616EDA821FA05F800704237 /* ManageFavorateNews+CoreDataProperties.swift in Sources */,
 				F61A7D70220167C8007C5C2B /* AsItIsTableViewCell.swift in Sources */,
 				F6829A6621F603430020BB30 /* BBCNewsTableViewCell.swift in Sources */,
-				F6503F4022013B0200CC744A /* AllNewsOfVOANewsTableViewCell.swift in Sources */,
+				F6503F4022013B0200CC744A /* AllNewsTableViewCell.swift in Sources */,
 				F676DD4521FACF2600175C7B /* WalkthroughPageViewController.swift in Sources */,
 				F6EB092D21F2EBC6009B4785 /* VOANewsController.swift in Sources */,
 				F6EB094221F30041009B4785 /* VOANewsTableViewCell.swift in Sources */,
 				F6EB094F21F30F91009B4785 /* UIColor+Ext.swift in Sources */,
-				F6503F4222013F9B00CC744A /* AllNewsOfBBCNewsTableViewCell.swift in Sources */,
 				F616EDA221F9FBC800704237 /* FavoriteNewsController.swift in Sources */,
+				F607918E2201E090001A0DDA /* ScientificAmericanViewController.swift in Sources */,
 				F6BEC16121F42C4400290F7D /* NewsDetailViewController.swift in Sources */,
-				F6503F4422013FA900CC744A /* AllNewsOfCNNNewsTableViewCell.swift in Sources */,
+				F607918C2201E036001A0DDA /* ScientificAmericanTableViewCell.swift in Sources */,
 				F6829A6A21F621070020BB30 /* CNNNewsTableViewCell.swift in Sources */,
-				F61A7D7422016CB0007C5C2B /* AllNewsOfAsItIsTableViewCell.swift in Sources */,
 				F6EB092B21F2EBC6009B4785 /* AppDelegate.swift in Sources */,
 				F6829A6421F602040020BB30 /* BBCNewsController.swift in Sources */,
 				F6BEC16521F49B3C00290F7D /* NewsDetailTableViewCell.swift in Sources */,

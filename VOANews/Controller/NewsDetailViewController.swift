@@ -69,6 +69,7 @@ class NewsDetailViewController: UIViewController, AVAudioPlayerDelegate {
     @IBOutlet var newsDetailTableView: UITableView!
     @IBOutlet var rewindButton: UIButton!
     @IBOutlet var forwardButton: UIButton!
+    @IBOutlet var playPatternButton: UIButton!
     
     var activityIndicator: NVActivityIndicatorView!
     
@@ -141,6 +142,7 @@ class NewsDetailViewController: UIViewController, AVAudioPlayerDelegate {
         playButton.isEnabled = false
         rewindButton.isEnabled = false
         forwardButton.isEnabled = false
+        playPatternButton.setImage(UIImage(named: "pattern1"), for: .normal)
         createNowPlayingAnimation()
         let doubleTap = UITapGestureRecognizer(target: self, action: #selector(onSpeedLabelTapped))
         doubleTap.numberOfTapsRequired = 2
@@ -564,6 +566,33 @@ class NewsDetailViewController: UIViewController, AVAudioPlayerDelegate {
     @IBAction func onForwardTouchUpOutside(_ sender: UIButton) {
         forwardButton.alpha = 1.0
     }
+    @IBAction func changePlayPattern(_ sender: UIButton) {
+        if playPatternButton.imageView?.image == UIImage(named: "pattern1") {
+            playPatternButton.setImage(UIImage(named: "pattern2"), for: .normal)
+            let alertController = UIAlertController(title: "成功切换到单曲循环模式", message: "", preferredStyle: .alert)
+            self.present(alertController, animated: true, completion: nil)
+            
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.8) {
+                self.presentedViewController?.dismiss(animated: true, completion: nil)
+            }
+        }else if playPatternButton.imageView?.image == UIImage(named: "pattern2") {
+            playPatternButton.setImage(UIImage(named: "pattern3"), for: .normal)
+            let alertController = UIAlertController(title: "成功切换到随机播放模式", message: "", preferredStyle: .alert)
+            self.present(alertController, animated: true, completion: nil)
+            
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.8) {
+                self.presentedViewController?.dismiss(animated: true, completion: nil)
+            }
+        }else {
+            playPatternButton.setImage(UIImage(named: "pattern1"), for: .normal)
+            let alertController = UIAlertController(title: "成功切换到顺序播放模式", message: "", preferredStyle: .alert)
+            self.present(alertController, animated: true, completion: nil)
+            
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.8) {
+                self.presentedViewController?.dismiss(animated: true, completion: nil)
+            }
+        }
+    }
     
     @objc func updateSlider() {
         if loadedFlag {
@@ -572,17 +601,73 @@ class NewsDetailViewController: UIViewController, AVAudioPlayerDelegate {
             return
         }
         currentTime.text = getFormatPlayTime(secounds: audioPlayer.currentTime)
-        if processSlider.value >= processSlider.maximumValue - 0.15 {
-            audioPlayer.stop()
-            playButton.setImage(playImage, for: .normal)
-            playStatus = false
-        }
+//        if processSlider.value >= processSlider.maximumValue - 0.15 {
+//            audioPlayer.stop()
+//            playButton.setImage(playImage, for: .normal)
+//            playStatus = false
+//        }
     }
     
     func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
         audioPlayer.stop()
         playStatus = false
         processSlider.value = processSlider.maximumValue
+        if playPatternButton.imageView?.image == UIImage(named: "pattern2") {
+            audioPlayer.play()
+            playStatus = true
+        }else if playPatternButton.imageView?.image == UIImage(named: "pattern1") {
+            loadDataTimes = 0
+            if loadedFlag {
+                audioPlayer.stop()
+            }
+            playStatus = false
+            loadedFlag = false
+            activityIndicator.startAnimating()
+            dismissButton.isEnabled = false
+            processSlider.isEnabled = false
+            volumeSlider.isEnabled = false
+            speedSlider.isEnabled = false
+            playButton.isEnabled = false
+            rewindButton.isEnabled = false
+            forwardButton.isEnabled = false
+            playButton.setImage(pauseImage, for: .normal)
+            if indexOfnews == newsItems.count - 1 {
+                indexOfnews = 0
+            }else {
+                indexOfnews += 1
+            }
+            newsItemName = newsItems[indexOfnews].name
+            newsItemURL = newsItems[indexOfnews].url
+            newsDetails.removeAll()
+            newsDetailTableView.reloadData()
+            nameLabel.text = newsItemName
+            timerOfLoadData = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(loadData), userInfo: nil, repeats: true)
+            setLockView()
+        }else {
+            loadDataTimes = 0
+            if loadedFlag {
+                audioPlayer.stop()
+            }
+            playStatus = false
+            loadedFlag = false
+            activityIndicator.startAnimating()
+            dismissButton.isEnabled = false
+            processSlider.isEnabled = false
+            volumeSlider.isEnabled = false
+            speedSlider.isEnabled = false
+            playButton.isEnabled = false
+            rewindButton.isEnabled = false
+            forwardButton.isEnabled = false
+            playButton.setImage(pauseImage, for: .normal)
+            indexOfnews = Int(arc4random_uniform(UInt32(newsItems.count)))
+            newsItemName = newsItems[indexOfnews].name
+            newsItemURL = newsItems[indexOfnews].url
+            newsDetails.removeAll()
+            newsDetailTableView.reloadData()
+            nameLabel.text = newsItemName
+            timerOfLoadData = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(loadData), userInfo: nil, repeats: true)
+            setLockView()
+        }
     }
     
     func getFormatPlayTime(secounds:TimeInterval) -> String {

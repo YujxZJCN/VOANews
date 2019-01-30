@@ -239,7 +239,6 @@ class CNNNewsController: UIViewController, UITableViewDelegate, UITableViewDataS
         if indexPath.row == lastElement {
             activityIndicator.startAnimating()
             // handle your logic here to get more items, add it to dataSource and reload tableview
-            print(page)
             loadMore(url: url + "_\(page)")
         }
     }

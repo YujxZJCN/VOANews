@@ -8,14 +8,14 @@
 
 import UIKit
 
-class AllNewsOfVOANewsTableViewCell: UITableViewCell {
-    @IBOutlet var VOANewsIconImageView: UIImageView! {
+class AllNewsTableViewCell: UITableViewCell {
+    @IBOutlet var newsIconImageView: UIImageView! {
         didSet {
-            VOANewsIconImageView.layer.cornerRadius = VOANewsIconImageView.bounds.width / 2
-            VOANewsIconImageView.layer.masksToBounds = true
+            newsIconImageView.layer.cornerRadius = newsIconImageView.bounds.width / 2
+            newsIconImageView.layer.masksToBounds = true
         }
     }
-    @IBOutlet var NewsNameLabel: UILabel!
+    @IBOutlet var newsNameLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
