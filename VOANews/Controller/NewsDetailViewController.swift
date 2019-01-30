@@ -16,6 +16,7 @@ import MediaPlayer
 class NewsDetailViewController: UIViewController, AVAudioPlayerDelegate {
     var newsItems = [News]()
     var indexOfnews = 0
+    var nextPage = false
     var newsType = ""
     var newsItemName = ""
     var newsItemURL = ""
@@ -289,6 +290,7 @@ class NewsDetailViewController: UIViewController, AVAudioPlayerDelegate {
                 var nextPageUrl = self.newsItemURL[self.newsItemURL.startIndex ... index]
                 nextPageUrl += "_2.html"
                 self.loadNextPage(url: String(nextPageUrl))
+                self.nextPage = true
             }
         }
         loadDataTimes += 1
@@ -296,6 +298,7 @@ class NewsDetailViewController: UIViewController, AVAudioPlayerDelegate {
     }
     
     func loadNextPage(url: String) {
+        var thirdPageFlag = false
         if url.contains("bbc") {
             newsDetails.removeAll()
             newsDetailTableView.reloadData()
@@ -303,6 +306,12 @@ class NewsDetailViewController: UIViewController, AVAudioPlayerDelegate {
         Alamofire.request((url), method: .get).responseData { response in
             let enc: String.Encoding = String.Encoding(rawValue: CFStringConvertEncodingToNSStringEncoding(0x0632))
             if let html = response.result.value, let doc = try? HTML(html: html, encoding: enc) {
+                if let content = doc.content {
+                    if content.contains("下一页") {
+                        thirdPageFlag = true
+                        print(thirdPageFlag)
+                    }
+                }
                 var count = 0
                 for content in doc.css(".center") {
                     count += 1
@@ -320,6 +329,52 @@ class NewsDetailViewController: UIViewController, AVAudioPlayerDelegate {
                             self.newsDetails.append(thirdContentComponent)
                         }
                     }
+                }
+            }
+            if thirdPageFlag {
+                let index = self.newsItemURL.index(self.newsItemURL.endIndex, offsetBy: -6)
+                var nextPageUrl = self.newsItemURL[self.newsItemURL.startIndex ... index]
+                nextPageUrl += "_3.html"
+                self.loadThirdPage(url: String(nextPageUrl))
+                self.nextPage = false
+            }
+        }
+    }
+    
+    func loadThirdPage(url: String) {
+        newsDetails.removeAll()
+        newsDetailTableView.reloadData()
+        Alamofire.request((url), method: .get).responseData { response in
+            let enc: String.Encoding = String.Encoding(rawValue: CFStringConvertEncodingToNSStringEncoding(0x0632))
+            if let html = response.result.value, let doc = try? HTML(html: html, encoding: enc) {
+                var count = 0
+                for content in doc.css(".center") {
+                    count += 1
+                    if count == 1 {
+                        continue
+                    }else if count > 2 {
+                        break
+                    }
+                    if let secondContent = content.content {
+                        let components = secondContent.components(separatedBy: "音频下载[点击右键另存为]\r\n")
+                        var thirdContent = components[1]
+                        thirdContent = thirdContent.components(separatedBy: "3/3")[0]
+                        let thirdContentComponents = thirdContent.components(separatedBy: "\r\n")
+                        for thirdContentComponent in thirdContentComponents {
+                            self.newsDetails.append(thirdContentComponent)
+                        }
+                    }
+                }
+            }
+            var deleteNumber = [Int]()
+            for index in 0 ..< self.newsDetails.count {
+                if self.newsDetails[index].contains("[点击右键另存为]") {
+                    deleteNumber.append(index)
+                }
+            }
+            if deleteNumber.count > 0 {
+                for number in deleteNumber {
+                    self.newsDetails.remove(at: number)
                 }
             }
         }
@@ -723,7 +778,7 @@ extension NewsDetailViewController: UITableViewDataSource, UITableViewDelegate, 
         cell.detailTextView.delegate = self
         cell.detailTextView.isEditable = false
         cell.detailTextView.isScrollEnabled = false
-        if newsItemURL.contains("cnn") {
+        if newsItemURL.contains("cnn") || newsItemURL.contains("voastandardenglish") && nextPage {
             if indexPath.row % 2 == 0 {
                 cell.detailTextView.text = newsDetails[indexPath.row / 2]
             }else {

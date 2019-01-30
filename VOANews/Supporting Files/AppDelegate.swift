@@ -136,13 +136,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         switch shortcutIdentifier {
         case .VOANews:
-            tabBarController.selectedIndex = 0
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let targetVC = storyboard.instantiateViewController(withIdentifier :"VOANewsController") as! VOANewsController
+            if let navC = window?.rootViewController as! UITabBarController? {
+                navC.show(targetVC, sender: nil)
+            }
         case .BBCNews:
-            tabBarController.selectedIndex = 1
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let targetVC = storyboard.instantiateViewController(withIdentifier :"BBCNewsController") as! BBCNewsController
+            if let navC = window?.rootViewController as! UITabBarController? {
+                navC.show(targetVC, sender: nil)
+            }
         case .CNNNews:
-            tabBarController.selectedIndex = 2
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let targetVC = storyboard.instantiateViewController(withIdentifier :"CNNNewsController") as! CNNNewsController
+            if let navC = window?.rootViewController as! UITabBarController? {
+                navC.show(targetVC, sender: nil)
+            }
         case .FavorateNews:
-            tabBarController.selectedIndex = 3
+            tabBarController.selectedIndex = 1
         }
         
         return true

@@ -1,5 +1,5 @@
 //
-//  CNNNewsViewController.swift
+//  BBCNewsController.swift
 //  VOANews
 //
 //  Created by 俞佳兴 on 2019/1/21.
@@ -13,23 +13,27 @@ import Kanna
 import AVFoundation
 import MediaPlayer
 
-class CNNNewsController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    @IBOutlet var CNNNewsTableView: UITableView!
+class BBCNewsController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
+    @IBOutlet var BBCNewsTableView: UITableView!
     
     @IBAction func refresh(_ sender: UIButton) {
-        CNNNewsList.removeAll()
+        BBCNewsList.removeAll()
         activityIndicator.startAnimating()
         loadDataTimes = 0
         page = 2
         timer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(loadData), userInfo: nil, repeats: true)
     }
+    @IBAction func dismiss(_ sender: UIButton) {
+        self.dismiss(animated: true, completion: nil)
+    }
     
-    var url = "http://www.hxen.com/englishlistening/cnn/index"
+    var url = "http://www.hxen.com/englishlistening/bbc/index"
     
-    var CNNNewsList = [News]() {
+    var BBCNewsList = [News]() {
         didSet {
             self.activityIndicator.stopAnimating()
-            CNNNewsTableView.reloadData()
+            BBCNewsTableView.reloadData()
             if timer.isValid {
                 timer.invalidate()
             }
@@ -38,7 +42,6 @@ class CNNNewsController: UIViewController, UITableViewDelegate, UITableViewDataS
     
     var activityIndicator: NVActivityIndicatorView!
     var timer = Timer()
-    
     var loadDataTimes = 0 {
         didSet {
             if loadDataTimes > 20 {
@@ -60,8 +63,8 @@ class CNNNewsController: UIViewController, UITableViewDelegate, UITableViewDataS
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        // Do any additional setup after loading the view, typically from a nib.
         let indicatorSize: CGFloat = 70
         let indicatorFrame = CGRect(x: (view.frame.width-indicatorSize)/2, y: (view.frame.height-indicatorSize)/2, width: indicatorSize, height: indicatorSize)
         activityIndicator = NVActivityIndicatorView(frame: indicatorFrame, type: .ballRotateChase, color: UIColor.white, padding: 20.0)
@@ -74,7 +77,7 @@ class CNNNewsController: UIViewController, UITableViewDelegate, UITableViewDataS
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        CNNNewsTableView.reloadData()
+        BBCNewsTableView.reloadData()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -93,31 +96,23 @@ class CNNNewsController: UIViewController, UITableViewDelegate, UITableViewDataS
             if let html = response.result.value, let doc = try? HTML(html: html, encoding: enc) {
                 for content in doc.css(".fz18") {
                     if let innerHtml = content.innerHTML {
-                        var components = innerHtml.components(separatedBy: "\'")
-                        var name = ""
-                        if components.count != 1 {
-                            name = components[1]
-                        }else {
-                            components = innerHtml.components(separatedBy: "\"")
-                            name = components[1]
-                        }
-                        components = innerHtml.components(separatedBy: "\"")
-                        let CNNNewsItem = News.init(name: name, url: "http://www.hxen.com" + components[3], isLiked: false)
-                        self.CNNNewsList.append(CNNNewsItem)
+                        let components = innerHtml.components(separatedBy: "\"")
+                        let BBCNewsItem = News.init(name: components[1], url: "http://www.hxen.com" + components[3], isLiked: false)
+                        self.BBCNewsList.append(BBCNewsItem)
                     }
                 }
             }
             
-            for index in 0 ..< self.CNNNewsList.count {
-                if self.CNNNewsList[index].name.contains("¡¯") {
-                    self.CNNNewsList[index].name = self.CNNNewsList[index].name.replacingOccurrences(of: "¡¯", with: "\'")
+            for index in 0 ..< self.BBCNewsList.count {
+                if self.BBCNewsList[index].name.contains("¡¯") {
+                    self.BBCNewsList[index].name = self.BBCNewsList[index].name.replacingOccurrences(of: "¡¯", with: "\'")
                 }
-                if self.CNNNewsList[index].name.contains("CNN News:") {
-                    self.CNNNewsList[index].name = self.CNNNewsList[index].name.replacingOccurrences(of: "CNN News:", with: "CNN新闻：")
+                if self.BBCNewsList[index].name.contains("BBC在线收听下载:") {
+                    self.BBCNewsList[index].name = self.BBCNewsList[index].name.replacingOccurrences(of: "BBC在线收听下载:", with: "BBC新闻：")
                 }
                 for news in favoriteNews {
-                    if news.name == self.CNNNewsList[index].name {
-                        self.CNNNewsList[index].isLiked = true
+                    if news.name == self.BBCNewsList[index].name {
+                        self.BBCNewsList[index].isLiked = true
                     }
                 }
             }
@@ -136,32 +131,24 @@ class CNNNewsController: UIViewController, UITableViewDelegate, UITableViewDataS
             if let html = response.result.value, let doc = try? HTML(html: html, encoding: enc) {
                 for content in doc.css(".fz18") {
                     if let innerHtml = content.innerHTML {
-                        var components = innerHtml.components(separatedBy: "\'")
-                        var name = ""
-                        if components.count != 1 {
-                            name = components[1]
-                        }else {
-                            components = innerHtml.components(separatedBy: "\"")
-                            name = components[1]
-                        }
-                        components = innerHtml.components(separatedBy: "\"")
-                        let CNNNewsItem = News.init(name: name, url: "http://www.hxen.com" + components[3], isLiked: false)
-                        self.CNNNewsList.append(CNNNewsItem)
+                        let components = innerHtml.components(separatedBy: "\"")
+                        let BBCNewsItem = News.init(name: components[1], url: "http://www.hxen.com" + components[3], isLiked: false)
+                        self.BBCNewsList.append(BBCNewsItem)
                     }
                 }
                 self.page += 1
             }
             
-            for index in 0 ..< self.CNNNewsList.count {
-                if self.CNNNewsList[index].name.contains("¡¯") {
-                    self.CNNNewsList[index].name = self.CNNNewsList[index].name.replacingOccurrences(of: "¡¯", with: "\'")
+            for index in 0 ..< self.BBCNewsList.count {
+                if self.BBCNewsList[index].name.contains("¡¯") {
+                    self.BBCNewsList[index].name = self.BBCNewsList[index].name.replacingOccurrences(of: "¡¯", with: "\'")
                 }
-                if self.CNNNewsList[index].name.contains("CNN News:") {
-                    self.CNNNewsList[index].name = self.CNNNewsList[index].name.replacingOccurrences(of: "CNN News:", with: "CNN新闻：")
+                if self.BBCNewsList[index].name.contains("BBC在线收听下载:") {
+                    self.BBCNewsList[index].name = self.BBCNewsList[index].name.replacingOccurrences(of: "BBC在线收听下载:", with: "BBC新闻：")
                 }
                 for news in favoriteNews {
-                    if news.name == self.CNNNewsList[index].name {
-                        self.CNNNewsList[index].isLiked = true
+                    if news.name == self.BBCNewsList[index].name {
+                        self.BBCNewsList[index].isLiked = true
                     }
                 }
             }
@@ -174,17 +161,17 @@ class CNNNewsController: UIViewController, UITableViewDelegate, UITableViewDataS
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return CNNNewsList.count
+        return BBCNewsList.count
     }
     
     private func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        let identifier = "CNNNewsCell"
-        let hsCell = tableView.dequeueReusableCell(withIdentifier: identifier) as? CNNNewsTableViewCell
-        var tempCell: CNNNewsTableViewCell
-        hsCell != nil ? (tempCell = hsCell!) : (tempCell = CNNNewsTableViewCell())
-        tempCell.nameLabel.text = CNNNewsList[indexPath.row].name
+        let identifier = "BBCNewsCell"
+        let hsCell = tableView.dequeueReusableCell(withIdentifier: identifier) as? BBCNewsTableViewCell
+        var tempCell: BBCNewsTableViewCell
+        hsCell != nil ? (tempCell = hsCell!) : (tempCell = BBCNewsTableViewCell())
+        tempCell.nameLabel.text = BBCNewsList[indexPath.row].name
         
-        let components = CNNNewsList[indexPath.row].url.components(separatedBy: "/")
+        let components = BBCNewsList[indexPath.row].url.components(separatedBy: "/")
         var date = components[5]
         if !date.contains("-") {
             let year = date[date.startIndex ... date.index(date.startIndex, offsetBy: 3)]
@@ -194,7 +181,7 @@ class CNNNewsController: UIViewController, UITableViewDelegate, UITableViewDataS
         }
         
         tempCell.dateLabel.text = date
-        tempCell.heartImageView.isHidden = CNNNewsList[indexPath.row].isLiked ? false : true
+        tempCell.heartImageView.isHidden = BBCNewsList[indexPath.row].isLiked ? false : true
         
         tempCell.frame = CGRect(x: 0, y: 0, width: tableView.bounds.width, height: tableView.bounds.height)
         tempCell.layoutIfNeeded()
@@ -202,13 +189,13 @@ class CNNNewsController: UIViewController, UITableViewDelegate, UITableViewDataS
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cellIdentifier = "CNNNewsCell"
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! CNNNewsTableViewCell
+        let cellIdentifier = "BBCNewsCell"
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! BBCNewsTableViewCell
         
         // Configure the cell...
-        cell.nameLabel.text = CNNNewsList[indexPath.row].name
+        cell.nameLabel.text = BBCNewsList[indexPath.row].name
         
-        let components = CNNNewsList[indexPath.row].url.components(separatedBy: "/")
+        let components = BBCNewsList[indexPath.row].url.components(separatedBy: "/")
         var date = components[5]
         if !date.contains("-") {
             let year = date[date.startIndex ... date.index(date.startIndex, offsetBy: 3)]
@@ -217,26 +204,25 @@ class CNNNewsController: UIViewController, UITableViewDelegate, UITableViewDataS
             date = String(year + "-" + month + "-" + day)
         }
         cell.dateLabel.text = date
-        CNNNewsList[indexPath.row].isLiked = false
+        BBCNewsList[indexPath.row].isLiked = false
         for news in favoriteNews {
-            if news.name == CNNNewsList[indexPath.row].name {
-                CNNNewsList[indexPath.row].isLiked = true
+            if news.name == BBCNewsList[indexPath.row].name {
+                BBCNewsList[indexPath.row].isLiked = true
             }
         }
-        cell.heartImageView.isHidden = CNNNewsList[indexPath.row].isLiked ? false : true
+        cell.heartImageView.isHidden = BBCNewsList[indexPath.row].isLiked ? false : true
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
-
+    
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        let lastElement = CNNNewsList.count - 1
+        let lastElement = BBCNewsList.count - 1
         if indexPath.row == lastElement {
             activityIndicator.startAnimating()
             // handle your logic here to get more items, add it to dataSource and reload tableview
-            print(page)
             loadMore(url: url + "_\(page)")
         }
     }
@@ -245,26 +231,26 @@ class CNNNewsController: UIViewController, UITableViewDelegate, UITableViewDataS
         
         let checkInAction = UIContextualAction(style: .normal, title: "") { (action, sourceView, completionHandler) in
             
-            let cell = tableView.cellForRow(at: indexPath) as! CNNNewsTableViewCell
-            self.CNNNewsList[indexPath.row].isLiked = (self.CNNNewsList[indexPath.row].isLiked) ? false : true
-            cell.heartImageView.isHidden = self.CNNNewsList[indexPath.row].isLiked ? false : true
-            if self.CNNNewsList[indexPath.row].isLiked {
-                favoriteNews.append(self.CNNNewsList[indexPath.row])
-                DataManager.shared.createFavorateNews(item: self.CNNNewsList[indexPath.row])
+            let cell = tableView.cellForRow(at: indexPath) as! BBCNewsTableViewCell
+            self.BBCNewsList[indexPath.row].isLiked = (self.BBCNewsList[indexPath.row].isLiked) ? false : true
+            cell.heartImageView.isHidden = self.BBCNewsList[indexPath.row].isLiked ? false : true
+            if self.BBCNewsList[indexPath.row].isLiked {
+                favoriteNews.append(self.BBCNewsList[indexPath.row])
+                DataManager.shared.createFavorateNews(item: self.BBCNewsList[indexPath.row])
             } else {
                 var numberOfFavorateNewsToBeDeleted = 0
                 for index in 0 ..< favoriteNews.count {
-                    if favoriteNews[index].name == self.CNNNewsList[indexPath.row].name {
+                    if favoriteNews[index].name == self.BBCNewsList[indexPath.row].name {
                         numberOfFavorateNewsToBeDeleted = index
                     }
                 }
                 favoriteNews.remove(at: numberOfFavorateNewsToBeDeleted)
-                DataManager.shared.removeFavorateNews(item: self.CNNNewsList[indexPath.row])
+                DataManager.shared.removeFavorateNews(item: self.BBCNewsList[indexPath.row])
             }
             completionHandler(true)
         }
         
-        let checkInIcon = CNNNewsList[indexPath.row].isLiked ? "undo" : "tick"
+        let checkInIcon = BBCNewsList[indexPath.row].isLiked ? "undo" : "tick"
         checkInAction.backgroundColor = UIColor(red: 38, green: 162, blue: 78)
         checkInAction.image = UIImage(named: checkInIcon)
         
@@ -279,16 +265,16 @@ class CNNNewsController: UIViewController, UITableViewDelegate, UITableViewDataS
     }
 }
 
-extension CNNNewsController {
+extension BBCNewsController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showCNNNewsDetail" {
-            if let indexPath = CNNNewsTableView.indexPathForSelectedRow {
+        if segue.identifier == "showBBCNewsDetail" {
+            if let indexPath = BBCNewsTableView.indexPathForSelectedRow {
                 let destinationController = segue.destination as! NewsDetailViewController
-                destinationController.newsItems = CNNNewsList
+                destinationController.newsItems = BBCNewsList
                 destinationController.indexOfnews = indexPath.row
-                destinationController.newsItemName = CNNNewsList[indexPath.row].name
-                destinationController.newsItemURL = CNNNewsList[indexPath.row].url
-                destinationController.newsType = "CNNNews"
+                destinationController.newsItemName = BBCNewsList[indexPath.row].name
+                destinationController.newsItemURL = BBCNewsList[indexPath.row].url
+                destinationController.newsType = "BBCNews"
             }
         }
     }

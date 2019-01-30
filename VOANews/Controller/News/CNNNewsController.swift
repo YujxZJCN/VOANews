@@ -1,53 +1,38 @@
 //
-//  VOANewsTableViewController.swift
+//  CNNNewsViewController.swift
 //  VOANews
 //
-//  Created by 俞佳兴 on 2019/1/19.
+//  Created by 俞佳兴 on 2019/1/21.
 //  Copyright © 2019 Albert. All rights reserved.
 //
 
 import UIKit
+import NVActivityIndicatorView
 import Alamofire
 import Kanna
-import NVActivityIndicatorView
+import AVFoundation
+import MediaPlayer
 
-class VOANewsController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    
-    @IBOutlet var VOANewsTableView: UITableView!
-    @IBOutlet var segmentedControl: UISegmentedControl!
-    @IBOutlet var refreshButton: UIButton!
-    
-    var url = "http://www.hxen.com/englishlistening/voaenglish/voaspecialenglish/index"
-    
-    @IBAction func showMode(_ sender: UISegmentedControl) {
-        page = 2
-        switch segmentedControl.selectedSegmentIndex {
-        case 0:
-            url = "http://www.hxen.com/englishlistening/voaenglish/voaspecialenglish/index"
-            VOANewsList = [News]()
-            activityIndicator.startAnimating()
-            loadData()
-        case 1:
-            url = "http://www.hxen.com/englishlistening/voaenglish/voastandardenglish/index"
-            VOANewsList = [News]()
-            activityIndicator.startAnimating()
-            loadData()
-        default: break
-        }
-    }
+class CNNNewsController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    @IBOutlet var CNNNewsTableView: UITableView!
     
     @IBAction func refresh(_ sender: UIButton) {
-        VOANewsList.removeAll()
+        CNNNewsList.removeAll()
         activityIndicator.startAnimating()
         loadDataTimes = 0
         page = 2
         timer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(loadData), userInfo: nil, repeats: true)
     }
+    @IBAction func dismiss(_ sender: UIButton) {
+        self.dismiss(animated: true, completion: nil)
+    }
     
-    var VOANewsList = [News]() {
+    var url = "http://www.hxen.com/englishlistening/cnn/index"
+    
+    var CNNNewsList = [News]() {
         didSet {
             self.activityIndicator.stopAnimating()
-            VOANewsTableView.reloadData()
+            CNNNewsTableView.reloadData()
             if timer.isValid {
                 timer.invalidate()
             }
@@ -56,6 +41,7 @@ class VOANewsController: UIViewController, UITableViewDelegate, UITableViewDataS
     
     var activityIndicator: NVActivityIndicatorView!
     var timer = Timer()
+    
     var loadDataTimes = 0 {
         didSet {
             if loadDataTimes > 20 {
@@ -77,9 +63,8 @@ class VOANewsController: UIViewController, UITableViewDelegate, UITableViewDataS
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Do any additional setup after loading the view, typically from a nib.
-        favoriteNews = DataManager.shared.getAllFavorateNews()
+
+        // Do any additional setup after loading the view.
         let indicatorSize: CGFloat = 70
         let indicatorFrame = CGRect(x: (view.frame.width-indicatorSize)/2, y: (view.frame.height-indicatorSize)/2, width: indicatorSize, height: indicatorSize)
         activityIndicator = NVActivityIndicatorView(frame: indicatorFrame, type: .ballRotateChase, color: UIColor.white, padding: 20.0)
@@ -92,20 +77,12 @@ class VOANewsController: UIViewController, UITableViewDelegate, UITableViewDataS
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        VOANewsTableView.reloadData()
+        CNNNewsTableView.reloadData()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         timer.fire()
-        if !UserDefaults.standard.bool(forKey: "hasViewedWalkthrough") {
-            let storyboard = UIStoryboard(name: "Onboarding", bundle: nil)
-            if let walkthroughViewController = storyboard.instantiateViewController(withIdentifier: "WalkthroughViewController") as? WalkthroughViewController {
-                
-                present(walkthroughViewController, animated: true, completion: nil)
-            }
-        }
-        
     }
     
     @objc fileprivate func loadData() {
@@ -119,26 +96,31 @@ class VOANewsController: UIViewController, UITableViewDelegate, UITableViewDataS
             if let html = response.result.value, let doc = try? HTML(html: html, encoding: enc) {
                 for content in doc.css(".fz18") {
                     if let innerHtml = content.innerHTML {
-                        let components = innerHtml.components(separatedBy: "\"")
-                        let VOANewsItem = News.init(name: components[1], url: "http://www.hxen.com" + components[3], isLiked: false)
-                        self.VOANewsList.append(VOANewsItem)
+                        var components = innerHtml.components(separatedBy: "\'")
+                        var name = ""
+                        if components.count != 1 {
+                            name = components[1]
+                        }else {
+                            components = innerHtml.components(separatedBy: "\"")
+                            name = components[1]
+                        }
+                        components = innerHtml.components(separatedBy: "\"")
+                        let CNNNewsItem = News.init(name: name, url: "http://www.hxen.com" + components[3], isLiked: false)
+                        self.CNNNewsList.append(CNNNewsItem)
                     }
                 }
             }
             
-            for index in 0 ..< self.VOANewsList.count {
-                if self.VOANewsList[index].name.contains("¡¯") {
-                    self.VOANewsList[index].name = self.VOANewsList[index].name.replacingOccurrences(of: "¡¯", with: "\'")
+            for index in 0 ..< self.CNNNewsList.count {
+                if self.CNNNewsList[index].name.contains("¡¯") {
+                    self.CNNNewsList[index].name = self.CNNNewsList[index].name.replacingOccurrences(of: "¡¯", with: "\'")
                 }
-                if self.VOANewsList[index].name.contains("VOA慢速英语:") {
-                    self.VOANewsList[index].name = self.VOANewsList[index].name.replacingOccurrences(of: "VOA慢速英语:", with: "VOA慢速英语：")
-                }
-                if self.VOANewsList[index].name.contains("VOA常速英语:") {
-                    self.VOANewsList[index].name = self.VOANewsList[index].name.replacingOccurrences(of: "VOA常速英语:", with: "VOA常速英语：")
+                if self.CNNNewsList[index].name.contains("CNN News:") {
+                    self.CNNNewsList[index].name = self.CNNNewsList[index].name.replacingOccurrences(of: "CNN News:", with: "CNN新闻：")
                 }
                 for news in favoriteNews {
-                    if news.name == self.VOANewsList[index].name {
-                        self.VOANewsList[index].isLiked = true
+                    if news.name == self.CNNNewsList[index].name {
+                        self.CNNNewsList[index].isLiked = true
                     }
                 }
             }
@@ -157,27 +139,32 @@ class VOANewsController: UIViewController, UITableViewDelegate, UITableViewDataS
             if let html = response.result.value, let doc = try? HTML(html: html, encoding: enc) {
                 for content in doc.css(".fz18") {
                     if let innerHtml = content.innerHTML {
-                        let components = innerHtml.components(separatedBy: "\"")
-                        let VOANewsItem = News.init(name: components[1], url: "http://www.hxen.com" + components[3], isLiked: false)
-                        self.VOANewsList.append(VOANewsItem)
+                        var components = innerHtml.components(separatedBy: "\'")
+                        var name = ""
+                        if components.count != 1 {
+                            name = components[1]
+                        }else {
+                            components = innerHtml.components(separatedBy: "\"")
+                            name = components[1]
+                        }
+                        components = innerHtml.components(separatedBy: "\"")
+                        let CNNNewsItem = News.init(name: name, url: "http://www.hxen.com" + components[3], isLiked: false)
+                        self.CNNNewsList.append(CNNNewsItem)
                     }
                 }
                 self.page += 1
             }
             
-            for index in 0 ..< self.VOANewsList.count {
-                if self.VOANewsList[index].name.contains("¡¯") {
-                    self.VOANewsList[index].name = self.VOANewsList[index].name.replacingOccurrences(of: "¡¯", with: "\'")
+            for index in 0 ..< self.CNNNewsList.count {
+                if self.CNNNewsList[index].name.contains("¡¯") {
+                    self.CNNNewsList[index].name = self.CNNNewsList[index].name.replacingOccurrences(of: "¡¯", with: "\'")
                 }
-                if self.VOANewsList[index].name.contains("VOA慢速英语:") {
-                    self.VOANewsList[index].name = self.VOANewsList[index].name.replacingOccurrences(of: "VOA慢速英语:", with: "VOA慢速英语：")
-                }
-                if self.VOANewsList[index].name.contains("VOA常速英语:") {
-                    self.VOANewsList[index].name = self.VOANewsList[index].name.replacingOccurrences(of: "VOA常速英语:", with: "VOA常速英语：")
+                if self.CNNNewsList[index].name.contains("CNN News:") {
+                    self.CNNNewsList[index].name = self.CNNNewsList[index].name.replacingOccurrences(of: "CNN News:", with: "CNN新闻：")
                 }
                 for news in favoriteNews {
-                    if news.name == self.VOANewsList[index].name {
-                        self.VOANewsList[index].isLiked = true
+                    if news.name == self.CNNNewsList[index].name {
+                        self.CNNNewsList[index].isLiked = true
                     }
                 }
             }
@@ -190,31 +177,27 @@ class VOANewsController: UIViewController, UITableViewDelegate, UITableViewDataS
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return VOANewsList.count
+        return CNNNewsList.count
     }
     
-    //    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-    //        return 88
-    //    }
-    
     private func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        let identifier = "VOANewsCell"
-        let hsCell = tableView.dequeueReusableCell(withIdentifier: identifier) as? VOANewsTableViewCell
-        var tempCell: VOANewsTableViewCell
-        hsCell != nil ? (tempCell = hsCell!) : (tempCell = VOANewsTableViewCell())
-        tempCell.nameLabel.text = VOANewsList[indexPath.row].name
+        let identifier = "CNNNewsCell"
+        let hsCell = tableView.dequeueReusableCell(withIdentifier: identifier) as? CNNNewsTableViewCell
+        var tempCell: CNNNewsTableViewCell
+        hsCell != nil ? (tempCell = hsCell!) : (tempCell = CNNNewsTableViewCell())
+        tempCell.nameLabel.text = CNNNewsList[indexPath.row].name
         
-        let components = VOANewsList[indexPath.row].url.components(separatedBy: "/")
-        
-        var date = components[6]
+        let components = CNNNewsList[indexPath.row].url.components(separatedBy: "/")
+        var date = components[5]
         if !date.contains("-") {
             let year = date[date.startIndex ... date.index(date.startIndex, offsetBy: 3)]
             let month = date[date.index(date.startIndex, offsetBy: 4) ... date.index(date.startIndex, offsetBy: 5)]
             let day = date[date.index(date.startIndex, offsetBy: 6) ... date.index(date.startIndex, offsetBy: 7)]
             date = String(year + "-" + month + "-" + day)
         }
+        
         tempCell.dateLabel.text = date
-        tempCell.heartImageView.isHidden = VOANewsList[indexPath.row].isLiked ? false : true
+        tempCell.heartImageView.isHidden = CNNNewsList[indexPath.row].isLiked ? false : true
         
         tempCell.frame = CGRect(x: 0, y: 0, width: tableView.bounds.width, height: tableView.bounds.height)
         tempCell.layoutIfNeeded()
@@ -222,14 +205,14 @@ class VOANewsController: UIViewController, UITableViewDelegate, UITableViewDataS
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cellIdentifier = "VOANewsCell"
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! VOANewsTableViewCell
+        let cellIdentifier = "CNNNewsCell"
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! CNNNewsTableViewCell
         
         // Configure the cell...
-        cell.nameLabel.text = VOANewsList[indexPath.row].name
+        cell.nameLabel.text = CNNNewsList[indexPath.row].name
         
-        let components = VOANewsList[indexPath.row].url.components(separatedBy: "/")
-        var date = components[6]
+        let components = CNNNewsList[indexPath.row].url.components(separatedBy: "/")
+        var date = components[5]
         if !date.contains("-") {
             let year = date[date.startIndex ... date.index(date.startIndex, offsetBy: 3)]
             let month = date[date.index(date.startIndex, offsetBy: 4) ... date.index(date.startIndex, offsetBy: 5)]
@@ -237,25 +220,26 @@ class VOANewsController: UIViewController, UITableViewDelegate, UITableViewDataS
             date = String(year + "-" + month + "-" + day)
         }
         cell.dateLabel.text = date
-        VOANewsList[indexPath.row].isLiked = false
+        CNNNewsList[indexPath.row].isLiked = false
         for news in favoriteNews {
-            if news.name == VOANewsList[indexPath.row].name {
-                VOANewsList[indexPath.row].isLiked = true
+            if news.name == CNNNewsList[indexPath.row].name {
+                CNNNewsList[indexPath.row].isLiked = true
             }
         }
-        cell.heartImageView.isHidden = VOANewsList[indexPath.row].isLiked ? false : true
+        cell.heartImageView.isHidden = CNNNewsList[indexPath.row].isLiked ? false : true
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
-    
+
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        let lastElement = VOANewsList.count - 1
+        let lastElement = CNNNewsList.count - 1
         if indexPath.row == lastElement {
             activityIndicator.startAnimating()
             // handle your logic here to get more items, add it to dataSource and reload tableview
+            print(page)
             loadMore(url: url + "_\(page)")
         }
     }
@@ -264,26 +248,26 @@ class VOANewsController: UIViewController, UITableViewDelegate, UITableViewDataS
         
         let checkInAction = UIContextualAction(style: .normal, title: "") { (action, sourceView, completionHandler) in
             
-            let cell = tableView.cellForRow(at: indexPath) as! VOANewsTableViewCell
-            self.VOANewsList[indexPath.row].isLiked = (self.VOANewsList[indexPath.row].isLiked) ? false : true
-            cell.heartImageView.isHidden = self.VOANewsList[indexPath.row].isLiked ? false : true
-            if self.VOANewsList[indexPath.row].isLiked {
-                favoriteNews.append(self.VOANewsList[indexPath.row])
-                DataManager.shared.createFavorateNews(item: self.VOANewsList[indexPath.row])
+            let cell = tableView.cellForRow(at: indexPath) as! CNNNewsTableViewCell
+            self.CNNNewsList[indexPath.row].isLiked = (self.CNNNewsList[indexPath.row].isLiked) ? false : true
+            cell.heartImageView.isHidden = self.CNNNewsList[indexPath.row].isLiked ? false : true
+            if self.CNNNewsList[indexPath.row].isLiked {
+                favoriteNews.append(self.CNNNewsList[indexPath.row])
+                DataManager.shared.createFavorateNews(item: self.CNNNewsList[indexPath.row])
             } else {
                 var numberOfFavorateNewsToBeDeleted = 0
                 for index in 0 ..< favoriteNews.count {
-                    if favoriteNews[index].name == self.VOANewsList[indexPath.row].name {
+                    if favoriteNews[index].name == self.CNNNewsList[indexPath.row].name {
                         numberOfFavorateNewsToBeDeleted = index
                     }
                 }
                 favoriteNews.remove(at: numberOfFavorateNewsToBeDeleted)
-                DataManager.shared.removeFavorateNews(item: self.VOANewsList[indexPath.row])
+                DataManager.shared.removeFavorateNews(item: self.CNNNewsList[indexPath.row])
             }
             completionHandler(true)
         }
         
-        let checkInIcon = VOANewsList[indexPath.row].isLiked ? "undo" : "tick"
+        let checkInIcon = CNNNewsList[indexPath.row].isLiked ? "undo" : "tick"
         checkInAction.backgroundColor = UIColor(red: 38, green: 162, blue: 78)
         checkInAction.image = UIImage(named: checkInIcon)
         
@@ -296,19 +280,18 @@ class VOANewsController: UIViewController, UITableViewDelegate, UITableViewDataS
         
         return UISwipeActionsConfiguration.init()
     }
-    
 }
 
-extension VOANewsController {
+extension CNNNewsController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showVOANewsDetail" {
-            if let indexPath = VOANewsTableView.indexPathForSelectedRow {
+        if segue.identifier == "showCNNNewsDetail" {
+            if let indexPath = CNNNewsTableView.indexPathForSelectedRow {
                 let destinationController = segue.destination as! NewsDetailViewController
-                destinationController.newsItems = VOANewsList
+                destinationController.newsItems = CNNNewsList
                 destinationController.indexOfnews = indexPath.row
-                destinationController.newsItemName = VOANewsList[indexPath.row].name
-                destinationController.newsItemURL = VOANewsList[indexPath.row].url
-                destinationController.newsType = "VOANews"
+                destinationController.newsItemName = CNNNewsList[indexPath.row].name
+                destinationController.newsItemURL = CNNNewsList[indexPath.row].url
+                destinationController.newsType = "CNNNews"
             }
         }
     }

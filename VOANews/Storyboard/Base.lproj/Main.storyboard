@@ -15,10 +15,163 @@
         </array>
     </customFonts>
     <scenes>
+        <!--News-->
+        <scene sceneID="nMd-Qk-bop">
+            <objects>
+                <viewController id="xFy-Wk-FWF" customClass="AllNewsViewController" customModule="VOANews" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="kC6-Sn-Mxb">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="News" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8sc-wj-8id">
+                                <rect key="frame" x="16" y="29.5" width="343" height="35"/>
+                                <fontDescription key="fontDescription" name="BradleyHandITCTT-Bold" family="Bradley Hand" pointSize="28"/>
+                                <color key="textColor" red="0.90588235289999997" green="0.29803921570000003" blue="0.23529411759999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ThR-EF-bne">
+                                <rect key="frame" x="0.0" y="70.5" width="375" height="547.5"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="AllNewsOfVOANewsCell" rowHeight="60" id="2a8-YL-sSL" customClass="AllNewsOfVOANewsTableViewCell" customModule="VOANews" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="60"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="2a8-YL-sSL" id="28A-eu-VTI">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="59.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gTm-tk-fBv">
+                                                    <rect key="frame" x="70" y="18" width="290" height="24"/>
+                                                    <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="18"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8YQ-hR-HOe">
+                                                    <rect key="frame" x="10" y="5" width="50" height="50"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="50" id="cIB-ru-qGX"/>
+                                                        <constraint firstAttribute="width" constant="50" id="lJi-jR-4Gx"/>
+                                                    </constraints>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="8YQ-hR-HOe" secondAttribute="bottom" constant="4.5" id="0B6-Pb-2VI"/>
+                                                <constraint firstItem="gTm-tk-fBv" firstAttribute="leading" secondItem="8YQ-hR-HOe" secondAttribute="trailing" constant="10" id="4Nm-1p-LzJ"/>
+                                                <constraint firstItem="8YQ-hR-HOe" firstAttribute="top" secondItem="28A-eu-VTI" secondAttribute="top" constant="5" id="FZU-3e-bfg"/>
+                                                <constraint firstItem="8YQ-hR-HOe" firstAttribute="leading" secondItem="28A-eu-VTI" secondAttribute="leading" constant="10" id="K7K-Sf-PUi"/>
+                                                <constraint firstItem="gTm-tk-fBv" firstAttribute="top" secondItem="28A-eu-VTI" secondAttribute="topMargin" constant="7" id="TDX-W6-ViK"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="gTm-tk-fBv" secondAttribute="bottom" constant="7" id="pnM-2V-2aF"/>
+                                                <constraint firstItem="gTm-tk-fBv" firstAttribute="trailing" secondItem="28A-eu-VTI" secondAttribute="trailingMargin" id="q3j-Kp-IFW"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="NewsNameLabel" destination="gTm-tk-fBv" id="F2y-BG-pFp"/>
+                                            <outlet property="VOANewsIconImageView" destination="8YQ-hR-HOe" id="lPa-fz-Bs7"/>
+                                            <segue destination="dOH-MM-Bf6" kind="show" id="a7Y-wI-fwK"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="AllNewsOfBBCNewsCell" rowHeight="60" id="ZKt-vd-a1f" customClass="AllNewsOfBBCNewsTableViewCell" customModule="VOANews" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="88" width="375" height="60"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ZKt-vd-a1f" id="dlP-cL-Dgj">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="59.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fmm-q4-V3O">
+                                                    <rect key="frame" x="70" y="18" width="290" height="24"/>
+                                                    <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="18"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0iq-F0-Ht3">
+                                                    <rect key="frame" x="10" y="4.5" width="50" height="50"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="50" id="mii-3k-eTV"/>
+                                                        <constraint firstAttribute="width" constant="50" id="ygt-m8-7KC"/>
+                                                    </constraints>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="0iq-F0-Ht3" firstAttribute="leading" secondItem="dlP-cL-Dgj" secondAttribute="leading" constant="10" id="1UG-Pi-AZj"/>
+                                                <constraint firstItem="0iq-F0-Ht3" firstAttribute="top" secondItem="dlP-cL-Dgj" secondAttribute="top" constant="4.5" id="2hn-fN-FbD"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="fmm-q4-V3O" secondAttribute="bottom" constant="7" id="DIH-EY-PcJ"/>
+                                                <constraint firstAttribute="bottom" secondItem="0iq-F0-Ht3" secondAttribute="bottom" constant="5" id="KRh-ND-LPM"/>
+                                                <constraint firstItem="fmm-q4-V3O" firstAttribute="leading" secondItem="0iq-F0-Ht3" secondAttribute="trailing" constant="10" id="Suv-kN-DwU"/>
+                                                <constraint firstItem="fmm-q4-V3O" firstAttribute="top" secondItem="dlP-cL-Dgj" secondAttribute="topMargin" constant="7" id="fkL-tU-hxp"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="fmm-q4-V3O" secondAttribute="trailing" id="gSh-MB-tmF"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="BBCNewsIconImageView" destination="0iq-F0-Ht3" id="o1X-YF-Xzy"/>
+                                            <outlet property="NewsNameLabel" destination="fmm-q4-V3O" id="9rc-wd-an8"/>
+                                            <segue destination="qcw-Kl-i4r" kind="show" id="gze-Um-r4U"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="AllNewsOfCNNNewsCell" rowHeight="60" id="oZl-jL-XIS" customClass="AllNewsOfCNNNewsTableViewCell" customModule="VOANews" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="148" width="375" height="60"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="oZl-jL-XIS" id="owg-OA-qe4">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="59.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v17-Fi-9NZ">
+                                                    <rect key="frame" x="70" y="18" width="290" height="24"/>
+                                                    <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="18"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gMt-23-Z2D">
+                                                    <rect key="frame" x="10" y="5" width="50" height="50"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="50" id="fAX-Fi-aV6"/>
+                                                        <constraint firstAttribute="width" constant="50" id="fdP-5t-Kgj"/>
+                                                    </constraints>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="v17-Fi-9NZ" firstAttribute="leading" secondItem="gMt-23-Z2D" secondAttribute="trailing" constant="10" id="1ug-aX-RMC"/>
+                                                <constraint firstItem="v17-Fi-9NZ" firstAttribute="top" secondItem="owg-OA-qe4" secondAttribute="topMargin" constant="7" id="8vI-yS-cuM"/>
+                                                <constraint firstAttribute="bottom" secondItem="gMt-23-Z2D" secondAttribute="bottom" constant="4.5" id="J6a-Eq-lYX"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="v17-Fi-9NZ" secondAttribute="bottom" constant="7" id="MC5-2n-2sk"/>
+                                                <constraint firstItem="gMt-23-Z2D" firstAttribute="leading" secondItem="owg-OA-qe4" secondAttribute="leading" constant="10" id="OZZ-Lv-Av1"/>
+                                                <constraint firstItem="v17-Fi-9NZ" firstAttribute="trailing" secondItem="owg-OA-qe4" secondAttribute="trailingMargin" id="i60-BY-Psh"/>
+                                                <constraint firstItem="gMt-23-Z2D" firstAttribute="top" secondItem="owg-OA-qe4" secondAttribute="top" constant="5" id="mNS-Pd-Bb7"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="CNNNewxIconImageView" destination="gMt-23-Z2D" id="Az3-hs-Gck"/>
+                                            <outlet property="NewsNameLabel" destination="v17-Fi-9NZ" id="yp9-Av-E1w"/>
+                                            <segue destination="z9n-eF-5Qo" kind="show" id="C7E-7L-LYF"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="8sc-wj-8id" firstAttribute="top" secondItem="1xt-QN-5KZ" secondAttribute="top" constant="9.5" id="HV6-C1-K9b"/>
+                            <constraint firstItem="ThR-EF-bne" firstAttribute="leading" secondItem="1xt-QN-5KZ" secondAttribute="leading" id="Mcf-8K-Vtm"/>
+                            <constraint firstItem="ThR-EF-bne" firstAttribute="top" secondItem="8sc-wj-8id" secondAttribute="bottom" constant="6" id="Vkd-qa-WBx"/>
+                            <constraint firstItem="ThR-EF-bne" firstAttribute="trailing" secondItem="1xt-QN-5KZ" secondAttribute="trailing" id="dOT-BR-azA"/>
+                            <constraint firstItem="8sc-wj-8id" firstAttribute="leading" secondItem="1xt-QN-5KZ" secondAttribute="leading" constant="16" id="mf0-YO-Fl5"/>
+                            <constraint firstItem="1xt-QN-5KZ" firstAttribute="trailing" secondItem="8sc-wj-8id" secondAttribute="trailing" constant="16" id="psR-3U-92c"/>
+                            <constraint firstItem="ThR-EF-bne" firstAttribute="bottom" secondItem="1xt-QN-5KZ" secondAttribute="bottom" id="z3R-Ob-ffu"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="1xt-QN-5KZ"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="News" image="NewsIcon" id="3NC-7h-soF"/>
+                    <connections>
+                        <outlet property="NewsTableView" destination="ThR-EF-bne" id="uWt-7t-B4s"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kAk-AI-9fa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1069.5999999999999" y="-1670.0149925037483"/>
+        </scene>
         <!--VOA-->
         <scene sceneID="fzz-C6-Meg">
             <objects>
-                <viewController id="dOH-MM-Bf6" customClass="VOANewsController" customModule="VOANews" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="VOANewsController" id="dOH-MM-Bf6" customClass="VOANewsController" customModule="VOANews" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2bi-nC-eEd">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -38,7 +191,7 @@
                                 </connections>
                             </segmentedControl>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="VOA News" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lga-zU-z22">
-                                <rect key="frame" x="50" y="28" width="218" height="38"/>
+                                <rect key="frame" x="49" y="28" width="181" height="38"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="38" id="6Su-fe-joS"/>
                                 </constraints>
@@ -47,7 +200,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="dOq-2d-9iE">
-                                <rect key="frame" x="0.0" y="72" width="375" height="546"/>
+                                <rect key="frame" x="0.0" y="72" width="375" height="595"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="VOANewsCell" rowHeight="83" id="f0x-iu-QT0" customClass="VOANewsTableViewCell" customModule="VOANews" customModuleProvider="target">
@@ -103,7 +256,7 @@
                                 </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n3p-RT-Z9u">
-                                <rect key="frame" x="12" y="34" width="26" height="26"/>
+                                <rect key="frame" x="242" y="34" width="26" height="26"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="26" id="bGH-Yb-YFT"/>
                                     <constraint firstAttribute="width" constant="26" id="tES-KR-Na2"/>
@@ -113,20 +266,33 @@
                                     <action selector="refresh:" destination="dOH-MM-Bf6" eventType="touchUpInside" id="dkB-gM-uNn"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ntf-Rv-tEf">
+                                <rect key="frame" x="12" y="34.5" width="25" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="25" id="cDi-6v-rnV"/>
+                                    <constraint firstAttribute="width" constant="25" id="yFP-UW-pgC"/>
+                                </constraints>
+                                <state key="normal" image="dismiss_music"/>
+                                <connections>
+                                    <action selector="dismiss:" destination="dOH-MM-Bf6" eventType="touchUpInside" id="Cty-xa-4Yi"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="n3p-RT-Z9u" firstAttribute="centerY" secondItem="lga-zU-z22" secondAttribute="centerY" id="0vX-9A-tgD"/>
                             <constraint firstItem="gmh-wD-HGI" firstAttribute="centerY" secondItem="lga-zU-z22" secondAttribute="centerY" id="1dq-1u-sqa"/>
+                            <constraint firstItem="lga-zU-z22" firstAttribute="leading" secondItem="Ntf-Rv-tEf" secondAttribute="trailing" constant="12" id="6YX-5T-WO8"/>
                             <constraint firstItem="dOq-2d-9iE" firstAttribute="top" secondItem="lga-zU-z22" secondAttribute="bottom" constant="6" id="82H-ky-tBZ"/>
+                            <constraint firstItem="gmh-wD-HGI" firstAttribute="leading" secondItem="n3p-RT-Z9u" secondAttribute="trailing" constant="12" id="CQe-LW-mVy"/>
                             <constraint firstItem="dOq-2d-9iE" firstAttribute="bottom" secondItem="8ew-o7-Lge" secondAttribute="bottom" id="E8m-01-ItZ"/>
-                            <constraint firstItem="gmh-wD-HGI" firstAttribute="leading" secondItem="lga-zU-z22" secondAttribute="trailing" constant="12" id="L82-O3-LXD"/>
+                            <constraint firstItem="Ntf-Rv-tEf" firstAttribute="leading" secondItem="8ew-o7-Lge" secondAttribute="leading" constant="12" id="FJN-fa-Klz"/>
+                            <constraint firstItem="Ntf-Rv-tEf" firstAttribute="centerY" secondItem="lga-zU-z22" secondAttribute="centerY" id="G1B-Vg-fwu"/>
                             <constraint firstItem="lga-zU-z22" firstAttribute="top" secondItem="8ew-o7-Lge" secondAttribute="top" constant="8" id="MQ6-iS-Uo3"/>
-                            <constraint firstItem="n3p-RT-Z9u" firstAttribute="leading" secondItem="8ew-o7-Lge" secondAttribute="leading" constant="12" id="Mpf-Na-nsr"/>
                             <constraint firstItem="dOq-2d-9iE" firstAttribute="leading" secondItem="8ew-o7-Lge" secondAttribute="leading" id="eeT-Wm-eqT"/>
-                            <constraint firstItem="lga-zU-z22" firstAttribute="leading" secondItem="n3p-RT-Z9u" secondAttribute="trailing" constant="12" id="oZ6-aU-7yh"/>
                             <constraint firstItem="8ew-o7-Lge" firstAttribute="trailing" secondItem="gmh-wD-HGI" secondAttribute="trailing" constant="12" id="siN-M0-VpQ"/>
                             <constraint firstItem="dOq-2d-9iE" firstAttribute="trailing" secondItem="8ew-o7-Lge" secondAttribute="trailing" id="yY1-IK-dbx"/>
+                            <constraint firstItem="n3p-RT-Z9u" firstAttribute="leading" secondItem="lga-zU-z22" secondAttribute="trailing" constant="12" id="zwA-F5-7GD"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="8ew-o7-Lge"/>
                     </view>
@@ -144,7 +310,7 @@
         <!--CNN-->
         <scene sceneID="Cyy-Io-lCf">
             <objects>
-                <viewController id="z9n-eF-5Qo" customClass="CNNNewsController" customModule="VOANews" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CNNNewsController" id="z9n-eF-5Qo" customClass="CNNNewsController" customModule="VOANews" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kNP-aD-0W4">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -156,7 +322,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1We-3a-qWz">
-                                <rect key="frame" x="12" y="34" width="26" height="26"/>
+                                <rect key="frame" x="337" y="34" width="26" height="26"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="26" id="rWW-q3-BGZ"/>
                                     <constraint firstAttribute="height" constant="26" id="utl-hT-anH"/>
@@ -167,7 +333,7 @@
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="w2I-Nm-GiY">
-                                <rect key="frame" x="0.0" y="70.5" width="375" height="547.5"/>
+                                <rect key="frame" x="0.0" y="70.5" width="375" height="596.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CNNNewsCell" rowHeight="83" id="mIK-pa-SSe" customClass="CNNNewsTableViewCell" customModule="VOANews" customModuleProvider="target">
@@ -222,6 +388,17 @@
                                     <outlet property="delegate" destination="z9n-eF-5Qo" id="q3b-eT-42N"/>
                                 </connections>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jd6-US-uGG">
+                                <rect key="frame" x="12" y="34.5" width="25" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="25" id="JRe-4Z-LOZ"/>
+                                    <constraint firstAttribute="height" constant="25" id="rxy-d6-dTv"/>
+                                </constraints>
+                                <state key="normal" image="dismiss_music"/>
+                                <connections>
+                                    <action selector="dismiss:" destination="z9n-eF-5Qo" eventType="touchUpInside" id="dWS-Up-GoN"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -231,10 +408,12 @@
                             <constraint firstItem="w2I-Nm-GiY" firstAttribute="trailing" secondItem="hZy-ss-ftd" secondAttribute="trailing" id="FAl-3d-crX"/>
                             <constraint firstItem="1We-3a-qWz" firstAttribute="centerY" secondItem="BUJ-SE-1wE" secondAttribute="centerY" id="GIA-WR-TBF"/>
                             <constraint firstItem="w2I-Nm-GiY" firstAttribute="top" secondItem="BUJ-SE-1wE" secondAttribute="bottom" constant="6" id="Hpw-T6-3RJ"/>
-                            <constraint firstItem="1We-3a-qWz" firstAttribute="leading" secondItem="hZy-ss-ftd" secondAttribute="leading" constant="12" id="YTt-aD-hpz"/>
+                            <constraint firstItem="jd6-US-uGG" firstAttribute="centerY" secondItem="BUJ-SE-1wE" secondAttribute="centerY" id="abm-NB-MrX"/>
                             <constraint firstItem="BUJ-SE-1wE" firstAttribute="top" secondItem="hZy-ss-ftd" secondAttribute="top" constant="9.5" id="ek4-3X-yna"/>
+                            <constraint firstItem="jd6-US-uGG" firstAttribute="leading" secondItem="hZy-ss-ftd" secondAttribute="leading" constant="12" id="erY-Re-Rrg"/>
                             <constraint firstItem="BUJ-SE-1wE" firstAttribute="leading" secondItem="hZy-ss-ftd" secondAttribute="leading" constant="16" id="hmj-or-feC"/>
                             <constraint firstItem="w2I-Nm-GiY" firstAttribute="bottom" secondItem="hZy-ss-ftd" secondAttribute="bottom" id="n6U-Uq-kfy"/>
+                            <constraint firstItem="hZy-ss-ftd" firstAttribute="trailing" secondItem="1We-3a-qWz" secondAttribute="trailing" constant="12" id="uum-ev-6wV"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="hZy-ss-ftd"/>
                     </view>
@@ -245,12 +424,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bfT-s6-WHa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="494" y="-1211"/>
+            <point key="canvasLocation" x="494" y="-350"/>
         </scene>
         <!--BBC-->
         <scene sceneID="hVL-mV-kVt">
             <objects>
-                <viewController id="qcw-Kl-i4r" customClass="BBCNewsController" customModule="VOANews" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="BBCNewsController" id="qcw-Kl-i4r" customClass="BBCNewsController" customModule="VOANews" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="UIh-Wz-c3N">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -261,8 +440,19 @@
                                 <color key="textColor" red="0.90588235289999997" green="0.29803921570000003" blue="0.23529411759999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Zt-B2-r8c">
+                                <rect key="frame" x="12" y="34.5" width="25" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="25" id="Pvx-4x-Yqz"/>
+                                    <constraint firstAttribute="width" constant="25" id="t3u-cz-Oz7"/>
+                                </constraints>
+                                <state key="normal" image="dismiss_music"/>
+                                <connections>
+                                    <action selector="dismiss:" destination="qcw-Kl-i4r" eventType="touchUpInside" id="lRs-xV-ZSE"/>
+                                </connections>
+                            </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="y39-5H-6e7">
-                                <rect key="frame" x="0.0" y="70.5" width="375" height="547.5"/>
+                                <rect key="frame" x="0.0" y="70.5" width="375" height="596.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="BBCNewsCell" rowHeight="83" id="EDb-zt-PLe" customClass="BBCNewsTableViewCell" customModule="VOANews" customModuleProvider="target">
@@ -318,7 +508,7 @@
                                 </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cEs-kU-dNQ">
-                                <rect key="frame" x="12" y="34" width="26" height="26"/>
+                                <rect key="frame" x="337" y="34" width="26" height="26"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="26" id="8uJ-nQ-q9l"/>
                                     <constraint firstAttribute="height" constant="26" id="YIe-DC-O98"/>
@@ -333,14 +523,16 @@
                         <constraints>
                             <constraint firstItem="eN0-CE-63w" firstAttribute="trailing" secondItem="Zwa-Yo-QK5" secondAttribute="trailing" constant="16" id="1Wm-t1-2Mp"/>
                             <constraint firstItem="cEs-kU-dNQ" firstAttribute="centerY" secondItem="Zwa-Yo-QK5" secondAttribute="centerY" id="3ks-gh-gOg"/>
+                            <constraint firstItem="7Zt-B2-r8c" firstAttribute="centerY" secondItem="Zwa-Yo-QK5" secondAttribute="centerY" id="82S-nP-jNZ"/>
                             <constraint firstItem="eN0-CE-63w" firstAttribute="trailing" secondItem="y39-5H-6e7" secondAttribute="trailing" id="8GW-LT-CGR"/>
                             <constraint firstItem="Zwa-Yo-QK5" firstAttribute="top" secondItem="eN0-CE-63w" secondAttribute="top" constant="9.5" id="AQN-Qt-69K"/>
                             <constraint firstItem="y39-5H-6e7" firstAttribute="top" secondItem="Zwa-Yo-QK5" secondAttribute="bottom" constant="6" id="F6R-lA-dRf"/>
                             <constraint firstItem="y39-5H-6e7" firstAttribute="centerX" secondItem="UIh-Wz-c3N" secondAttribute="centerX" id="Imz-R8-ijL"/>
                             <constraint firstItem="Zwa-Yo-QK5" firstAttribute="leading" secondItem="eN0-CE-63w" secondAttribute="leading" constant="16" id="LHT-K6-SKA"/>
-                            <constraint firstItem="cEs-kU-dNQ" firstAttribute="leading" secondItem="eN0-CE-63w" secondAttribute="leading" constant="12" id="RRj-l3-dp8"/>
+                            <constraint firstItem="7Zt-B2-r8c" firstAttribute="leading" secondItem="eN0-CE-63w" secondAttribute="leading" constant="12" id="bGH-pd-JSS"/>
                             <constraint firstItem="y39-5H-6e7" firstAttribute="leading" secondItem="eN0-CE-63w" secondAttribute="leading" id="ceR-ln-7ZT"/>
                             <constraint firstItem="eN0-CE-63w" firstAttribute="bottom" secondItem="y39-5H-6e7" secondAttribute="bottom" id="lkx-xx-ocn"/>
+                            <constraint firstItem="eN0-CE-63w" firstAttribute="trailing" secondItem="cEs-kU-dNQ" secondAttribute="trailing" constant="12" id="orM-s5-ktQ"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="eN0-CE-63w"/>
                     </view>
@@ -351,12 +543,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ODX-0y-5Vc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="494" y="-402"/>
+            <point key="canvasLocation" x="494" y="-1118"/>
         </scene>
         <!--Favorate News Controller-->
         <scene sceneID="GwR-Al-SV7">
             <objects>
-                <viewController id="arh-R3-6tU" customClass="FavorateNewsController" customModule="VOANews" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="favorateNewsController" id="arh-R3-6tU" customClass="FavorateNewsController" customModule="VOANews" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="rwa-SB-LG3">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -475,13 +667,13 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="yZq-5s-HKh">
-                                        <rect key="frame" x="64" y="0.0" width="217" height="31"/>
+                                        <rect key="frame" x="64" y="0.0" width="237" height="31"/>
                                         <connections>
                                             <action selector="sliderChanged:" destination="OrM-OH-L68" eventType="valueChanged" id="iB7-dB-jTi"/>
                                         </connections>
                                     </slider>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oj8-pn-yeG">
-                                        <rect key="frame" x="297" y="0.0" width="48" height="30"/>
+                                        <rect key="frame" x="317" y="0.0" width="28" height="30"/>
                                         <fontDescription key="fontDescription" name="AmericanTypewriter" family="American Typewriter" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -681,9 +873,7 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <segue destination="dOH-MM-Bf6" kind="relationship" relationship="viewControllers" id="mrY-3U-G22"/>
-                        <segue destination="qcw-Kl-i4r" kind="relationship" relationship="viewControllers" id="LHq-Is-7kE"/>
-                        <segue destination="z9n-eF-5Qo" kind="relationship" relationship="viewControllers" id="f4M-3o-usc"/>
+                        <segue destination="xFy-Wk-FWF" kind="relationship" relationship="viewControllers" id="1KN-XX-EeN"/>
                         <segue destination="arh-R3-6tU" kind="relationship" relationship="viewControllers" id="Hfu-3A-Ydw"/>
                     </connections>
                 </tabBarController>
@@ -695,8 +885,9 @@
     <resources>
         <image name="BBCNewsIcon" width="100" height="100"/>
         <image name="CNNNewsIcon" width="75" height="36"/>
+        <image name="NewsIcon" width="60" height="60"/>
         <image name="NowPlayingBars" width="19.5" height="19"/>
-        <image name="VOANewsIcon" width="100" height="100"/>
+        <image name="VOANewsIcon" width="75" height="75"/>
         <image name="dismiss_music" width="25" height="25"/>
         <image name="fastforward_btn" width="128" height="128"/>
         <image name="heart-tick" width="22" height="21"/>
@@ -707,6 +898,6 @@
         <image name="rewind_btn" width="96" height="96"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="4Tr-rq-Ab2"/>
+        <segue reference="vAP-2L-YFf"/>
     </inferredMetricsTieBreakers>
 </document>
