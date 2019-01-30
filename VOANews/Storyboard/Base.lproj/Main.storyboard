@@ -305,7 +305,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Am1-hc-gsu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="494" y="-1997"/>
+            <point key="canvasLocation" x="390" y="-2494"/>
         </scene>
         <!--CNN-->
         <scene sceneID="Cyy-Io-lCf">
@@ -424,7 +424,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bfT-s6-WHa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="494" y="-350"/>
+            <point key="canvasLocation" x="390" y="-847"/>
         </scene>
         <!--BBC-->
         <scene sceneID="hVL-mV-kVt">
@@ -435,7 +435,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BBC News" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zwa-Yo-QK5">
-                                <rect key="frame" x="16" y="29.5" width="343" height="35"/>
+                                <rect key="frame" x="49" y="29.5" width="181" height="35"/>
                                 <fontDescription key="fontDescription" name="BradleyHandITCTT-Bold" family="Bradley Hand" pointSize="28"/>
                                 <color key="textColor" red="0.90588235289999997" green="0.29803921570000003" blue="0.23529411759999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -508,7 +508,7 @@
                                 </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cEs-kU-dNQ">
-                                <rect key="frame" x="337" y="34" width="26" height="26"/>
+                                <rect key="frame" x="242" y="34" width="26" height="26"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="26" id="8uJ-nQ-q9l"/>
                                     <constraint firstAttribute="height" constant="26" id="YIe-DC-O98"/>
@@ -518,32 +518,49 @@
                                     <action selector="refresh:" destination="qcw-Kl-i4r" eventType="touchUpInside" id="v5N-kO-piI"/>
                                 </connections>
                             </button>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="v2q-lE-UV0">
+                                <rect key="frame" x="280" y="33" width="83" height="29"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="83" id="4Ag-ai-sUW"/>
+                                </constraints>
+                                <segments>
+                                    <segment title="Spcl"/>
+                                    <segment title="Std"/>
+                                </segments>
+                                <color key="tintColor" red="0.90588235289999997" green="0.29803921570000003" blue="0.23529411759999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <action selector="showMode:" destination="qcw-Kl-i4r" eventType="valueChanged" id="WgE-Lr-w9S"/>
+                                </connections>
+                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="eN0-CE-63w" firstAttribute="trailing" secondItem="Zwa-Yo-QK5" secondAttribute="trailing" constant="16" id="1Wm-t1-2Mp"/>
                             <constraint firstItem="cEs-kU-dNQ" firstAttribute="centerY" secondItem="Zwa-Yo-QK5" secondAttribute="centerY" id="3ks-gh-gOg"/>
                             <constraint firstItem="7Zt-B2-r8c" firstAttribute="centerY" secondItem="Zwa-Yo-QK5" secondAttribute="centerY" id="82S-nP-jNZ"/>
                             <constraint firstItem="eN0-CE-63w" firstAttribute="trailing" secondItem="y39-5H-6e7" secondAttribute="trailing" id="8GW-LT-CGR"/>
                             <constraint firstItem="Zwa-Yo-QK5" firstAttribute="top" secondItem="eN0-CE-63w" secondAttribute="top" constant="9.5" id="AQN-Qt-69K"/>
                             <constraint firstItem="y39-5H-6e7" firstAttribute="top" secondItem="Zwa-Yo-QK5" secondAttribute="bottom" constant="6" id="F6R-lA-dRf"/>
                             <constraint firstItem="y39-5H-6e7" firstAttribute="centerX" secondItem="UIh-Wz-c3N" secondAttribute="centerX" id="Imz-R8-ijL"/>
-                            <constraint firstItem="Zwa-Yo-QK5" firstAttribute="leading" secondItem="eN0-CE-63w" secondAttribute="leading" constant="16" id="LHT-K6-SKA"/>
+                            <constraint firstItem="v2q-lE-UV0" firstAttribute="leading" secondItem="cEs-kU-dNQ" secondAttribute="trailing" constant="12" id="PCh-Go-OEH"/>
+                            <constraint firstItem="eN0-CE-63w" firstAttribute="trailing" secondItem="v2q-lE-UV0" secondAttribute="trailing" constant="12" id="QoI-7X-rCr"/>
+                            <constraint firstItem="v2q-lE-UV0" firstAttribute="centerY" secondItem="Zwa-Yo-QK5" secondAttribute="centerY" id="RWj-Z6-rEM"/>
+                            <constraint firstItem="cEs-kU-dNQ" firstAttribute="leading" secondItem="Zwa-Yo-QK5" secondAttribute="trailing" constant="12" id="ZrY-jr-Cka"/>
                             <constraint firstItem="7Zt-B2-r8c" firstAttribute="leading" secondItem="eN0-CE-63w" secondAttribute="leading" constant="12" id="bGH-pd-JSS"/>
                             <constraint firstItem="y39-5H-6e7" firstAttribute="leading" secondItem="eN0-CE-63w" secondAttribute="leading" id="ceR-ln-7ZT"/>
                             <constraint firstItem="eN0-CE-63w" firstAttribute="bottom" secondItem="y39-5H-6e7" secondAttribute="bottom" id="lkx-xx-ocn"/>
-                            <constraint firstItem="eN0-CE-63w" firstAttribute="trailing" secondItem="cEs-kU-dNQ" secondAttribute="trailing" constant="12" id="orM-s5-ktQ"/>
+                            <constraint firstItem="Zwa-Yo-QK5" firstAttribute="leading" secondItem="7Zt-B2-r8c" secondAttribute="trailing" constant="12" id="qI7-LF-083"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="eN0-CE-63w"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="BBC" image="BBCNewsIcon" id="2fJ-7K-ULc"/>
                     <connections>
                         <outlet property="BBCNewsTableView" destination="y39-5H-6e7" id="xmd-SF-UKG"/>
+                        <outlet property="segmentedControl" destination="v2q-lE-UV0" id="Dec-5D-rRl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ODX-0y-5Vc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="494" y="-1118"/>
+            <point key="canvasLocation" x="390" y="-1670"/>
         </scene>
         <!--Favorate News Controller-->
         <scene sceneID="GwR-Al-SV7">
@@ -634,7 +651,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DNt-g4-9eI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="493.60000000000002" y="469.1154422788606"/>
+            <point key="canvasLocation" x="-1070" y="-848"/>
         </scene>
         <!--News Detail View Controller-->
         <scene sceneID="RUL-vB-ETZ">
@@ -667,13 +684,13 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="yZq-5s-HKh">
-                                        <rect key="frame" x="64" y="0.0" width="237" height="31"/>
+                                        <rect key="frame" x="64" y="0.0" width="233" height="31"/>
                                         <connections>
                                             <action selector="sliderChanged:" destination="OrM-OH-L68" eventType="valueChanged" id="iB7-dB-jTi"/>
                                         </connections>
                                     </slider>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oj8-pn-yeG">
-                                        <rect key="frame" x="317" y="0.0" width="28" height="30"/>
+                                        <rect key="frame" x="313" y="0.0" width="32" height="30"/>
                                         <fontDescription key="fontDescription" name="AmericanTypewriter" family="American Typewriter" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -860,7 +877,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="byf-OB-VCh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2085.5999999999999" y="-645.42728635682158"/>
+            <point key="canvasLocation" x="2106" y="-1670"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="pUV-jL-5qc">
@@ -879,7 +896,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vOm-He-8hI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1089" y="-644"/>
+            <point key="canvasLocation" x="-2198" y="-1670"/>
         </scene>
     </scenes>
     <resources>
@@ -898,6 +915,6 @@
         <image name="rewind_btn" width="96" height="96"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="vAP-2L-YFf"/>
+        <segue reference="lid-Z4-Aru"/>
     </inferredMetricsTieBreakers>
 </document>

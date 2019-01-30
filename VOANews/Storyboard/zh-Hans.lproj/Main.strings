@@ -15,10 +15,10 @@
 
 /* Class = "UISegmentedControl"; gmh-wD-HGI.segmentTitles[0] = "Spcl"; ObjectID = "gmh-wD-HGI"; */
 "gmh-wD-HGI.segmentTitles[0]" = "慢速";
-
+"v2q-lE-UV0.segmentTitles[0]" = "慢速";
 /* Class = "UISegmentedControl"; gmh-wD-HGI.segmentTitles[1] = "Std"; ObjectID = "gmh-wD-HGI"; */
 "gmh-wD-HGI.segmentTitles[1]" = "常速";
-
+"v2q-lE-UV0.segmentTitles[1]" = "常速";
 /* Class = "UILabel"; text = "Date"; ObjectID = "hRn-ow-shW"; */
 "hRn-ow-shW.text" = "Date";
 

@@ -206,6 +206,7 @@ class NewsDetailViewController: UIViewController, AVAudioPlayerDelegate {
                 let replaceString10 = " <a href=\"http://www.hxen.com/\">www.hxen.com</a> "
                 let replaceString11 = "<a href=\"http://www.hxen.com\" target=\"_blank\" class=\"infotextkey\">cnn</a>"
                 let replaceString12 = "&amp;"
+                let replaceString13 = "<a href=\"http://www.hxen.com/englishlistening/\" target=\"_blank\" class=\"infotextkey\">voice</a> "
                 var countOfImage = [Int]()
                 
                 var numberOfNewsDetailsToBeDeleted = [Int]()
@@ -265,6 +266,9 @@ class NewsDetailViewController: UIViewController, AVAudioPlayerDelegate {
                     if self.newsDetails[index].contains(replaceString12) {
                         self.newsDetails[index] = self.newsDetails[index].replacingOccurrences(of: replaceString12, with: "&")
                     }
+                    if self.newsDetails[index].contains(replaceString13) {
+                        self.newsDetails[index] = self.newsDetails[index].replacingOccurrences(of: replaceString13, with: "")
+                    }
                     if self.newsDetails[index].contains("<img") {
                         countOfImage.append(index)
                     }
@@ -309,7 +313,6 @@ class NewsDetailViewController: UIViewController, AVAudioPlayerDelegate {
                 if let content = doc.content {
                     if content.contains("下一页") {
                         thirdPageFlag = true
-                        print(thirdPageFlag)
                     }
                 }
                 var count = 0

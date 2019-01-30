@@ -15,6 +15,7 @@ import MediaPlayer
 
 class BBCNewsController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    @IBOutlet var segmentedControl: UISegmentedControl!
     @IBOutlet var BBCNewsTableView: UITableView!
     
     @IBAction func refresh(_ sender: UIButton) {
@@ -24,11 +25,27 @@ class BBCNewsController: UIViewController, UITableViewDelegate, UITableViewDataS
         page = 2
         timer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(loadData), userInfo: nil, repeats: true)
     }
+    @IBAction func showMode(_ sender: UISegmentedControl) {
+        page = 2
+        switch segmentedControl.selectedSegmentIndex {
+        case 0:
+            url = "http://www.hxen.com/englishlistening/rumen/huanqiu/index"
+            BBCNewsList = [News]()
+            activityIndicator.startAnimating()
+            loadData()
+        case 1:
+            url = "http://www.hxen.com/englishlistening/bbc/index"
+            BBCNewsList = [News]()
+            activityIndicator.startAnimating()
+            loadData()
+        default: break
+        }
+    }
     @IBAction func dismiss(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
     }
     
-    var url = "http://www.hxen.com/englishlistening/bbc/index"
+    var url = "http://www.hxen.com/englishlistening/rumen/huanqiu/index"
     
     var BBCNewsList = [News]() {
         didSet {
@@ -129,6 +146,12 @@ class BBCNewsController: UIViewController, UITableViewDelegate, UITableViewDataS
             }
             let enc: String.Encoding = String.Encoding(rawValue: CFStringConvertEncodingToNSStringEncoding(0x0632))
             if let html = response.result.value, let doc = try? HTML(html: html, encoding: enc) {
+                if let content = doc.content {
+                    if content.contains("没有找到您要访问的页面") {
+                        self.activityIndicator.stopAnimating()
+                        return
+                    }
+                }
                 for content in doc.css(".fz18") {
                     if let innerHtml = content.innerHTML {
                         let components = innerHtml.components(separatedBy: "\"")
@@ -197,6 +220,9 @@ class BBCNewsController: UIViewController, UITableViewDelegate, UITableViewDataS
         
         let components = BBCNewsList[indexPath.row].url.components(separatedBy: "/")
         var date = components[5]
+        if BBCNewsList[indexPath.row].url.contains("huanqiu") {
+            date = components[6]
+        }
         if !date.contains("-") {
             let year = date[date.startIndex ... date.index(date.startIndex, offsetBy: 3)]
             let month = date[date.index(date.startIndex, offsetBy: 4) ... date.index(date.startIndex, offsetBy: 5)]
