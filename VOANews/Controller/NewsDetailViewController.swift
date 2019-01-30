@@ -282,6 +282,10 @@ class NewsDetailViewController: UIViewController, AVAudioPlayerDelegate {
                         self.newsDetails[index] = self.newsDetails[index].replacingOccurrences(of: "<em>", with: "")
                         self.newsDetails[index] = self.newsDetails[index].replacingOccurrences(of: "</em>", with: "")
                     }
+                    if self.newsDetails[index].contains("&lt;") {
+                        self.newsDetails[index] = self.newsDetails[index].replacingOccurrences(of: "&lt;", with: "<")
+                        self.newsDetails[index] = self.newsDetails[index].replacingOccurrences(of: "&gt;", with: ">")
+                    }
                 }
                 
                 if countOfImage.count > 0 {
