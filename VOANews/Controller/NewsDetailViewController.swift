@@ -191,7 +191,6 @@ class NewsDetailViewController: UIViewController, AVAudioPlayerDelegate {
                         let components = innerHtml.components(separatedBy: "<br>")
                         for component in components {
                             newsOriginalDetails.append(component)
-                            print(component)
                         }
                     }
                 }
@@ -332,6 +331,7 @@ class NewsDetailViewController: UIViewController, AVAudioPlayerDelegate {
                 }
                 var count = 0
                 for content in doc.css(".center") {
+                    print(content.content)
                     count += 1
                     if count == 1 {
                         continue
@@ -342,12 +342,29 @@ class NewsDetailViewController: UIViewController, AVAudioPlayerDelegate {
                         let components = secondContent.components(separatedBy: "音频下载[点击右键另存为]\r\n")
                         var thirdContent = components[1]
                         thirdContent = thirdContent.components(separatedBy: "2/2")[0]
+                        if thirdContent.contains("\r\n\r\n") {
+                            thirdContent = thirdContent.replacingOccurrences(of: "\r\n\r\n", with: "\r\n")
+                        }
                         let thirdContentComponents = thirdContent.components(separatedBy: "\r\n")
                         for thirdContentComponent in thirdContentComponents {
                             self.newsDetails.append(thirdContentComponent)
                         }
                     }
                 }
+                
+                var numberOfNewsDetailsToBeDeleted = [Int]()
+                for index in 0 ..< self.newsDetails.count {
+                    if self.newsDetails[index] == "" {
+                        numberOfNewsDetailsToBeDeleted.append(index)
+                    }
+                }
+                
+                if numberOfNewsDetailsToBeDeleted.count >= 0 {
+                    for index in numberOfNewsDetailsToBeDeleted {
+                        self.newsDetails.remove(at: index)
+                    }
+                }
+                
             }
             if thirdPageFlag {
                 let index = self.newsItemURL.index(self.newsItemURL.endIndex, offsetBy: -6)

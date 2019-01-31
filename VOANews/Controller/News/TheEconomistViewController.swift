@@ -147,6 +147,9 @@ class TheEconomistViewController: UIViewController, UITableViewDelegate, UITable
                             components = innerHtml.components(separatedBy: "\"")
                         }
                         components = innerHtml.components(separatedBy: "\"")
+                        if innerHtml.contains("\"间谍案\"恶化英俄关系") {
+                            components[3] = "/englishlistening/other/jingji/2018-12-28/511009.html"
+                        }
                         let TheEconomistItem = News.init(name: content.content ?? "", url: "http://www.hxen.com" + components[3], isLiked: false)
                         self.TheEconomistList.append(TheEconomistItem)
                     }
@@ -187,7 +190,7 @@ class TheEconomistViewController: UIViewController, UITableViewDelegate, UITable
         tempCell.nameLabel.text = TheEconomistList[indexPath.row].name
         
         let components = TheEconomistList[indexPath.row].url.components(separatedBy: "/")
-        var date = components[5]
+        var date = components[6]
         if !date.contains("-") {
             let year = date[date.startIndex ... date.index(date.startIndex, offsetBy: 3)]
             let month = date[date.index(date.startIndex, offsetBy: 4) ... date.index(date.startIndex, offsetBy: 5)]
