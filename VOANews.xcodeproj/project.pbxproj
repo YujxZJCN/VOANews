@@ -14,6 +14,7 @@
 		F608B60722028AF1001E35A5 /* TheEconomistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F608B60622028AF1001E35A5 /* TheEconomistViewController.swift */; };
 		F608B60922029291001E35A5 /* CRINewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F608B60822029291001E35A5 /* CRINewsTableViewCell.swift */; };
 		F608B60B220292DD001E35A5 /* CRINewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F608B60A220292DD001E35A5 /* CRINewsViewController.swift */; };
+		F608B60D2202A77C001E35A5 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F608B60C2202A77C001E35A5 /* AboutViewController.swift */; };
 		F616EDA021F9FAA500704237 /* PublicVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = F616ED9F21F9FAA500704237 /* PublicVariables.swift */; };
 		F616EDA221F9FBC800704237 /* FavoriteNewsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F616EDA121F9FBC800704237 /* FavoriteNewsController.swift */; };
 		F616EDA421F9FC4000704237 /* FavorateNewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F616EDA321F9FC4000704237 /* FavorateNewsTableViewCell.swift */; };
@@ -58,6 +59,8 @@
 		F608B60622028AF1001E35A5 /* TheEconomistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheEconomistViewController.swift; sourceTree = "<group>"; };
 		F608B60822029291001E35A5 /* CRINewsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CRINewsTableViewCell.swift; sourceTree = "<group>"; };
 		F608B60A220292DD001E35A5 /* CRINewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CRINewsViewController.swift; sourceTree = "<group>"; };
+		F608B60C2202A77C001E35A5 /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
+		F608B6102202B209001E35A5 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Onboarding.strings"; sourceTree = "<group>"; };
 		F616ED9F21F9FAA500704237 /* PublicVariables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicVariables.swift; sourceTree = "<group>"; };
 		F616EDA121F9FBC800704237 /* FavoriteNewsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteNewsController.swift; sourceTree = "<group>"; };
 		F616EDA321F9FC4000704237 /* FavorateNewsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavorateNewsTableViewCell.swift; sourceTree = "<group>"; };
@@ -202,6 +205,7 @@
 				F6503F3C220139BD00CC744A /* News */,
 				F616EDA121F9FBC800704237 /* FavoriteNewsController.swift */,
 				F6BEC16021F42C4400290F7D /* NewsDetailViewController.swift */,
+				F608B60C2202A77C001E35A5 /* AboutViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -402,6 +406,7 @@
 				F6829A6421F602040020BB30 /* BBCNewsController.swift in Sources */,
 				F608B60522028A9A001E35A5 /* TheEconomistTableViewCell.swift in Sources */,
 				F6BEC16521F49B3C00290F7D /* NewsDetailTableViewCell.swift in Sources */,
+				F608B60D2202A77C001E35A5 /* AboutViewController.swift in Sources */,
 				F616EDAC21FA06D100704237 /* DataManager.swift in Sources */,
 				F61A7D722201684F007C5C2B /* AsItIsViewController.swift in Sources */,
 				F6829A6821F61F000020BB30 /* CNNNewsController.swift in Sources */,
@@ -428,6 +433,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				F676DD4E21FAE4FC00175C7B /* Base */,
+				F608B6102202B209001E35A5 /* zh-Hans */,
 			);
 			name = Onboarding.storyboard;
 			sourceTree = "<group>";
