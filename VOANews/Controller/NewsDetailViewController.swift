@@ -210,6 +210,7 @@ class NewsDetailViewController: UIViewController, AVAudioPlayerDelegate {
                 let replaceString12 = "&amp;"
                 let replaceString13 = "<a href=\"http://www.hxen.com/englishlistening/\" target=\"_blank\" class=\"infotextkey\">voice</a> "
                 let replaceString14 = "<script src=\"http://img.hxen.com/js/gg_bottom.js\"></script>"
+                let replaceString15 = "<a href=\"http://www.hxen.com/word/\" target=\"_blank\" class=\"infotextkey\">词汇</a>"
                 var countOfImage = [Int]()
                 
                 var numberOfNewsDetailsToBeDeleted = [Int]()
@@ -275,6 +276,9 @@ class NewsDetailViewController: UIViewController, AVAudioPlayerDelegate {
                     if self.newsDetails[index].contains(replaceString14) {
                         self.newsDetails[index] = self.newsDetails[index].replacingOccurrences(of: replaceString14, with: "")
                     }
+                    if self.newsDetails[index].contains(replaceString15) {
+                        self.newsDetails[index] = self.newsDetails[index].replacingOccurrences(of: replaceString15, with: "")
+                    }
                     if self.newsDetails[index].contains("<img") {
                         countOfImage.append(index)
                     }
@@ -331,7 +335,6 @@ class NewsDetailViewController: UIViewController, AVAudioPlayerDelegate {
                 }
                 var count = 0
                 for content in doc.css(".center") {
-                    print(content.content)
                     count += 1
                     if count == 1 {
                         continue
