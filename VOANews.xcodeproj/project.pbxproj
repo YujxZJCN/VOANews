@@ -10,6 +10,10 @@
 		4C21D4318314E8D3C3B9EC47 /* Pods_VOANews.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA5C7760E5438829CE1C6D22 /* Pods_VOANews.framework */; };
 		F607918C2201E036001A0DDA /* ScientificAmericanTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F607918B2201E036001A0DDA /* ScientificAmericanTableViewCell.swift */; };
 		F607918E2201E090001A0DDA /* ScientificAmericanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F607918D2201E090001A0DDA /* ScientificAmericanViewController.swift */; };
+		F608B60522028A9A001E35A5 /* TheEconomistTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F608B60422028A9A001E35A5 /* TheEconomistTableViewCell.swift */; };
+		F608B60722028AF1001E35A5 /* TheEconomistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F608B60622028AF1001E35A5 /* TheEconomistViewController.swift */; };
+		F608B60922029291001E35A5 /* CRINewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F608B60822029291001E35A5 /* CRINewsTableViewCell.swift */; };
+		F608B60B220292DD001E35A5 /* CRINewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F608B60A220292DD001E35A5 /* CRINewsViewController.swift */; };
 		F616EDA021F9FAA500704237 /* PublicVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = F616ED9F21F9FAA500704237 /* PublicVariables.swift */; };
 		F616EDA221F9FBC800704237 /* FavoriteNewsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F616EDA121F9FBC800704237 /* FavoriteNewsController.swift */; };
 		F616EDA421F9FC4000704237 /* FavorateNewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F616EDA321F9FC4000704237 /* FavorateNewsTableViewCell.swift */; };
@@ -50,6 +54,10 @@
 		DCC451EB7D415345C829EC4A /* Pods-VOANews.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VOANews.release.xcconfig"; path = "Pods/Target Support Files/Pods-VOANews/Pods-VOANews.release.xcconfig"; sourceTree = "<group>"; };
 		F607918B2201E036001A0DDA /* ScientificAmericanTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScientificAmericanTableViewCell.swift; sourceTree = "<group>"; };
 		F607918D2201E090001A0DDA /* ScientificAmericanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScientificAmericanViewController.swift; sourceTree = "<group>"; };
+		F608B60422028A9A001E35A5 /* TheEconomistTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheEconomistTableViewCell.swift; sourceTree = "<group>"; };
+		F608B60622028AF1001E35A5 /* TheEconomistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheEconomistViewController.swift; sourceTree = "<group>"; };
+		F608B60822029291001E35A5 /* CRINewsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CRINewsTableViewCell.swift; sourceTree = "<group>"; };
+		F608B60A220292DD001E35A5 /* CRINewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CRINewsViewController.swift; sourceTree = "<group>"; };
 		F616ED9F21F9FAA500704237 /* PublicVariables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicVariables.swift; sourceTree = "<group>"; };
 		F616EDA121F9FBC800704237 /* FavoriteNewsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteNewsController.swift; sourceTree = "<group>"; };
 		F616EDA321F9FC4000704237 /* FavorateNewsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavorateNewsTableViewCell.swift; sourceTree = "<group>"; };
@@ -126,6 +134,8 @@
 				F6829A6721F61F000020BB30 /* CNNNewsController.swift */,
 				F61A7D712201684F007C5C2B /* AsItIsViewController.swift */,
 				F607918D2201E090001A0DDA /* ScientificAmericanViewController.swift */,
+				F608B60622028AF1001E35A5 /* TheEconomistViewController.swift */,
+				F608B60A220292DD001E35A5 /* CRINewsViewController.swift */,
 			);
 			path = News;
 			sourceTree = "<group>";
@@ -216,6 +226,8 @@
 				F6829A6921F621070020BB30 /* CNNNewsTableViewCell.swift */,
 				F61A7D6F220167C8007C5C2B /* AsItIsTableViewCell.swift */,
 				F607918B2201E036001A0DDA /* ScientificAmericanTableViewCell.swift */,
+				F608B60422028A9A001E35A5 /* TheEconomistTableViewCell.swift */,
+				F608B60822029291001E35A5 /* CRINewsTableViewCell.swift */,
 				F616EDA321F9FC4000704237 /* FavorateNewsTableViewCell.swift */,
 				F6BEC16421F49B3C00290F7D /* NewsDetailTableViewCell.swift */,
 				F6BEC16221F44B1C00290F7D /* AnimationFrames.swift */,
@@ -382,9 +394,13 @@
 				F607918E2201E090001A0DDA /* ScientificAmericanViewController.swift in Sources */,
 				F6BEC16121F42C4400290F7D /* NewsDetailViewController.swift in Sources */,
 				F607918C2201E036001A0DDA /* ScientificAmericanTableViewCell.swift in Sources */,
+				F608B60B220292DD001E35A5 /* CRINewsViewController.swift in Sources */,
+				F608B60922029291001E35A5 /* CRINewsTableViewCell.swift in Sources */,
+				F608B60722028AF1001E35A5 /* TheEconomistViewController.swift in Sources */,
 				F6829A6A21F621070020BB30 /* CNNNewsTableViewCell.swift in Sources */,
 				F6EB092B21F2EBC6009B4785 /* AppDelegate.swift in Sources */,
 				F6829A6421F602040020BB30 /* BBCNewsController.swift in Sources */,
+				F608B60522028A9A001E35A5 /* TheEconomistTableViewCell.swift in Sources */,
 				F6BEC16521F49B3C00290F7D /* NewsDetailTableViewCell.swift in Sources */,
 				F616EDAC21FA06D100704237 /* DataManager.swift in Sources */,
 				F61A7D722201684F007C5C2B /* AsItIsViewController.swift in Sources */,

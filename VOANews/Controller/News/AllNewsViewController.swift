@@ -10,13 +10,12 @@ import UIKit
 
 class AllNewsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return 7
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let identifier = "AllNewsCell"
         let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! AllNewsTableViewCell
-        print(indexPath.row)
         switch indexPath.row {
         case 0:
             cell.newsIconImageView.image = UIImage(named: "letterV")
@@ -33,6 +32,12 @@ class AllNewsViewController: UIViewController, UITableViewDelegate, UITableViewD
         case 4:
             cell.newsIconImageView.image = UIImage(named: "letterS")
             cell.newsNameLabel.text = "Scientific American"
+        case 5:
+            cell.newsIconImageView.image = UIImage(named: "letterT")
+            cell.newsNameLabel.text = "The Economist"
+        case 6:
+            cell.newsIconImageView.image = UIImage(named: "letterC")
+            cell.newsNameLabel.text = "CRI News"
         default:
             cell.newsIconImageView.image = UIImage(named: "")
             cell.newsNameLabel.text = ""
@@ -56,6 +61,10 @@ class AllNewsViewController: UIViewController, UITableViewDelegate, UITableViewD
             targetVC = storyboard.instantiateViewController(withIdentifier :"AsItIsController") as! AsItIsViewController
         case 4:
             targetVC = storyboard.instantiateViewController(withIdentifier :"ScientificAmericanViewController") as! ScientificAmericanViewController
+        case 5:
+            targetVC = storyboard.instantiateViewController(withIdentifier :"TheEconomistViewController") as! TheEconomistViewController
+        case 6:
+            targetVC = storyboard.instantiateViewController(withIdentifier :"CRINewsViewController") as! CRINewsViewController
         default:
             targetVC = storyboard.instantiateViewController(withIdentifier :"AllNewsViewController") as! AllNewsViewController
         }

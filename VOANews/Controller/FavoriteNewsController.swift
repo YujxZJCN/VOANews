@@ -15,6 +15,8 @@ class FavorateNewsController: UIViewController, UITableViewDelegate, UITableView
     var CNNNews = [News]()
     var AsItIs = [News]()
     var ScientificAmerican = [News]()
+    var TheEconomist = [News]()
+    var CRINews = [News]()
     //    var count = 0
     
     override func viewDidLoad() {
@@ -32,6 +34,8 @@ class FavorateNewsController: UIViewController, UITableViewDelegate, UITableView
         CNNNews.removeAll()
         AsItIs.removeAll()
         ScientificAmerican.removeAll()
+        TheEconomist.removeAll()
+        CRINews.removeAll()
         for news in favoriteNews {
             if news.name.contains("VOA") {
                 VOANews.append(news)
@@ -41,6 +45,10 @@ class FavorateNewsController: UIViewController, UITableViewDelegate, UITableView
                 CNNNews.append(news)
             }else if news.name.contains("科学美国人") {
                 ScientificAmerican.append(news)
+            }else if news.name.contains("经济学人") {
+                TheEconomist.append(news)
+            }else if news.name.contains("CRI") {
+                CRINews.append(news)
             }else {
                 AsItIs.append(news)
             }
@@ -49,7 +57,7 @@ class FavorateNewsController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 5
+        return 7
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -64,6 +72,10 @@ class FavorateNewsController: UIViewController, UITableViewDelegate, UITableView
             return AsItIs.count
         case 4:
             return ScientificAmerican.count
+        case 5:
+            return TheEconomist.count
+        case 6:
+            return CRINews.count
         default:
             return 0
         }
@@ -81,6 +93,10 @@ class FavorateNewsController: UIViewController, UITableViewDelegate, UITableView
             return "As It Is"
         case 4:
             return "Scientific American"
+        case 5:
+            return "The Economist"
+        case 6:
+            return "CRI News"
         default:
             return ""
         }
@@ -113,6 +129,12 @@ class FavorateNewsController: UIViewController, UITableViewDelegate, UITableView
         case 4:
             cell.nameLabel.text = ScientificAmerican[indexPath.row].name
             cell.dateLabel.text = transformToDate(url: ScientificAmerican[indexPath.row].url, number: 6)
+        case 5:
+            cell.nameLabel.text = TheEconomist[indexPath.row].name
+            cell.dateLabel.text = transformToDate(url: TheEconomist[indexPath.row].url, number: 6)
+        case 6:
+            cell.nameLabel.text = CRINews[indexPath.row].name
+            cell.dateLabel.text = transformToDate(url: CRINews[indexPath.row].url, number: 5)
         default:
             cell.nameLabel.text = ""
             cell.dateLabel.text = ""
@@ -146,6 +168,12 @@ class FavorateNewsController: UIViewController, UITableViewDelegate, UITableView
         case 4:
             tempCell.nameLabel.text = ScientificAmerican[indexPath.row].name
             tempCell.dateLabel.text = transformToDate(url: ScientificAmerican[indexPath.row].url, number: 6)
+        case 5:
+            tempCell.nameLabel.text = TheEconomist[indexPath.row].name
+            tempCell.dateLabel.text = transformToDate(url: TheEconomist[indexPath.row].url, number: 6)
+        case 6:
+            tempCell.nameLabel.text = CRINews[indexPath.row].name
+            tempCell.dateLabel.text = transformToDate(url: CRINews[indexPath.row].url, number: 5)
         default:
             tempCell.nameLabel.text = ""
             tempCell.dateLabel.text = ""
@@ -163,14 +191,7 @@ class FavorateNewsController: UIViewController, UITableViewDelegate, UITableView
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
         let deleteAction = UIContextualAction(style: .destructive, title: "") { (action, sourceView, completionHandler) in
-            
-            // Delete the row from the data source
-            //            for news in favoriteNews {
-            //                if news.name ==
-            //            }
-            //            DataManager.shared.removeFavorateNews(item: <#T##News#>)
-            //            self.bikeInfos.remove(at: indexPath.row)
-            //            self.tableView.deleteRows(at: [indexPath], with: .fade)
+
             var newsName = ""
             switch indexPath.section {
             case 0:
@@ -188,6 +209,12 @@ class FavorateNewsController: UIViewController, UITableViewDelegate, UITableView
             case 4:
                 newsName = self.ScientificAmerican[indexPath.row].name
                 self.ScientificAmerican.remove(at: indexPath.row)
+            case 5:
+                newsName = self.TheEconomist[indexPath.row].name
+                self.TheEconomist.remove(at: indexPath.row)
+            case 6:
+                newsName = self.CRINews[indexPath.row].name
+                self.CRINews.remove(at: indexPath.row)
             default:
                 newsName = ""
             }
@@ -228,7 +255,7 @@ class FavorateNewsController: UIViewController, UITableViewDelegate, UITableView
 
 extension FavorateNewsController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let allFavorateNews = VOANews + BBCNews + CNNNews + AsItIs
+        let allFavorateNews = VOANews + BBCNews + CNNNews + AsItIs + ScientificAmerican + TheEconomist + CRINews
         var indexNumber = 0
         if let indexPath = favorateNewsTableView.indexPathForSelectedRow {
             switch indexPath.section {
@@ -242,6 +269,10 @@ extension FavorateNewsController {
                 indexNumber = indexPath.row + VOANews.count + BBCNews.count + CNNNews.count
             case 4:
                 indexNumber = indexPath.row + VOANews.count + BBCNews.count + CNNNews.count + AsItIs.count
+            case 5:
+                indexNumber = indexPath.row + VOANews.count + BBCNews.count + CNNNews.count + AsItIs.count + ScientificAmerican.count
+            case 6:
+                indexNumber = indexPath.row + VOANews.count + BBCNews.count + CNNNews.count + AsItIs.count + ScientificAmerican.count + TheEconomist.count
             default:
                 indexNumber = 0
             }

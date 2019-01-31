@@ -191,6 +191,7 @@ class NewsDetailViewController: UIViewController, AVAudioPlayerDelegate {
                         let components = innerHtml.components(separatedBy: "<br>")
                         for component in components {
                             newsOriginalDetails.append(component)
+                            print(component)
                         }
                     }
                 }
@@ -209,6 +210,7 @@ class NewsDetailViewController: UIViewController, AVAudioPlayerDelegate {
                 let replaceString11 = "<a href=\"http://www.hxen.com\" target=\"_blank\" class=\"infotextkey\">cnn</a>"
                 let replaceString12 = "&amp;"
                 let replaceString13 = "<a href=\"http://www.hxen.com/englishlistening/\" target=\"_blank\" class=\"infotextkey\">voice</a> "
+                let replaceString14 = "<script src=\"http://img.hxen.com/js/gg_bottom.js\"></script>"
                 var countOfImage = [Int]()
                 
                 var numberOfNewsDetailsToBeDeleted = [Int]()
@@ -271,12 +273,19 @@ class NewsDetailViewController: UIViewController, AVAudioPlayerDelegate {
                     if self.newsDetails[index].contains(replaceString13) {
                         self.newsDetails[index] = self.newsDetails[index].replacingOccurrences(of: replaceString13, with: "")
                     }
+                    if self.newsDetails[index].contains(replaceString14) {
+                        self.newsDetails[index] = self.newsDetails[index].replacingOccurrences(of: replaceString14, with: "")
+                    }
                     if self.newsDetails[index].contains("<img") {
                         countOfImage.append(index)
                     }
                     if self.newsDetails[index].contains("<strong>") {
                         self.newsDetails[index] = self.newsDetails[index].replacingOccurrences(of: "<strong>", with: "")
                         self.newsDetails[index] = self.newsDetails[index].replacingOccurrences(of: "</strong>", with: "")
+                    }
+                    if self.newsDetails[index].contains("<cite>") {
+                        self.newsDetails[index] = self.newsDetails[index].replacingOccurrences(of: "<cite>", with: "")
+                        self.newsDetails[index] = self.newsDetails[index].replacingOccurrences(of: "</cite>", with: "")
                     }
                     if self.newsDetails[index].contains("<em>") {
                         self.newsDetails[index] = self.newsDetails[index].replacingOccurrences(of: "<em>", with: "")
